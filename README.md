@@ -1,1 +1,1 @@
-CMS KeJum основанно на популярно бесплатно freamworke LARAVEL
+CMS KeJum основанно на популярно бесплатном freamworke LARAVEL
