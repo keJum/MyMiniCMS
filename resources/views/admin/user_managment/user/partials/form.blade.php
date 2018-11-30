@@ -13,14 +13,21 @@
 <label for="">Email</label>
 <input type="text" name="email" id="" placeholder="Email" value="{{@$user->email}}" class="form-control" required>
 
+<label for="">role</label>
+<input type="text" name="role" id="" placeholder="role" value="{{@$user->developer->role}}" class="form-control" required>
+
 <label for="">Отдел</label>
-<input type="text" name="appointment" id="" placeholder="Отдел" value="{{@$user->appointment}}" class="form-control">
+<input type="text" name="appointment" id="" placeholder="Отдел" value="{{@$user->developer->appointment}}" class="form-control">
 
 <label for="">Специальность</label>
-<input type="text" name="specialty" id="" placeholder="Специальность" value="{{@$user->specialty}}" class="form-control">
+<input type="text" name="specialty" id="" placeholder="Специальность" value="{{@$user->developer->specialty}}" class="form-control">
 
 <label for="">Навыки</label>
-<input type="text" name="skill" id="" placeholder="Навыки" value="{{@$user->skill}}" class="form-control">
+<input type="text" name="skill" id="" placeholder="Навыки" value="{{@$user->developer->skill}}" class="form-control">
+
+<label for="">Расписание</label>
+<input type="text" name="schedule" id="" placeholder="Расписание" value="{{@$user->developer->schedule}}" class="form-control">
+
 
 <label for="">Пароль</label>
 <input type="password" name="password" id="" class="form-control">

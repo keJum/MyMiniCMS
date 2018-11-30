@@ -24,13 +24,13 @@
                         {{$user->email}}
                     </td>
                     <td>
-                        {{@$user->appointment}}
+                        {{@$user->developer->appointment}}
                     </td>
                     <td>
-                        {{@$user->specialty}}
+                        {{@$user->developer->specialty}}
                     </td>
                     <td>
-                        {{@$user->skill}}
+                        {{@$user->developer->skill}}
                     </td>
                     <td class="text-right">
                         <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('admin.user_managment.user.destroy',$user)}}" method="post">

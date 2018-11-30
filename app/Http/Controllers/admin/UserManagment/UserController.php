@@ -46,11 +46,13 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password'])
-        ]);
+        // User::create([
+        //     'name' => $request['name'],
+        //     'email' => $request['email'],
+        //     'password' => bcrypt($request['password'])
+        // ]);
+        $user = User::create($request->all());
+        $user->developer()->create($request->only('role','appointment','specialty','skill','schedule'));
         return redirect()->route('admin.user_managment.user.index');
     }
 
@@ -91,17 +93,19 @@ class UserController extends Controller
         $validate = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)],
-            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
-            'appointment'=>['string'],
-            'specialty'=>['string'],            
-            'skill'=>['string'],
+            'password' => ['nullable', 'string', 'min:6', 'confirmed']
         ]);
         $user->name = $request['name'];
         $user->email = $request['email'];
-        $user->appointment = $request['appointment'];
-        $user->specialty = $request['specialty'];
-        $user->skill = $request['skill'];
         $request['password'] == null ? : $user->password = bcrypt($request['password']);
+
+        if ($user->developer()->count()){
+            $user->developer()->update($request->only('role','appointment','specialty','skill','schedule'));
+        }
+        else {
+            $user->developer()->create($request->only('role','appointment','specialty','skill','schedule'));
+        }
+        
         $user->save();
 
         return redirect()->route('admin.user_managment.user.index');
@@ -115,6 +119,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->developer()->delete();
+        $user->delete();
+        return redirect()->route('admin.user_managment.user.index');
     }
 }
