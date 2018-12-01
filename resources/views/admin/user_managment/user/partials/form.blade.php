@@ -19,11 +19,11 @@
 <label for="exampleFormControlSelect1">role</label>
 <select name="role" class="form-control" id="exampleFormControlSelect1">
     <option></option>
-    <option {{@$user->developer->role == 'Admin' ? 'selected="selected' : ''}} >Admin</option>
-    <option {{@$user->developer->role == 'Task manager' ? 'selected="selected' : ''}} >Task manager</option>
-    <option {{@$user->developer->role == 'Team Lead' ? 'selected="selected' : ''}} >Team Lead</option>
-    <option {{@$user->developer->role == 'Devoloper' ? 'selected="selected' : ''}} >Devoloper</option>
-    <option {{@$user->developer->role == 'Tester' ? 'selected="selected' : ''}} >Tester</option>
+    <option {{@$user->role == 'Admin' ? 'selected="selected' : ''}} >Admin</option>
+    <option {{@$user->role == 'Task manager' ? 'selected="selected' : ''}} >Task manager</option>
+    <option {{@$user->role == 'Team lead' ? 'selected="selected' : ''}} >Team lead</option>
+    <option {{@$user->role == 'Devoloper' ? 'selected="selected' : ''}} >Devoloper</option>
+    <option {{@$user->role == 'Tester' ? 'selected="selected' : ''}} >Tester</option>
 </select>
 
 

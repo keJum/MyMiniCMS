@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password' ,'role'
     ];
 
     /**
@@ -39,5 +39,13 @@ class User extends Authenticatable
      */
     public function task(){
         return $this->hasMany('App\Task');
+    }
+
+    /**
+     * Возращаем роль 
+     */
+    public function hasRole($role)
+    {
+        return User::where('role', $role)->get();
     }
 }

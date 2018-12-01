@@ -27,6 +27,7 @@ $factory->defineAs(App\User::class, 'admin',function(Faker $faker){
     return [
         'name'=>'admin',
         'email'=>'none@mail.com',
+        'role'=>'Admin',
         'password'=>bcrypt('123456'),
         'remember_token'=>str_random(10)
     ];

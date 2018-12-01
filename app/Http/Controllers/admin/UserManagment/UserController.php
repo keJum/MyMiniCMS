@@ -52,7 +52,7 @@ class UserController extends Controller
         //     'password' => bcrypt($request['password'])
         // ]);
         $user = User::create($request->all());
-        $user->developer()->create($request->only('role','appointment','specialty','skill','schedule'));
+        $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
         return redirect()->route('admin.user_managment.user.index');
     }
 
@@ -100,10 +100,10 @@ class UserController extends Controller
         $request['password'] == null ? : $user->password = bcrypt($request['password']);
 
         if ($user->developer()->count()){
-            $user->developer()->update($request->only('role','appointment','specialty','skill','schedule'));
+            $user->developer()->update($request->only('appointment','specialty','skill','schedule'));
         }
         else {
-            $user->developer()->create($request->only('role','appointment','specialty','skill','schedule'));
+            $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
         }
         
         $user->save();

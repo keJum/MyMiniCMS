@@ -14,7 +14,7 @@
 /**
  * Users
  */
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth']],function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
     Route::get('/','DashboardController@dashboard')->name('admin.index');
     Route::group(['prefix'=>'user_managment','namespace'=>'UserManagment'],function(){
         Route::resource('/user','UserController',['as'=>'admin.user_managment']);
@@ -22,10 +22,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth']],fun
 });
 
 Route::group(['prefix'=>'developer','namespace'=>'Developer','middleware'=>['auth','developer']],function(){
-    Route::get('/','DashboardController@dashboard')->name('developer.index');
+    // Route::get('/','DashboardController@dashboard')->name('developer.index');
 });
 
-Route::group(['prefix'=>'seniorDeveloper','namespace'=>'SeniorDeveloper','middleware'=>['auth','seniorDeveloper']],function(){
+Route::group(['prefix'=>'teamLead','namespace'=>'TeamLead','middleware'=>['auth','teamLead']],function(){
     // Route::get('/','DashboardController@dashboard')->name('seniorDeveloper.index');
 });
 
@@ -33,6 +33,9 @@ Route::group(['prefix'=>'tester','namespace'=>'Tester','middleware'=>['auth','te
     // Route::get('/','DashboardController@dashboard')->name('tester.index');
 });
 
+Route::group(['prefix'=>'taskManager','namespace'=>'TaskManager','middleware'=>['auth','taskManager']],function(){
+    // Route::get('/','DashboardController@dashboard')->name('tester.index');
+});
 
 
 Route::get('/', function () {

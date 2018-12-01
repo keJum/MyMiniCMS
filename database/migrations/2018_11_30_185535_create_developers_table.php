@@ -16,7 +16,6 @@ class CreateDevelopersTable extends Migration
         Schema::create('developers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('user_id');
-            $table->string('role');
             $table->string('appointment')->nullable();
             $table->string('specialty')->nullable();
             $table->string('skill')->nullable();
