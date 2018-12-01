@@ -22,7 +22,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth']],fun
 });
 
 Route::group(['prefix'=>'developer','namespace'=>'Developer','middleware'=>['auth','developer']],function(){
-    // Route::get('/','DashboardController@dashboard')->name('developer.index');
+    Route::get('/','DashboardController@dashboard')->name('developer.index');
 });
 
 Route::group(['prefix'=>'seniorDeveloper','namespace'=>'SeniorDeveloper','middleware'=>['auth','seniorDeveloper']],function(){

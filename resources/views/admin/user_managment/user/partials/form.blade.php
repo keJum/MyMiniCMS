@@ -13,8 +13,19 @@
 <label for="">Email</label>
 <input type="text" name="email" id="" placeholder="Email" value="{{@$user->email}}" class="form-control" required>
 
-<label for="">role</label>
-<input type="text" name="role" id="" placeholder="role" value="{{@$user->developer->role}}" class="form-control" required>
+{{-- <label for="">role</label>
+<input type="text" name="role" id="" placeholder="role" value="{{@$user->developer->role}}" class="form-control" required> --}}
+
+<label for="exampleFormControlSelect1">role</label>
+<select name="role" class="form-control" id="exampleFormControlSelect1">
+    <option></option>
+    <option {{@$user->developer->role == 'Admin' ? 'selected="selected' : ''}} >Admin</option>
+    <option {{@$user->developer->role == 'Task manager' ? 'selected="selected' : ''}} >Task manager</option>
+    <option {{@$user->developer->role == 'Team Lead' ? 'selected="selected' : ''}} >Team Lead</option>
+    <option {{@$user->developer->role == 'Devoloper' ? 'selected="selected' : ''}} >Devoloper</option>
+    <option {{@$user->developer->role == 'Tester' ? 'selected="selected' : ''}} >Tester</option>
+</select>
+
 
 <label for="">Отдел</label>
 <input type="text" name="appointment" id="" placeholder="Отдел" value="{{@$user->developer->appointment}}" class="form-control">

@@ -29,9 +29,15 @@ class User extends Authenticatable
     ];
 
     /**
-     * one-to one
+     * one-to one с таблице developer
      */
     public function developer(){
-        return $this->hasOne('App\Developer','user_id','id');
+        return $this->hasOne('App\Developer');
+    }
+    /**
+     * one to many с таблицей task
+     */
+    public function task(){
+        return $this->hasMany('App\Task');
     }
 }
