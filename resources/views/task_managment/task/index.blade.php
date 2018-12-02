@@ -1,0 +1,62 @@
+@extends('admin.layouts.app_admin')
+
+@section('content')
+    <div class="container">
+        <a href="{{route('task_managment.task.create')}}" class="btn btn-primay pull-right">
+            Создать пользователя
+        </a>
+        <table class="table table-striped">
+            <thead>
+                <th>Название</th>
+                <th>Важность</th>
+                <th>Прогресс</th>
+                <th>Назначил</th>
+                <th>Разработчик</th>
+                <th>Тестер</th>
+                <th class="text-right">Действие</th>
+            </thead>
+            <tbody>
+                @forelse ($tasks as $task)
+                <tr>
+                    <td>
+                        {{$task->taskName}}
+                    </td>
+                    <td>
+                        {{$task->taskImportance}}
+                    </td>
+                    <td>
+                        {{$task->provider->name}}
+                    </td>
+                    <td>
+                        {{$task->developer->name}}
+                    </td>
+                    <td>
+                        {{$task->tester->name}}
+                    </td>
+                    <td class="text-right">
+                        <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('admin.user_managment.user.destroy',$user)}}" method="post">
+                            {{method_field('DELETE')}}
+                            {{ csrf_field() }}
+                            <a href="" class="btn btn-default">Ред.</a>
+                            <button type="submit" class="btn">Удал.</button>
+                        </form>
+                    </td>
+                </tr>                    
+                @empty
+                <tr>
+                    <td colspan="3" class="text-center"><h2>Данные отсутвуют</h2></td>
+                </tr>
+                @endforelse
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <ul class="pagination pull-right">
+                            {{$tasks->links()}}
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+@endsection

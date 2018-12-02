@@ -38,6 +38,11 @@ Route::group(['prefix'=>'taskManager','namespace'=>'TaskManager','middleware'=>[
 });
 
 
+Route::group(['prefix'=>'task_managment'],function(){
+    Route::resource('/task','TaskController',['as'=>'task_managment']);
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });

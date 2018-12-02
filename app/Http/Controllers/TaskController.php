@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Developer;
+use App\Task;
 use Illuminate\Http\Request;
 
-class TaskerController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class TaskerController extends Controller
      */
     public function index()
     {
-        //
+        return view('task_managment.task.index',[
+            'tasks' => Task::paginate(10)
+        ]);
     }
 
     /**
@@ -24,7 +26,9 @@ class TaskerController extends Controller
      */
     public function create()
     {
-        //
+        return view('task_managment.task.create',[
+            'task'=>['']
+        ]);
     }
 
     /**
@@ -41,10 +45,10 @@ class TaskerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Developer  $developer
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Developer $developer)
+    public function show(Task $task)
     {
         //
     }
@@ -52,10 +56,10 @@ class TaskerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Developer  $developer
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Developer $developer)
+    public function edit(Task $task)
     {
         //
     }
@@ -64,10 +68,10 @@ class TaskerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Developer  $developer
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Developer $developer)
+    public function update(Request $request, Task $task)
     {
         //
     }
@@ -75,10 +79,10 @@ class TaskerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Developer  $developer
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Developer $developer)
+    public function destroy(Task $task)
     {
         //
     }

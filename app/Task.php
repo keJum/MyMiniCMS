@@ -14,7 +14,14 @@ class Task extends Model
     /**
      * Обратная связь с таблицей User
      */
-    public function user(){
-        return $this->belongsTo('App\User');
+
+    public function provider(){
+        return $this->belongsTo('App\User','taskProvied_id');
+    }
+    public function developer(){
+        return $this->belongsTo('App\User','taskDeveloper_id');
+    }
+    public function tester(){
+        return $this->belongsTo('App\User','taskTester_id');
     }
 }
