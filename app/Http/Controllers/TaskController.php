@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
 
 class TaskController extends Controller
 {
@@ -27,7 +29,8 @@ class TaskController extends Controller
     public function create()
     {
         return view('task_managment.task.create',[
-            'task'=>['']
+            'task'=>[''],
+            'users'=>User::all()
         ]);
     }
 
@@ -39,7 +42,9 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $user = Task::create($request->all());
+        return redirect()->route('task_managment.task.index');
     }
 
     /**
@@ -61,7 +66,10 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('task_managment.task.edit',[
+            'task'=>$task,
+            'users'=>User::all()
+        ]);
     }
 
     /**
@@ -73,7 +81,20 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->taskName = $request['taskName'];
+        $task->taskProvider_id = $request['taskProvider_id'];
+        $task->taskDeveloper_id = $request['taskDeveloper_id'];
+        $task->taskTester_id = $request['taskTester_id'];
+        $task->taskImportance = $request['taskImportance'];
+        $task->taskComplexity = $request['taskComplexity'];
+        $task->taskProgress = $request['taskProgress'];
+        $task->startDevelopment_at = $request['startDevelopment_at'];
+        $task->startTesting_at = $request['startTesting_at'];
+        $task->finishTesting_at = $request['finishTesting_at'];
+        $task->finish_at = $request['finish_at'];
+
+        $task->save();
+        return redirect()->route('task_managment.task.index');
     }
 
     /**
@@ -84,6 +105,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route('task_managment.task.index');
     }
 }

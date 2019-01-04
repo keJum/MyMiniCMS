@@ -97,7 +97,9 @@ class UserController extends Controller
         ]);
         $user->name = $request['name'];
         $user->email = $request['email'];
+        $user->role = $request['role'];
         $request['password'] == null ? : $user->password = bcrypt($request['password']);
+        // dd($request);
 
         if ($user->developer()->count()){
             $user->developer()->update($request->only('appointment','specialty','skill','schedule'));

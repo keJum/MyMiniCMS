@@ -35,16 +35,16 @@ class User extends Authenticatable
         return $this->hasOne('App\Developer');
     }
     /**
-     * one to many с таблицей task
+     * one to many с таблицей task кто создал
      */
     public function providerTask(){
-        return $this->hasMany('App\User','id','taskProvied_id');
+        return $this->hasMany('App\Task','taskProvider_id','id');
     }
     public function developerTask(){
-        return $this->hasMany('App\User','id','taskDeveloper_id');
+        return $this->hasMany('App\Task','taskDeveloper_id','id');
     }
     public function testerTask(){
-        return $this->hasMany('App\User','id','taskTester_id');
+        return $this->hasMany('App\Task','taskTester_id','id');
     }
 
     /**

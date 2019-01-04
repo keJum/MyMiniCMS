@@ -7,6 +7,8 @@
     </ul>
 </div>
 @endif
+
+@if (!$task)
 <label for="">Имя</label>
 <input type="text" name="name" id="" placeholder="Имя" value="{{@$user->name}} " class="form-control" required>
 
@@ -49,3 +51,4 @@
 <hr>
 
 <input type="submit" class="btn btn-primary" value="Сохранить">
+@endif

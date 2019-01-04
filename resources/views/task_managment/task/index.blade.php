@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <a href="{{route('task_managment.task.create')}}" class="btn btn-primay pull-right">
-            Создать пользователя
+            Создать задачу
         </a>
         <table class="table table-striped">
             <thead>
@@ -25,19 +25,22 @@
                         {{$task->taskImportance}}
                     </td>
                     <td>
-                        {{$task->provider->name}}
+                        {{$task->taskComplexity}}
                     </td>
                     <td>
-                        {{$task->developer->name}}
+                        {{$task->provider->name}}
                     </td>
                     <td>
                         {{$task->tester->name}}
                     </td>
+                    <td>
+                        {{$task->developer->name}}
+                    </td>
                     <td class="text-right">
-                        <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('admin.user_managment.user.destroy',$user)}}" method="post">
+                        <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('task_managment.task.destroy',$task)}}" method="post">
                             {{method_field('DELETE')}}
                             {{ csrf_field() }}
-                            <a href="" class="btn btn-default">Ред.</a>
+                            <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-default">Ред.</a>
                             <button type="submit" class="btn">Удал.</button>
                         </form>
                     </td>
