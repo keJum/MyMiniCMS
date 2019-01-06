@@ -60,18 +60,24 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    <a class="dropdown-item" href="{{route('task_managment.task.index')}}">
+                                        Задачи
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
+
+                            {{-- <a class="nav-link" href="{{route('task_managment.task.index')}}">
+                                    Управление задачами
+                                </a> --}}
+
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

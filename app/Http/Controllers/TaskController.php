@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -16,9 +17,20 @@ class TaskController extends Controller
      */
     public function index()
     {
+        $user = User::find(Auth::id());
+
+        if ($user->role == 'Admin') {
         return view('task_managment.task.index',[
-            'tasks' => Task::paginate(10)
+            'tasks' => Task::all()
+        ]);       
+        }
+
+        return view('task_managment.task.index',[
+            'tasksProvider' => Task::where('taskProvider_id',$user->id)->get(),
+            'tasksDeveloper' => Task::where('taskDeveloper_id',$user->id)->get(),
+            'tasksTester' => Task::where('taskTester_id',$user->id)->get()
         ]);
+
     }
 
     /**

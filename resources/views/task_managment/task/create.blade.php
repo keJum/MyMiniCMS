@@ -1,4 +1,4 @@
-@extends('admin.layouts.app_admin')
+@extends('layouts.app')
 @section('content')
 <div class="container">
     <form action="{{route('task_managment.task.store')}}" class="form-horizontal" method="POST">
