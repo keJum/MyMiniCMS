@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\UserManagment;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\Welcome;
+use Illuminate\Support\Facades\Mail;
 // use Illuminate\Foundation\Auth\User;
 
 class UserController extends Controller
@@ -46,13 +48,16 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
-        // User::create([
-        //     'name' => $request['name'],
-        //     'email' => $request['email'],
-        //     'password' => bcrypt($request['password'])
-        // ]);
-        $user = User::create($request->all());
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password'])
+        ]);
+        // $user = User::create($request->all());
         $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
+
+        Mail::to($user)->send(new Welcome); 
+
         return redirect()->route('admin.user_managment.user.index');
     }
 
@@ -64,7 +69,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.user_managment.user.show',[
+            'user' => $user
+        ]);
     }
 
     /**
@@ -98,6 +105,7 @@ class UserController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->role = $request['role'];
+        $user->imageAvatar = $request['imageAvatar'];
         $request['password'] == null ? : $user->password = bcrypt($request['password']);
         // dd($request);
 
@@ -124,5 +132,19 @@ class UserController extends Controller
         $user->developer()->delete();
         $user->delete();
         return redirect()->route('admin.user_managment.user.index');
+    }
+
+    /**
+     * Image load file, avatar profile
+     * Создать ссылку на дерикторию public [php .\artisan storage:link]
+     * @param  \Illuminate\Http\Request  $request
+     * @return boolean 
+     */
+    public function uploadImageAvatar(Request $request,User $user)
+    {
+        $path = $request->file('image')->store('uploads','public');
+        return view($request->input('viewRedir'),[
+            'images' => $path
+        ]);
     }
 }

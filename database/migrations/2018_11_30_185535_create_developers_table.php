@@ -16,10 +16,10 @@ class CreateDevelopersTable extends Migration
         Schema::create('developers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('user_id');
-            $table->string('appointment')->nullable();
-            $table->string('specialty')->nullable();
-            $table->string('skill')->nullable();
-            $table->string('schedule')->nullable();
+            $table->string('appointment')->nullable()->default('не указанно');
+            $table->string('specialty')->nullable()->default('не указанно');
+            $table->string('skill')->nullable()->default('не указанно');
+            $table->string('schedule')->nullable()->default('не указанно');
             $table->timestamps();
         });
     }

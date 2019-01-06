@@ -1,15 +1,25 @@
 @if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
+
+@if (@$task)
+    <label for="">
+        Номер задачи id 
+        <div class="alert alert-primary" role="alert">
+            {{@$task->id}}
+          </div>
+    </label>
+    <hr>
+@endif
+
 <label for="">Название</label>
 <input type="text" name="taskName" id="" placeholder="" value="{{@$task->taskName}}" class="form-control" required>
-
 
 <label for="exampleFormControlSelect1">Исполнитель</label>
 <select name="taskProvider_id" class="form-control" id="exampleFormControlSelect1">

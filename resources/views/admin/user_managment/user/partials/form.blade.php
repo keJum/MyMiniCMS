@@ -1,14 +1,34 @@
 @if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 
-@if (!$task)
+@if (@$user)
+    <label for="">
+        Персональный id 
+        <div class="alert alert-primary" role="alert">
+            {{@$user->id}}
+          </div>
+    </label>
+    <hr>
+@endif
+
+
+{{-- <div class="form-group">
+    <input type="file" name="imageAvatar" id="">
+</div>
+<button type="sudmit" class="btn btn-primary">Згарузить</button>
+
+@isset($user->imageAvatar)
+<img class="img-fluid" src="{{asset('/storage/'.$user->imageAvatar)}}" >
+@endisset --}}
+
+
 <label for="">Имя</label>
 <input type="text" name="name" id="" placeholder="Имя" value="{{@$user->name}} " class="form-control" required>
 
@@ -51,4 +71,3 @@
 <hr>
 
 <input type="submit" class="btn btn-primary" value="Сохранить">
-@endif

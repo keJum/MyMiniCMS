@@ -8,29 +8,25 @@
         <table class="table table-striped">
             <thead>
                 <th>Имя</th>
-                <th>Email</th>
+                <th>Роль</th>
                 <th>Отдел</th>
                 <th>Специальность</th>
-                <th>Навыки</th>
                 <th class="text-right">Действие</th>
             </thead>
             <tbody>
                 @forelse ($users as $user)
                 <tr>
                     <td>
-                        {{$user->name}}
+                        <a href="{{route('admin.user_managment.user.show',$user)}}">{{$user->name}}</a>
                     </td>
                     <td>
-                        {{$user->email}}
+                        {{$user->role}}
                     </td>
                     <td>
                         {{@$user->developer->appointment}}
                     </td>
                     <td>
                         {{@$user->developer->specialty}}
-                    </td>
-                    <td>
-                        {{@$user->developer->skill}}
                     </td>
                     <td class="text-right">
                         <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('admin.user_managment.user.destroy',$user)}}" method="post">
