@@ -1,7 +1,18 @@
-@extends('admin.layouts.app_admin')
+@extends('layouts.app')
 
 @section('content')
-<div class="container">
+<li class="nav-item dropdown">
+        <a class="nav-link" href="{{route('taskAll')}}">
+            Все задачи
+        </a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link" href="{{route('admin.user_managment.user.index')}}">
+            Все пользователи
+        </a>
+    </li>
+</li>
+{{-- <div class="container">
     <div class="row">
         <div class="col-sm-3">
             <div class="jumbotron">
@@ -51,6 +62,6 @@
                 </p>
             </a>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection

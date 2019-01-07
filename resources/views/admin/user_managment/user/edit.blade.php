@@ -1,4 +1,4 @@
-@extends('admin.layouts.app_admin')
+@extends('layouts.app')
 @section('content')
     <div class="container">
         {{-- <form action="{{route('user.loadImage',$user)}}" method="post" enctype="multipart/form-data">

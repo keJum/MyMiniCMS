@@ -41,6 +41,7 @@ Route::group(['prefix'=>'taskManager','namespace'=>'TaskManager','middleware'=>[
 
 Route::group(['prefix'=>'task_managment'],function(){
     Route::resource('/task','TaskController',['as'=>'task_managment']);
+    Route::get('/taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll');
 });
 
 
@@ -52,5 +53,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/** */
 

@@ -44,12 +44,12 @@
                         </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{route('task_managment.task.index')}}">
-                                Управление задачами
+                                Все задачи
                             </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{route('admin.user_managment.user.index')}}">
-                                Управление пользователями
+                                Все пользователи
                             </a>
                             {{-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Управление пользователями

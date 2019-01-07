@@ -19,18 +19,24 @@ class TaskController extends Controller
     {
         $user = User::find(Auth::id());
 
-        if ($user->role == 'Admin') {
-        return view('task_managment.task.index',[
-            'tasks' => Task::all()
-        ]);       
-        }
-
         return view('task_managment.task.index',[
             'tasksProvider' => Task::where('taskProvider_id',$user->id)->get(),
             'tasksDeveloper' => Task::where('taskDeveloper_id',$user->id)->get(),
             'tasksTester' => Task::where('taskTester_id',$user->id)->get()
         ]);
 
+    }
+
+    /**
+     * Display all listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allIndex()
+    {
+        return view('admin.task_managment.task.index',[
+            'tasks' => Task::all()
+        ]);       
     }
 
     /**
