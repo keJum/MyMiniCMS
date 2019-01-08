@@ -73,7 +73,9 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return view('task_managment.task.show',[
+            'task' => $task
+        ]);
     }
 
     /**
@@ -91,6 +93,22 @@ class TaskController extends Controller
     }
 
     /**
+     * task edit update dev
+     */
+    public function selectTask(Request $request){
+        $task = Task::where('id',$request['taskId'])->first();
+        
+        $task->update([
+            'taskProgress' => $request['taskProgress'],
+            'taskProvider_id' => $task->taskProvider_id,
+
+        ]);
+
+        $task->save();
+        return redirect()->back();
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -100,6 +118,7 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         $task->taskName = $request['taskName'];
+        $task->description = $request['description'];
         $task->taskProvider_id = $request['taskProvider_id'];
         $task->taskDeveloper_id = $request['taskDeveloper_id'];
         $task->taskTester_id = $request['taskTester_id'];

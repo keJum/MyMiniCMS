@@ -25,7 +25,7 @@
                     @forelse (@$tasksProvider as $task)
                     <tr {{ $task->taskProgress == 5 ? 'bgcolor="#ddd"' : '' }} >                 
                         <td>
-                            {{$task->taskName}}
+                            <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
                         </td>
                         <td>
                             {{$task->taskImportance}}
@@ -66,7 +66,7 @@
                     @forelse (@$tasksDeveloper as $task)
                     <tr {{ $task->taskProgress == 5 ? 'bgcolor="#ddd"' : '' }} >      
                         <td>
-                            {{$task->taskName}}
+                            <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
                         </td>
                         <td>
                             {{$task->taskImportance}}
@@ -78,7 +78,7 @@
                             {{$task->provider->name}}
                         </td>
                         <td>
-                            {{$task->tester->name}}
+                            {{@$task->tester->name}}
                         </td>
                         <td>
                             {{$task->developer->name}}
@@ -107,7 +107,7 @@
                     @forelse (@$tasksTester as $task)
                     <tr {{ $task->taskProgress == 5 ? 'bgcolor="#ddd"' : '' }} >      
                         <td>
-                            {{$task->taskName}}
+                            <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
                         </td>
                         <td>
                             {{$task->taskImportance}}

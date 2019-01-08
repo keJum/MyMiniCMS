@@ -20,7 +20,7 @@
 
                     <tr {{ $task->taskProgress == 5 ? 'bgcolor="#ddd"' : '' }} >    
                         <td>
-                            {{$task->taskName}}
+                            <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
                         </td>
                         <td>
                             {{$task->taskImportance}}

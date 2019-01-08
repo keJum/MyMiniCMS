@@ -42,6 +42,7 @@ Route::group(['prefix'=>'taskManager','namespace'=>'TaskManager','middleware'=>[
 Route::group(['prefix'=>'task_managment'],function(){
     Route::resource('/task','TaskController',['as'=>'task_managment']);
     Route::get('/taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll');
+    Route::post('/update/task','TaskController@selectTask',['as'=>'task_managment'])->name('selectTask');
 });
 
 

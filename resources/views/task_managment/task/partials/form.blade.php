@@ -21,6 +21,9 @@
 <label for="">Название</label>
 <input type="text" name="taskName" id="" placeholder="" value="{{@$task->taskName}}" class="form-control" required>
 
+<label for="">Описание</label>
+<textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"> {{@$task->description}} </textarea>
+
 <label for="exampleFormControlSelect1">Исполнитель</label>
 <select name="taskProvider_id" class="form-control" id="exampleFormControlSelect1">
     <option value="{{@$task->taskProvider_id}}">{{@$task->provider->name}}</option>
