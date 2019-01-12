@@ -52,6 +52,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index',['middleware'=>['auth']])->name('home');
+Route::get('/profile/{user}','UserController@show',['middleware'=>['auth']])->name('profile');
 
-
+Route::group(['namespace' => 'Admin'], function() {
+    Route::group(['namespace' => 'UserManagment','middleware'=>['auth']], function() {
+    Route::get('/profile','UserController@showProfile')->name('profile');
+    Route::get('/edit/profile','UserController@editProfile')->name('editProfile');
+    Route::post('/store/profile','UserController@updateProfile',['as'=>'admin.user_managment'])->name('storeProfileS');
+    });
+});

@@ -18,7 +18,7 @@
             <tbody>
                     @forelse (@$tasks as $task)
 
-                    <tr {{ $task->taskProgress == 5 ? 'bgcolor="#ddd"' : '' }} >    
+                    <tr {{ $task->taskProgress == 5 ? 'bgcolor="#8FBC8F"' : '' }} >    
                         <td>
                             <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
                         </td>
@@ -32,10 +32,11 @@
                             {{$task->provider->name}}
                         </td>
                         <td>
-                            {{$task->tester->name}}
+                            {{$task->developer->name}}
                         </td>
                         <td>
-                            {{$task->developer->name}}
+                            {{$task->tester->name}}
+                            
                         </td>
                         <td class="text-right">
                             <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('task_managment.task.destroy',$task)}}" method="post">
@@ -48,7 +49,7 @@
                     </tr>                    
                     @empty
                     <tr>
-                        <td colspan="3" class="text-center"><h2>Данные отсутвуют</h2></td>
+                        <td colspan="3" class="text-center"><h2>Нет задач</h2></td>
                     </tr>
                     @endforelse
             </tbody>

@@ -2,25 +2,9 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-sm-2">
-                <h2>
-                    Поставщик
-                </h2>
-                {{@$task->provider->name}}
-                <hr>
-                <h2>
-                    Разработчик
-                </h2>
-                {{@$task->developer->name}}
-                <hr>
-                <h2>
-                    Тестировщик
-                </h2>
-                {{@$task->tester->name}}
-            </div>
             <br>
             <hr>
-            <div class="col-sm-10">
+            <div class="col-sm-9">
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
                         <form class="form-horizontal" action="{{route('selectTask')}}" method="post">
@@ -46,6 +30,22 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="col-sm-3">
+                <h2>
+                    Поставщик
+                </h2>
+                {{@$task->provider->name}}
+                <hr>
+                <h2>
+                    Разработчик
+                </h2>
+                {{@$task->developer->name}}
+                <hr>
+                <h2>
+                    Тестировщик
+                </h2>
+                {{@$task->tester->name}}
             </div>
         </div>
     </div>

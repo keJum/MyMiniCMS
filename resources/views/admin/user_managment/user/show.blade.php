@@ -150,5 +150,10 @@
 @endif
       </tbody>
     </table>
+    <form action="{{route('editProfile')}}" method="get">
+        {{ csrf_field() }}
+        <input type="hidden" name="userId" value="{{$user->id}}">
+        <button type="submit" class="btn-sudmit">Редактировать.</button>
+    </form>
   </div>
 @endsection

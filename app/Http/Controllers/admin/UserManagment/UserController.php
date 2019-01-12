@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\Welcome;
 use Illuminate\Support\Facades\Mail;
-// use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -61,6 +61,16 @@ class UserController extends Controller
         return redirect()->route('admin.user_managment.user.index');
     }
 
+
+    public function showProfile(){
+
+        $user = User::find(Auth::id());
+        
+        return view('admin.user_managment.user.show',[
+            'user' => $user
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -69,10 +79,20 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+
         return view('admin.user_managment.user.show',[
             'user' => $user
         ]);
     }
+
+    public function editProfile(Request $request)
+    {
+        $user = User::find($request->userId);
+        return view('admin.user_managment.user.edit',[
+            'user'=>$user
+        ]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -86,6 +106,36 @@ class UserController extends Controller
         return view('admin.user_managment.user.edit',[
             'user'=>$user
         ]);
+    }
+
+
+    public function updateProfile(Request $request)
+    {
+        // dd($request);
+        $user = User::find($request->userId);
+        // dd($user);
+        $validate = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)],
+            'password' => ['nullable', 'string', 'min:6', 'confirmed']
+        ]);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->role = $request['role'];
+        $user->imageAvatar = $request['imageAvatar'];
+        $request['password'] == null ? : $user->password = bcrypt($request['password']);
+        // dd($request);
+
+        if ($user->developer()->count()){
+            $user->developer()->update($request->only('appointment','specialty','skill','schedule'));
+        }
+        else {
+            $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
+        }
+        
+        $user->save();
+
+        return redirect()->route('admin.user_managment.user.index');
     }
 
     /**

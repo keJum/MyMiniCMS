@@ -108,6 +108,7 @@ class TaskController extends Controller
         return redirect()->back();
     }
 
+
     /**
      * Update the specified resource in storage.
      *
