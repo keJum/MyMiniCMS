@@ -77,7 +77,7 @@
               <th scope="row">{{$task->id}}</th>
               <td>{{$task->taskName}}</td>
               <td>{{$task->provider->name}}</td>
-              <td>{{$task->developer->name}}</td>
+              <td>{{@$task->developer->name}}</td>
               <td>{{$task->tester->name}}</td>
               <td>{{$task->taskImportance}}</td>
             </tr>
@@ -107,7 +107,7 @@
               <th scope="row">{{$task->id}}</th>
               <td>{{$task->taskName}}</td>
               <td>{{$task->provider->name}}</td>
-              <td>{{$task->developer->name}}</td>
+              <td>{{@$task->developer->name}}</td>
               <td>{{$task->tester->name}}</td>
               <td>{{$task->taskImportance}}</td>
             </tr>
@@ -136,7 +136,7 @@
               <th scope="row">{{$task->id}}</th>
               <td>{{$task->taskName}}</td>
               <td>{{$task->provider->name}}</td>
-              <td>{{$task->developer->name}}</td>
+              <td>{{@$task->developer->name}}</td>
               <td>{{$task->tester->name}}</td>
               <td>{{$task->taskImportance}}</td>
             </tr>

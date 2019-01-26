@@ -10,10 +10,7 @@
 
 @if (@$user)
     <label for="">
-        Персональный id 
-        <div class="alert alert-primary" role="alert">
-            {{@$user->id}}
-          </div>
+        Персональный id : {{@$user->id}} 
     </label>
     <hr>
 @endif

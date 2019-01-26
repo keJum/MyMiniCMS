@@ -31,6 +31,7 @@ class HomeController extends Controller
         $tasks = Task::where('taskProvider_id',Auth::id())->count();
         $tasks += Task::where('taskDeveloper_id',Auth::id())->count();
         $tasks += Task::where('taskTester_id',Auth::id())->count();
+        $tasks += Task::where('taskRespon_id',Auth::id())->count();
         $user = User::find(Auth::id());
 
         return view('home',[

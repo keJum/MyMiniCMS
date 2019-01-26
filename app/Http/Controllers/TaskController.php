@@ -20,6 +20,7 @@ class TaskController extends Controller
         $user = User::find(Auth::id());
 
         return view('task_managment.task.index',[
+            'tasksTeamLiead' => Task::where('taskRespon_id',$user->id)->get(),
             'tasksProvider' => Task::where('taskProvider_id',$user->id)->get(),
             'tasksDeveloper' => Task::where('taskDeveloper_id',$user->id)->get(),
             'tasksTester' => Task::where('taskTester_id',$user->id)->get()
@@ -46,8 +47,10 @@ class TaskController extends Controller
      */
     public function create()
     {
+        $user = User::find(Auth::id());
         return view('task_managment.task.create',[
             'task'=>[''],
+            'user' => $user,
             'users'=>User::all()
         ]);
     }
@@ -62,6 +65,7 @@ class TaskController extends Controller
     {
 
         $user = Task::create($request->all());
+        
         return redirect()->route('task_managment.task.index');
     }
 
@@ -86,7 +90,10 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
+        //Отделы ролей показываются в шаблоне blade
+        $user = User::find(Auth::id());
         return view('task_managment.task.edit',[
+            'user'=>$user,
             'task'=>$task,
             'users'=>User::all()
         ]);
@@ -118,9 +125,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+
         $task->taskName = $request['taskName'];
         $task->description = $request['description'];
         $task->taskProvider_id = $request['taskProvider_id'];
+        $task->taskRespon_id = $request['taskRespon_id'];
         $task->taskDeveloper_id = $request['taskDeveloper_id'];
         $task->taskTester_id = $request['taskTester_id'];
         $task->taskImportance = $request['taskImportance'];

@@ -13,7 +13,8 @@
                             
                             <input type="hidden" name="taskId" value="{{$task->id}}">
                             
-                            <h1 class="display-4">Задача: {{$task->taskName}}</h1>
+                            <h1 class="display-4">Задача: <br>
+                                 {{$task->taskName}}</h1>
                             <h2>Описание:</h2>
                             
                             <p> {{@$task->description}} </p>
@@ -36,6 +37,11 @@
                     Поставщик
                 </h2>
                 {{@$task->provider->name}}
+                <hr>
+                <h2>
+                    Отвественный
+                </h2>
+                {{@$task->responsible->name}}
                 <hr>
                 <h2>
                     Разработчик

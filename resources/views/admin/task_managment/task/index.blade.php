@@ -11,8 +11,7 @@
                 <th>Важность</th>
                 <th>Прогресс</th>
                 <th>Назначил</th>
-                <th>Разработчик</th>
-                <th>Тестер</th>
+                <th>Отвественный</th>
                 <th class="text-right">Действие</th>
             </thead>
             <tbody>
@@ -29,14 +28,10 @@
                             {{$task->taskProgress}}
                         </td>
                         <td>
-                            {{$task->provider->name}}
+                            {{@$task->provider->name}}
                         </td>
                         <td>
-                            {{$task->developer->name}}
-                        </td>
-                        <td>
-                            {{$task->tester->name}}
-                            
+                            {{$task->responsible->name}}
                         </td>
                         <td class="text-right">
                             <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('task_managment.task.destroy',$task)}}" method="post">

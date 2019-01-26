@@ -29,4 +29,7 @@ class Task extends Model
     public function tester(){
         return $this->belongsTo('App\User','taskTester_id','id');
     }
+    public function responsible(){
+        return $this->belongsTo('App\User','taskRespon_id','id');
+    }
 }
