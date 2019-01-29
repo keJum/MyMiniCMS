@@ -56,7 +56,7 @@ class UserController extends Controller
         // $user = User::create($request->all());
         $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
 
-        Mail::to($user)->send(new Welcome); 
+        // Mail::to($user)->send(new Welcome); 
 
         return redirect()->route('admin.user_managment.user.index');
     }

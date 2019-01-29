@@ -9,7 +9,6 @@
             <thead>
                 <th>Имя</th>
                 <th>Роль</th>
-                <th>Отдел</th>
                 <th>Специальность</th>
                 <th class="text-right">Действие</th>
             </thead>
@@ -21,9 +20,6 @@
                     </td>
                     <td>
                         {{$user->role}}
-                    </td>
-                    <td>
-                        {{@$user->developer->appointment}}
                     </td>
                     <td>
                         {{@$user->developer->specialty}}

@@ -42,7 +42,7 @@
         </tr>
         <tr>
           <th scope="row">Отдел</th>
-          <td colspan="2">{{$user->developer->appointment}}</td>
+          <td colspan="2">{{$user->developer->department->name}}</td>
         </tr>
         <tr>
           <th scope="row">Навыки</th>

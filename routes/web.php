@@ -22,21 +22,21 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
     });
 });
 
-Route::group(['prefix'=>'developer','namespace'=>'Developer','middleware'=>['auth','developer']],function(){
-    // Route::get('/','DashboardController@dashboard')->name('developer.index');
-});
+// Route::group(['prefix'=>'developer','namespace'=>'Developer','middleware'=>['auth','developer']],function(){
+//     // Route::get('/','DashboardController@dashboard')->name('developer.index');
+// });
 
-Route::group(['prefix'=>'teamLead','namespace'=>'TeamLead','middleware'=>['auth','teamLead']],function(){
-    // Route::get('/','DashboardController@dashboard')->name('seniorDeveloper.index');
-});
+// Route::group(['prefix'=>'teamLead','namespace'=>'TeamLead','middleware'=>['auth','teamLead']],function(){
+//     // Route::get('/','DashboardController@dashboard')->name('seniorDeveloper.index');
+// });
 
-Route::group(['prefix'=>'tester','namespace'=>'Tester','middleware'=>['auth','tester']],function(){
-    // Route::get('/','DashboardController@dashboard')->name('tester.index');
-});
+// Route::group(['prefix'=>'tester','namespace'=>'Tester','middleware'=>['auth','tester']],function(){
+//     // Route::get('/','DashboardController@dashboard')->name('tester.index');
+// });
 
-Route::group(['prefix'=>'taskManager','namespace'=>'TaskManager','middleware'=>['auth','taskManager']],function(){
-    // Route::get('/','DashboardController@dashboard')->name('tester.index');
-});
+// Route::group(['prefix'=>'taskManager','namespace'=>'TaskManager','middleware'=>['auth','taskManager']],function(){
+//     // Route::get('/','DashboardController@dashboard')->name('tester.index');
+// });
 
 
 Route::group(['prefix'=>'task_managment'],function(){
@@ -53,7 +53,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index',['middleware'=>['auth']])->name('home');
-Route::get('/profile/{user}','UserController@show',['middleware'=>['auth']])->name('profile');
+
+Route::group(['namespace'=>'Admin'],function(){
+    Route::group(['namespace'=>'UserManagment'],function(){
+        Route::get('/profile/{user}','UserController@show',['middleware'=>['auth']])->name('profile');
+    });
+});
+
 
 Route::group(['namespace' => 'Admin'], function() {
     Route::group(['namespace' => 'UserManagment','middleware'=>['auth']], function() {
@@ -61,4 +67,8 @@ Route::group(['namespace' => 'Admin'], function() {
     Route::get('/edit/profile','UserController@editProfile')->name('editProfile');
     Route::post('/store/profile','UserController@updateProfile',['as'=>'admin.user_managment'])->name('storeProfileS');
     });
+});
+
+Route::group(['prefix'=>'department_managment'],function(){
+    Route::resource('/department','DepartmentController',['as'=>'department_managment']);
 });

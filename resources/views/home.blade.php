@@ -27,6 +27,9 @@
                             <a class="btn btn-primary btn-lg btn-block" href="{{route('admin.user_managment.user.index')}}">
                                 Все пользователи
                             </a>
+                            <a class="btn btn-primary btn-lg btn-block" href="{{route('department_managment.department.index')}}">
+                                Все отделы
+                            </a>
                             @break
                         @case('Task manager')
                             <a href="/admin">{{$user->role}}</a>

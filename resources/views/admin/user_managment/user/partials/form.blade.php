@@ -46,9 +46,6 @@
 </select>
 
 
-<label for="">Отдел</label>
-<input type="text" name="appointment" id="" placeholder="Отдел" value="{{@$user->developer->appointment}}" class="form-control">
-
 <label for="">Специальность</label>
 <input type="text" name="specialty" id="" placeholder="Специальность" value="{{@$user->developer->specialty}}" class="form-control">
 
