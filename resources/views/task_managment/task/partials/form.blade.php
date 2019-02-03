@@ -141,11 +141,18 @@
         <select name="taskRespon_id" class="form-control" id="exampleFormControlSelect1">
             <option value="{{@$task->taskRespon_id}}">{{@$task->responsible->name}}</option>
             <hr>
-            @foreach ($users as $user)
-                @if ($user->name == @$task->responsible->name)
+            {{-- перебираем все отделы  --}}
+            @foreach ($departments as $department)
+                {{-- если найде с таким же именем то пропускаем --}}
+                @if ($department->name == @$task->responsible->name)
                     @continue
                 @endif
-                <option value="{{$user->id}}">{{$user->name}}</option>
+                {{-- перебираем имена, чтобы найти ip Team lead и  поствить на него задачу  --}}
+                @foreach ($department->developer as $developer)
+                    @if ($developer->user->role == 'Team lead')  
+                        <option value="{{$developer->user->id}}">{{$department->name}}</option>
+                    @endif
+                @endforeach
             @endforeach
         </select>
         

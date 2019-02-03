@@ -51,7 +51,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => bcrypt($request['password'])
+            'password' => bcrypt($request['password']),
         ]);
         // $user = User::create($request->all());
         $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
@@ -122,7 +122,7 @@ class UserController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->role = $request['role'];
-        $user->imageAvatar = $request['imageAvatar'];
+        // $user->imageAvatar = $request['imageAvatar'];
         $request['password'] == null ? : $user->password = bcrypt($request['password']);
         // dd($request);
 
@@ -192,9 +192,12 @@ class UserController extends Controller
      */
     public function uploadImageAvatar(Request $request,User $user)
     {
-        $path = $request->file('image')->store('uploads','public');
-        return view($request->input('viewRedir'),[
-            'images' => $path
-        ]);
+        /**
+         * необходимо прописать в маршруте путь /image/upload/{user}
+         */
+        $path = $request->file('image')->store('avatar','public');
+        $user->imageAvatar = $path;
+        $user->save();
+        return redirect()->back();
     }
 }

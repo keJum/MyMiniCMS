@@ -24,7 +24,8 @@ class CreateTasksTable extends Migration
             $table->string('taskTester_id')->nullable()->default('не назначен');
             $table->integer('taskImportance')->nullable();
             $table->integer('taskComplexity')->nullable();
-            $table->integer('taskProgress');
+            $table->integer('taskProgress')->nullable();
+            $table->integer('taskStatus')->nullable();
             $table->timestamp('startDevelopment_at')->nullable();
             $table->timestamp('finishDevelopment_at')->nullable();
             $table->timestamp('startTesting_at')->nullable();

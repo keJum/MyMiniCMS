@@ -17,12 +17,12 @@
                 <img class="img-fluid img-thumbnail" src="{{asset('/storage/'.$user->imageAvatar)}}" alt="Изображение" width="300px" height="300px">
             </div>
         </div>
-        <form action="{{route('user.loadImage')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('user.loadImage',$user)}}" method="post" enctype="multipart/form-data">
             <div class="form-grop">
                 {{ csrf_field() }}
                 <input type="file" name="image">
             </div>
-            <input type="hidden" name="viewRedir" value="{{Request::url()}}">
+            {{-- <input type="hidden" name="viewRedir" value="{{Request::url()}}"> --}}
             <br>
             <button id="btn" class="btn btn-default" type="submit">Загрузить на сервер </button>
             <br>

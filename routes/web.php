@@ -18,7 +18,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
     Route::get('/','DashboardController@dashboard')->name('admin.index');
     Route::group(['prefix'=>'user_managment','namespace'=>'UserManagment'],function(){
         Route::resource('/user','UserController',['as'=>'admin.user_managment']);
-        Route::post('/image/upload','UserController@uploadImageAvatar')->name('user.loadImage');
+        Route::post('/image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
     });
 });
 
@@ -43,6 +43,7 @@ Route::group(['prefix'=>'task_managment'],function(){
     Route::resource('/task','TaskController',['as'=>'task_managment']);
     Route::get('/taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll');
     Route::post('/update/task','TaskController@selectTask',['as'=>'task_managment'])->name('selectTask');
+    Route::get('/taskStatus/{id}','TaskController@nextTask',['as'=>'task_managment'])->name('nextTask');
 });
 
 

@@ -42,7 +42,7 @@
         </tr>
         <tr>
           <th scope="row">Отдел</th>
-          <td colspan="2">{{$user->developer->department->name}}</td>
+          <td colspan="2">{{@$user->developer->department->name}}</td>
         </tr>
         <tr>
           <th scope="row">Навыки</th>
@@ -57,7 +57,7 @@
 
     <hr>
 
-@if ($user->providerTask->count())
+{{-- @if ($user->providerTask->count())
     <h3>Поставщик Задачи</h3>
 
       <table class="table table-hover table-dark">
@@ -79,15 +79,14 @@
               <td>{{$task->provider->name}}</td>
               <td>{{@$task->developer->name}}</td>
               <td>{{$task->tester->name}}</td>
-              <td>{{$task->taskImportance}}</td>
             </tr>
 @endforeach
         </tbody>
       </table>
-@endif
+@endif --}}
 
 
-@if ($user->developerTask->count())
+{{-- @if ($user->developerTask->count())
     <h3>Разработчки Задачи</h3>
 
       <table class="table table-hover table-dark">
@@ -109,14 +108,13 @@
               <td>{{$task->provider->name}}</td>
               <td>{{@$task->developer->name}}</td>
               <td>{{$task->tester->name}}</td>
-              <td>{{$task->taskImportance}}</td>
             </tr>
 @endforeach
         </tbody>
       </table>
-@endif
+@endif --}}
 
-@if ($user->testerTask->count())
+{{-- @if ($user->testerTask->count())
     <h3>Тестировшик Задачи</h3>
 
       <table class="table table-hover table-dark">
@@ -138,12 +136,11 @@
               <td>{{$task->provider->name}}</td>
               <td>{{@$task->developer->name}}</td>
               <td>{{$task->tester->name}}</td>
-              <td>{{$task->taskImportance}}</td>
             </tr>
 @endforeach
         </tbody>
       </table>
-@endif
+@endif --}}
 
     
 

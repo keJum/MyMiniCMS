@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Task;
+use App\Department;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -48,10 +49,12 @@ class TaskController extends Controller
     public function create()
     {
         $user = User::find(Auth::id());
+        $departments  = Department::all();
         return view('task_managment.task.create',[
             'task'=>[''],
             'user' => $user,
-            'users'=>User::all()
+            'departments' => $departments,
+            'users' => User::all()
         ]);
     }
 
@@ -78,7 +81,9 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         return view('task_managment.task.show',[
-            'task' => $task
+            'task' => $task,
+            'user' => User::find(Auth::id()),
+            'users' => User::all()
         ]);
     }
 
@@ -154,5 +159,50 @@ class TaskController extends Controller
     {
         $task->delete();
         return redirect()->route('task_managment.task.index');
+    }
+
+
+    /**
+     * Пометка о том что задача завершила определенный этап и передаётся следующиму
+     */
+    public function nextTask(Request $request, $task){
+        $task = Task::find($task);
+        $user = User::find(Auth::id());
+
+        if ($user->role == 'Team lead' ){
+
+            if (!empty($request['taskDeveloper_id'])){
+            $task->taskDeveloper_id = $request['taskDeveloper_id'];
+            }
+            
+            if (!empty($request['taskTester_id'])){
+            $task->taskTester_id = $request['taskTester_id'];
+            }
+
+            $task->taskStatus = 1 ;
+            $task->save();
+        }
+
+        if ($user->role == 'Devoloper' && $task->taskStatus = 1 ){
+
+            $task->taskProgress = $request['taskProgress'];
+            $task->save();
+            if ($task->taskProgress == 4){
+                $task->taskStatus = 2 ;
+                $task->save();
+            }
+        }
+
+        if ($user->role == 'Tester' && $task->taskStatus = 2 ){
+
+            $task->taskProgress = $request['taskProgress'];
+            $task->save();
+            if ($task->taskProgress == 5){
+                $task->taskStatus = 3 ;
+                $task->save();
+            }
+        }
+
+        return redirect()->back();
     }
 }
