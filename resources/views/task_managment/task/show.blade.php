@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        {{-- Описание задачи --}}
         <div class="row">
             <br>
             <hr>
@@ -119,6 +120,65 @@
                     @default
                         
                 @endswitch
+            </div>
+        </div>
+    </div>
+    {{-- Комментария у задачи --}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="page-header">
+                <h1><small class="pull-right">45 comments</small>  </h1>
+                </div> 
+                <div class="comments-list">
+                    {{-- Карточка комментария --}}
+                    @foreach ($comments as $comment)
+                        <div class="media">
+                                <p class="pull-right" style="margin-right: 100px;">
+                                    <small>{{$comment->created_at}}</small>
+                                </p>
+                                <a class="media-left" href="#">
+                                    <img src="{{asset('storage/'.$comment->user->imageAvatar)}}" width="50" height="50">
+                                </a>
+                                <div class="media-body" style="margin-left: 40px;">
+                                    
+                                    <h4 class="media-heading user_name" style="margin-left: 20px;">
+                                            {{$comment->user->name}}
+                                    </h4>
+                                        {{$comment->commentText}}
+                                    <hr>
+                                </div>
+                            </div>
+                    @endforeach
+
+                    {{-- Форма добавления комментария --}}
+                    <div class="media">
+                            <p class="pull-right" style="margin-right: 100px;">
+                                <small>Добавить</small>
+                            </p>
+                            <a class="media-left" href="#">
+                                <img src="{{asset('storage/'.$user->imageAvatar)}}" width="50" height="50">
+                            </a>
+                            <div class="media-body" style="margin-left: 40px;">
+                                
+                                <h4 class="media-heading user_name" style="margin-left: 20px;">
+                                    {{$user->name}}
+                                </h4>
+                                
+
+                                <form class="form-horizontal" action="{{route('comment.store')}}" method="POST">
+                                    {{ csrf_field() }}
+                                    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Текст коментария">  </textarea>
+                                    <input type="hidden" name="idTask" value="{{$task->id}}">
+                                    <br>
+                                    <input type="submit" class="btn btn-primary" value="Обуликовать">    
+                                </form>
+
+
+                                <hr>
+                            </div>
+                        </div>
+                </div>   
             </div>
         </div>
     </div>

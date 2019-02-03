@@ -23,13 +23,24 @@ class Task extends Model
     {
         return $this->belongsTo('App\User', 'taskProvider_id','id');
     }
-    public function developer(){
+    public function developer()
+    {
         return $this->belongsTo('App\User','taskDeveloper_id','id');
     }
-    public function tester(){
+    public function tester()
+    {
         return $this->belongsTo('App\User','taskTester_id','id');
     }
-    public function responsible(){
+    public function responsible()
+    {
         return $this->belongsTo('App\User','taskRespon_id','id');
+    }
+
+    /**
+     * One-to-many с таблицей Task
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment','id','idObject','id');
     }
 }

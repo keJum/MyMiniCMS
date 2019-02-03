@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use App\Department;
+use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -80,10 +81,12 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+
         return view('task_managment.task.show',[
             'task' => $task,
             'user' => User::find(Auth::id()),
-            'users' => User::all()
+            'users' => User::all(),
+            'comments' => Comment::where('idObject','=', $task->id)->get()
         ]);
     }
 

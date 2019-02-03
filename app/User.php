@@ -37,14 +37,25 @@ class User extends Authenticatable
      * one to many с таблицей task кто создал
      */
     public function providerTask(){
+
         return $this->hasMany('App\Task','taskProvider_id','id');
     }
     public function developerTask(){
+
         return $this->hasMany('App\Task','taskDeveloper_id','id');
     }
     public function testerTask(){
+
         return $this->hasMany('App\Task','taskTester_id','id');
     }
+    /**
+     * One to many с таблице комментариев 
+     */
+    public function comment(){
+
+        return $this->hasMany('App\Comment','idSubject','id');
+    }
+
 
     /**
      * Возращаем роль 

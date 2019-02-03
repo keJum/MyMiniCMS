@@ -12,7 +12,7 @@
 */
 
 /**
- * Users
+ * Управение пользователями 
  */
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
     Route::get('/','DashboardController@dashboard')->name('admin.index');
@@ -22,23 +22,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
     });
 });
 
-// Route::group(['prefix'=>'developer','namespace'=>'Developer','middleware'=>['auth','developer']],function(){
-//     // Route::get('/','DashboardController@dashboard')->name('developer.index');
-// });
-
-// Route::group(['prefix'=>'teamLead','namespace'=>'TeamLead','middleware'=>['auth','teamLead']],function(){
-//     // Route::get('/','DashboardController@dashboard')->name('seniorDeveloper.index');
-// });
-
-// Route::group(['prefix'=>'tester','namespace'=>'Tester','middleware'=>['auth','tester']],function(){
-//     // Route::get('/','DashboardController@dashboard')->name('tester.index');
-// });
-
-// Route::group(['prefix'=>'taskManager','namespace'=>'TaskManager','middleware'=>['auth','taskManager']],function(){
-//     // Route::get('/','DashboardController@dashboard')->name('tester.index');
-// });
-
-
+/**
+ * Управение задачами
+ */
 Route::group(['prefix'=>'task_managment'],function(){
     Route::resource('/task','TaskController',['as'=>'task_managment']);
     Route::get('/taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll');
@@ -47,6 +33,9 @@ Route::group(['prefix'=>'task_managment'],function(){
 });
 
 
+/**
+ * Стандратные
+ */
 Route::get('/', function () {
     return view('welcome');
 });
@@ -55,12 +44,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index',['middleware'=>['auth']])->name('home');
 
+
+
+/**
+ *  Редактирование и просмотр своей информации
+ */
 Route::group(['namespace'=>'Admin'],function(){
     Route::group(['namespace'=>'UserManagment'],function(){
         Route::get('/profile/{user}','UserController@show',['middleware'=>['auth']])->name('profile');
     });
 });
-
 
 Route::group(['namespace' => 'Admin'], function() {
     Route::group(['namespace' => 'UserManagment','middleware'=>['auth']], function() {
@@ -70,6 +63,15 @@ Route::group(['namespace' => 'Admin'], function() {
     });
 });
 
+/**
+ * Управление отдеениями
+ */
 Route::group(['prefix'=>'department_managment'],function(){
     Route::resource('/department','DepartmentController',['as'=>'department_managment']);
 });
+
+/**
+ * Управние коментариями
+ */
+
+Route::resource('/comment','CommentController');
