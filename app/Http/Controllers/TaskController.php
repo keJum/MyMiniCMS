@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Task;
 use App\Department;
 use App\Comment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -81,10 +82,11 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-
+        // dd(User::find(Auth::id()));
         return view('task_managment.task.show',[
             'task' => $task,
             'user' => User::find(Auth::id()),
+            'userAuth' => User::find(Auth::id()),
             'users' => User::all(),
             'comments' => Comment::where('idObject','=', $task->id)->get()
         ]);
@@ -161,6 +163,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
+        $task->comments()->delete();
         return redirect()->route('task_managment.task.index');
     }
 
@@ -173,39 +176,80 @@ class TaskController extends Controller
         $user = User::find(Auth::id());
 
         if ($user->role == 'Team lead' ){
-
+            /**
+             * Назаначении разарботчика
+             */
             if (!empty($request['taskDeveloper_id'])){
-            $task->taskDeveloper_id = $request['taskDeveloper_id'];
+                $mytime = Carbon::now();
+                $time =  $mytime->toDateTimeString();
+                $task->taskDeveloper_id = $request['taskDeveloper_id'];
+                $task->startDevelopment_at = $time;
             }
-            
+            /**
+             * Назначение тестровщика
+             */
             if (!empty($request['taskTester_id'])){
-            $task->taskTester_id = $request['taskTester_id'];
+                $task->taskTester_id = $request['taskTester_id'];
             }
-
             $task->taskStatus = 1 ;
             $task->save();
+            /**
+             * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+             * вставить уведомление
+             */
         }
-
         if ($user->role == 'Devoloper' && $task->taskStatus = 1 ){
+            /**
+             * Кнопка начать задачу 
+             */
+            if ( $request['start'] == 'true'){
+                $mytime = Carbon::now();
+                $time =  $mytime->toDateTimeString();
+                $task->finishDevelopment_at = $time;
+            }
+            /**
+             *  Кнопка завершить задачу
+             */
+            if ( $request['success'] == 'true' ){
 
+                $mytime = Carbon::now();
+                $time =  $mytime->toDateTimeString();
+                $task->taskStatus = 2 ;
+                $task->startDevelopment_at = $time;
+
+            }
             $task->taskProgress = $request['taskProgress'];
             $task->save();
-            if ($task->taskProgress == 4){
-                $task->taskStatus = 2 ;
-                $task->save();
-            }
         }
 
         if ($user->role == 'Tester' && $task->taskStatus = 2 ){
 
+            /**
+             * Кнопка начать задачу 
+             */
+            if ( $request['start'] == 'true'){
+                $mytime = Carbon::now();
+                $time =  $mytime->toDateTimeString();
+                $task->startTesting_at = $time;
+            }
+
+            /**
+             * Кнопка завершить задачу
+             */
+            if ( $request['success'] == 'true' ){
+
+                $mytime = Carbon::now();
+                $time =  $mytime->toDateTimeString();
+                $task->taskStatus = 3 ;
+                $task->finishTesting_at = $time;
+
+            }
+
             $task->taskProgress = $request['taskProgress'];
             $task->save();
-            if ($task->taskProgress == 5){
-                $task->taskStatus = 3 ;
-                $task->save();
-            }
         }
 
         return redirect()->back();
     }
+
 }

@@ -43,15 +43,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validate = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            
         ]);
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
+            'role' => $request['role']
         ]);
         // $user = User::create($request->all());
         $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
@@ -84,6 +87,9 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+    /**
+     * При обновлении пользовтеля самому пользователем 
+     */
 
     public function editProfile(Request $request)
     {

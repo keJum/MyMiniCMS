@@ -32,6 +32,12 @@
 <label for="">Email</label>
 <input type="text" name="email" id="" placeholder="Email" value="{{@$user->email}}" class="form-control" required>
 
+<label for="">Пароль</label>
+<input type="password" name="password" id="" class="form-control">
+
+<label for="">Потверждение</label>
+<input type="password" name="password_confirmation" id="" class="form-control">
+
 {{-- <label for="">role</label>
 <input type="text" name="role" id="" placeholder="role" value="{{@$user->developer->role}}" class="form-control" required> --}}
 
@@ -52,15 +58,9 @@
 <label for="">Навыки</label>
 <input type="text" name="skill" id="" placeholder="Навыки" value="{{@$user->developer->skill}}" class="form-control">
 
-<label for="">Расписание</label>
-<input type="text" name="schedule" id="" placeholder="Расписание" value="{{@$user->developer->schedule}}" class="form-control">
+{{-- <label for="">Расписание</label>
+<input type="text" name="schedule" id="" placeholder="Расписание" value="{{@$user->developer->schedule}}" class="form-control"> --}}
 
-
-<label for="">Пароль</label>
-<input type="password" name="password" id="" class="form-control">
-
-<label for="">Потверждение</label>
-<input type="password" name="password_confirmation" id="" class="form-control">
 
 <hr>
 

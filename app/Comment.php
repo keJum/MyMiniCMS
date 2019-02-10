@@ -14,7 +14,7 @@ class Comment extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'idObject','id');
+        return $this->belongsTo('App\User', 'idSubject','id');
     }
 
     /**
@@ -22,7 +22,7 @@ class Comment extends Model
      */
     public function task()
     {
-        return $this->belongsTo('App\Task', 'idSubject','id');
+        return $this->belongsTo('App\Task', 'idObject','id');
     }
 
 

@@ -21,7 +21,7 @@
                     <tr>
                         <td colspan="3" class="text-center"><h2>Задачи постовщика </h2></td>
                     </tr>
-                    <tr {{ $task->taskProgress == 5 ? 'bgcolor="#ddd"' : '' }} >                 
+                    <tr {{ $task->taskStatus == 3 ? 'bgcolor="green"' : '' }} >                 
                         <td>
                             <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
                         </td>
@@ -59,7 +59,7 @@
                     <tr>
                         <td colspan="3" class="text-center"><h2>Задачи разработчика</h2></td>
                      </tr>
-                    <tr {{ $task->taskProgress == 5 ? 'bgcolor="#ddd"' : '' }} >      
+                    <tr {{ $task->taskStatus == 3 ? 'bgcolor="green"' : '' }} >      
                         <td>
                             <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
                         </td>
@@ -98,7 +98,7 @@
                     <tr>
                         <td colspan="3" class="text-center"><h2>Задачи тестировшика</h2></td>
                     </tr>
-                    <tr {{ $task->taskProgress == 5 ? 'bgcolor="#ddd"' : '' }} >      
+                    <tr {{ $task->taskStatus == 3 ? 'bgcolor="green"' : '' }} >      
                         <td>
                             <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
                         </td>
@@ -137,7 +137,7 @@
                 <tr>
                     <td colspan="3" class="text-center"><h2>Задачи руководителя группы</h2></td>
                 </tr>
-                <tr {{ $task->taskProgress == 5 ? 'bgcolor="#ddd"' : '' }} >      
+                <tr {{ $task->taskStatus == 3 ? 'bgcolor="green"' : '' }} >      
                     <td>
                         <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
                     </td>

@@ -30,6 +30,7 @@ Route::group(['prefix'=>'task_managment'],function(){
     Route::get('/taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll');
     Route::post('/update/task','TaskController@selectTask',['as'=>'task_managment'])->name('selectTask');
     Route::get('/taskStatus/{id}','TaskController@nextTask',['as'=>'task_managment'])->name('nextTask');
+    Route::get('/task/succes/{id}','TaskController@succsexTask',['as'=>'task_managment'])->name('succsecTask');
 });
 
 
@@ -52,6 +53,7 @@ Route::get('/home', 'HomeController@index',['middleware'=>['auth']])->name('home
 Route::group(['namespace'=>'Admin'],function(){
     Route::group(['namespace'=>'UserManagment'],function(){
         Route::get('/profile/{user}','UserController@show',['middleware'=>['auth']])->name('profile');
+        Route::post('/image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
     });
 });
 

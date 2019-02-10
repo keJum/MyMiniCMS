@@ -56,8 +56,17 @@
                                         <option {{@$task->taskProgress == '3' ? 'selected="selected"': ''}}>3</option>
                                         <option {{@$task->taskProgress == '4' ? 'selected="selected"': ''}}>4</option>
                                     </select>
+                                    
                                     <hr>
                                     <input type="submit" class="btn btn-primary" value="Сохранить">
+                                    <hr>
+                                    <form  action="{{route('nextTask',$task)}}" method="get">
+                                        <p><button class="btn btn-success" value="true" name="start" type="submit">Старт</button></p>
+                                    </form>
+                                    <hr>
+                                    <form  action="{{route('nextTask',$task)}}" method="get">
+                                        <p><button class="btn btn-success" value="true" name="success" type="submit">Завершить</button></p>
+                                    </form>
                                     @break
                                 @case('Tester')
                                     <label for="exampleFormControlSelect1">Прогресс</label>
@@ -69,6 +78,13 @@
                                         <option {{@$task->taskProgress == '5' ? 'selected="selected"': ''}}>5</option>
                                     </select>
                                     <hr>
+                                    <form  action="{{route('nextTask',$task)}}" method="get">
+                                        <p><button class="btn btn-success" value="true" name="start" type="submit">Старт</button></p>
+                                    </form>
+                                    <hr>
+                                    <form  action="{{route('nextTask',$task)}}" method="get">
+                                        <p><button class="btn btn-success" value="true" name="success" type="submit">Завершить</button></p>
+                                    </form>
                                     <input type="submit" class="btn btn-primary" value="Сохранить">
                                     @break
                                 @default
@@ -128,7 +144,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="page-header">
-                <h1><small class="pull-right">45 comments</small>  </h1>
+                <h1><small class="pull-right">Comments {{$comments->count()}}</small>  </h1>
                 </div> 
                 <div class="comments-list">
                     {{-- Карточка комментария --}}
@@ -157,18 +173,19 @@
                                 <small>Добавить</small>
                             </p>
                             <a class="media-left" href="#">
-                                <img src="{{asset('storage/'.$user->imageAvatar)}}" width="50" height="50">
+                                <img src="{{asset('storage/'.$userAuth->imageAvatar)}}" width="50" height="50">
                             </a>
                             <div class="media-body" style="margin-left: 40px;">
                                 
                                 <h4 class="media-heading user_name" style="margin-left: 20px;">
-                                    {{$user->name}}
+                                    {{$userAuth->name}}
                                 </h4>
                                 
 
                                 <form class="form-horizontal" action="{{route('comment.store')}}" method="POST">
                                     {{ csrf_field() }}
                                     <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Текст коментария">  </textarea>
+                                    <input type="hidden" name="idUser" value="{{$userAuth->id}}">
                                     <input type="hidden" name="idTask" value="{{$task->id}}">
                                     <br>
                                     <input type="submit" class="btn btn-primary" value="Обуликовать">    

@@ -38,10 +38,10 @@ class CommentController extends Controller
     public function store(Request $request)
     {
 
-        $user = User::find(Auth::id());
+        $userid = $request['idUser'];
         $comment = Comment::create([
             'idObject' => $request['idTask'],
-            'idSubject' => $user->id,
+            'idSubject' => $userid,
             'commentText' => $request['description']
         ]);
 
