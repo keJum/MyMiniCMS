@@ -12,8 +12,8 @@ class Department extends Model
     /**
      * Обратная связь с таблице developer (инфориации о пользователях)
      */
-    public function developer()
+    public function user()
     {
-        return $this->hasMany('App\Developer','department_id','id');
+        return $this->hasMany('App\User','department','id');
     }
 }

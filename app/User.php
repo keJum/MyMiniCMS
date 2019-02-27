@@ -28,31 +28,47 @@ class User extends Authenticatable
     ];
 
     /**
-     * one-to one с таблице developer
+     * Отношение обратное с таблицей Specialty
      */
-    public function developer(){
-        return $this->hasOne('App\Developer');
+    public function role()
+    {
+        return $this->belongsTo('App\Specialty','role','id');
     }
+    /**
+     * Отношение обратное с таблицей Role
+     */
+    public function specialty()
+    {
+        return $this->belongsTo('App\Role','specialty','id');
+    }
+    /**
+     * Отношение обратное с таблицей Department (отделы)
+     */
+    public function department()
+    {
+        return $this->belongsTo('App\Department','department','id');
+    }
+
     /**
      * one to many с таблицей task кто создал
      */
-    public function providerTask(){
-
+    public function providerTask()
+    {
         return $this->hasMany('App\Task','taskProvider_id','id');
     }
-    public function developerTask(){
-
+    public function developerTask()
+    {
         return $this->hasMany('App\Task','taskDeveloper_id','id');
     }
-    public function testerTask(){
-
+    public function testerTask()
+    {
         return $this->hasMany('App\Task','taskTester_id','id');
     }
     /**
      * One to many с таблице комментариев 
      */
-    public function comment(){
-
+    public function comment()
+    {
         return $this->hasMany('App\Comment','idSubject','id');
     }
 
