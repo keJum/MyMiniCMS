@@ -22,6 +22,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
     });
 });
 
+
+Route::resource('role','RoleController');
+
 /**
  * Управение задачами
  */

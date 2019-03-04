@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\UserManagment;
 
 use App\User;
+use App\Role;
+use App\Specialty;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\Welcome;
@@ -31,7 +33,9 @@ class UserController extends Controller
     public function create()
     {
         return view('admin.user_managment.user.create',[
-            'user'=>['']
+            'user' => [''],
+            'role' => Role::all(),
+            'specialty' => Specialty::all()
         ]);
     }
 

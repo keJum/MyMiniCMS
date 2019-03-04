@@ -15,6 +15,8 @@
     <hr>
 @endif
 
+{{var_dump($specialty)}};
+
 
 {{-- <div class="form-group">
     <input type="file" name="imageAvatar" id="">
@@ -50,7 +52,6 @@
     <option {{@$user->role == 'Devoloper' ? 'selected="selected' : ''}} >Devoloper</option>
     <option {{@$user->role == 'Tester' ? 'selected="selected' : ''}} >Tester</option>
 </select>
-
 
 <label for="">Специальность</label>
 <input type="text" name="specialty" id="" placeholder="Специальность" value="{{@$user->developer->specialty}}" class="form-control">

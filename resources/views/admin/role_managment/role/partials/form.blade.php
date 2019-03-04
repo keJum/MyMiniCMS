@@ -1,0 +1,74 @@
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if (@$user)
+    <label for="">
+        Персональный id : {{@$role->id}} 
+    </label>
+    <hr>
+@endif
+
+
+<label for="">Название</label>
+<input type="text" name="name" id="" value="{{@$role->name}} " class="form-control" required>
+
+<label for="">Описание</label>
+<input type="text" name="describe" id="" value="{{@$role->describe}}" class="form-control" required>
+
+
+<label for="acces"> Доступы </label>
+<div id="acces" class="form-check">
+    <br>
+    <input class="form-check-input" type="checkbox" value="1" name="access[]" id="defaultCheck1" {{(strpos(@$role->access,'1') !== false) ? 'checked':''}}>
+    <label class="form-check-label" for="defaultCheck1" >
+        только создание и редактированию текста
+    </label> 
+    <br>
+    <input class="form-check-input" type="checkbox" value="2" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'2') !== false) ? 'checked':''}}>
+    <label class="form-check-label" for="defaultCheck1" >
+        выполнение своих задач
+    </label>
+    <br>
+    <input class="form-check-input" type="checkbox" value="3" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'3') !== false) ? 'checked':''}}>
+    <label class="form-check-label" for="defaultCheck1">
+        доступ к редактированию задач
+    </label>
+    <br>
+    <input class="form-check-input" type="checkbox" value="4" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'4') !== false) ? 'checked':''}}>
+    <label class="form-check-label" for="defaultCheck1">
+        доступ к списку всех сотрудников
+    </label>
+    <br>
+    <input class="form-check-input" type="checkbox" value="5" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'5') !== false) ? 'checked':''}}>
+    <label class="form-check-label" for="defaultCheck1">
+        доступ ко всем отделам
+    </label>
+    <br>
+    <input class="form-check-input" type="checkbox" value="6" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'6') !== false) ? 'checked':''}}>
+    <label class="form-check-label" for="defaultCheck1">
+        доступ к пользователям
+    </label>
+    <br>
+    <input class="form-check-input" type="checkbox" value="7" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'7') !== false) ? 'checked':''}} >
+    <label class="form-check-label" for="defaultCheck1">
+        доступ к ролям
+    </label>
+    <br>
+    <input class="form-check-input" type="checkbox" value="8" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'8') !== false) ? 'checked':''}}>
+    <label class="form-check-label" for="defaultCheck1">
+        доступ к навыкам
+    </label>
+    
+</div>
+
+
+<hr>
+
+<input type="submit" class="btn btn-primary" value="Сохранить">

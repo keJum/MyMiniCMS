@@ -14,7 +14,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.role_managment.role.index',[
+            'roles' => Role::paginate(10)
+        ]);
     }
 
     /**
@@ -24,7 +26,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.role_managment.role.create',[
+            'role' => ''
+        ]);
     }
 
     /**
@@ -35,7 +39,16 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $accessResult ='';
+        foreach ( $request['access'] as $access ){
+            $accessResult .= $access;
+        }
+        Role::create([
+            'name' => $request['name'],
+            'describe' => $request['describe'],
+            'access' => $accessResult
+        ]);
+        return redirect()->route('role.index');
     }
 
     /**
@@ -46,7 +59,9 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('admin.role_manager.role.show',[
+            'role' => $role
+        ]);
     }
 
     /**
@@ -57,7 +72,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('admin.role_managment.role.edit',[
+            'role' => $role
+        ]);
     }
 
     /**
@@ -69,7 +86,17 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $accessResult ='';
+        foreach ( $request['access'] as $access ){
+            $accessResult .= $access;
+        }
+        $role->name = $request['name'];
+        $role->describe = $request['describe'];
+        $role->access = $accessResult;
+
+        $role->save();
+
+        return redirect()->route('role.index');
     }
 
     /**
@@ -80,6 +107,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->user()->role = '';
+        $role->delete();
+        return redirect()->route('role.index');
     }
 }

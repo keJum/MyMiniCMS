@@ -30,6 +30,9 @@
                             <a class="btn btn-primary btn-lg btn-block" href="{{route('department_managment.department.index')}}">
                                 Все отделы
                             </a>
+                            <a class="btn btn-primary btn-lg btn-block" href="{{route('role.index')}}">
+                                Все роли
+                            </a>
                             @break
                         @case('Task manager')
                             <a href="/admin">{{$user->role}}</a>

@@ -17,6 +17,7 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->string('name')->nullable('Без названия');
             $table->string('describe')->nullable('Без названия');
+            $table->integer('access')->nullable(0);
             $table->timestamps();
         });
     }
