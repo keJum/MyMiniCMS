@@ -16,12 +16,12 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('image')->nullable()->default('defualt/noneImage.png');
-            $table->string('role')->nullable()->default('не указанно');
+            $table->integer('image')->nullable()->default('defualt/noneImage.png');     //link
+            $table->integer('role')->nullable()->default('не указанно');                //id 
             $table->string('skill')->nullable()->default('не указанно');
             $table->string('email')->unique();
-            $table->string('department')->nullable()->default('не указанно');
-            $table->string('specialty')->nullable()->default('не указанно');
+            $table->string('department')->nullable()->default('не указанно');           //id
+            $table->integer('specialty')->nullable()->default('не указанно');           //id
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();

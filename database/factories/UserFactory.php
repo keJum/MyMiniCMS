@@ -22,7 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
-//Создать стандартного пользователя через команду php artisan db:seed
+
 $factory->defineAs(App\User::class, 'admin',function(Faker $faker){
     return [
         'name'=>'admin',

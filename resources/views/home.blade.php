@@ -16,6 +16,23 @@
                     Добро пожаловать
                     {{$user->name}}
                     вы вошли как 
+
+                    <a href="/admin">{{$user->role}}</a>
+                    <hr> Вы имеете полный доступ к возмодностям всех ролей, управлению пользователями и управлению отделами.
+                    <br>
+                    <a class="btn btn-primary btn-lg btn-block" href="{{route('taskAll')}}" style="margin-top: 60px;" >
+                        Все задачи
+                    </a>
+                    <a class="btn btn-primary btn-lg btn-block" href="{{route('admin.user_managment.user.index')}}">
+                        Все пользователи
+                    </a>
+                    <a class="btn btn-primary btn-lg btn-block" href="{{route('department_managment.department.index')}}">
+                        Все отделы
+                    </a>
+                    <a class="btn btn-primary btn-lg btn-block" href="{{route('role.index')}}">
+                        Все роли
+                    </a>
+
                     @switch($user->role)
                         @case('Admin')
                             <a href="/admin">{{$user->role}}</a>

@@ -59,7 +59,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return view('admin.role_manager.role.show',[
+        return view('admin.role_managment.role.show',[
             'role' => $role
         ]);
     }
