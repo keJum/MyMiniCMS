@@ -76,7 +76,7 @@
                                     <a class="dropdown-item" href="{{route('task_managment.task.index')}}">
                                         Задачи 
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                    <a class="dropdown-item" href="{{ route('user.profile') }}">
                                         Профиль 
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

@@ -7,7 +7,7 @@
         </a>
     </li>
     <li class="nav-item dropdown">
-        <a class="nav-link" href="{{route('admin.user_managment.user.index')}}">
+        <a class="nav-link" href="{{route('admin.user.index')}}">
             Все пользователи
         </a>
     </li>

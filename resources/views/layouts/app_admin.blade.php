@@ -53,14 +53,14 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{route('admin.user_managment.user.index')}}">
+                            <a class="nav-link" href="{{route('admin.user.index')}}">
                                 Все пользователи
                             </a>
                             {{-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Управление пользователями
                             </a> --}}
                             {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('admin.user_managment.user.index')}}">Список</a>
+                                <a class="dropdown-item" href="{{route('admin.user.index')}}">Список</a>
                             </div> --}}
                         </li>
                     </ul>

@@ -23,7 +23,7 @@
                     <a class="btn btn-primary btn-lg btn-block" href="{{route('taskAll')}}" style="margin-top: 60px;" >
                         Все задачи
                     </a>
-                    <a class="btn btn-primary btn-lg btn-block" href="{{route('admin.user_managment.user.index')}}">
+                    <a class="btn btn-primary btn-lg btn-block" href="{{route('user.index')}}">
                         Все пользователи
                     </a>
                     <a class="btn btn-primary btn-lg btn-block" href="{{route('department_managment.department.index')}}">
@@ -41,7 +41,7 @@
                             <a class="btn btn-primary btn-lg btn-block" href="{{route('taskAll')}}" style="margin-top: 60px;" >
                                 Все задачи
                             </a>
-                            <a class="btn btn-primary btn-lg btn-block" href="{{route('admin.user_managment.user.index')}}">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{route('admin.user.index')}}">
                                 Все пользователи
                             </a>
                             <a class="btn btn-primary btn-lg btn-block" href="{{route('department_managment.department.index')}}">

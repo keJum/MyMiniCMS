@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\UserManagment;
+namespace App\Http\Controllers;
 
 use App\User;
 use App\Role;
@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user_managment.user.index',[
+        return view('user_managment.user.index',[
             'users' => User::paginate(10)
         ]);
     }
@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user_managment.user.create',[
+        return view('user_managment.user.create',[
             'user' => [''],
             'role' => Role::all(),
             'specialty' => Specialty::all()
@@ -65,7 +65,7 @@ class UserController extends Controller
 
         // Mail::to($user)->send(new Welcome); 
 
-        return redirect()->route('admin.user_managment.user.index');
+        return redirect()->route('user_managment.user.index');
     }
 
 
@@ -73,7 +73,7 @@ class UserController extends Controller
 
         $user = User::find(Auth::id());
         
-        return view('admin.user_managment.user.show',[
+        return view('user_managment.user.show',[
             'user' => $user
         ]);
     }
@@ -87,7 +87,7 @@ class UserController extends Controller
     public function show(User $user)
     {
 
-        return view('admin.user_managment.user.show',[
+        return view('user_managment.user.show',[
             'user' => $user
         ]);
     }
@@ -98,7 +98,7 @@ class UserController extends Controller
     public function editProfile(Request $request)
     {
         $user = User::find($request->userId);
-        return view('admin.user_managment.user.edit',[
+        return view('user_managment.user.edit',[
             'user'=>$user
         ]);
     }
@@ -113,7 +113,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         
-        return view('admin.user_managment.user.edit',[
+        return view('user_managment.user.edit',[
             'user'=>$user
         ]);
     }
@@ -145,7 +145,7 @@ class UserController extends Controller
         
         $user->save();
 
-        return redirect()->route('admin.user_managment.user.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -178,7 +178,7 @@ class UserController extends Controller
         
         $user->save();
 
-        return redirect()->route('admin.user_managment.user.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -191,7 +191,7 @@ class UserController extends Controller
     {
         $user->developer()->delete();
         $user->delete();
-        return redirect()->route('admin.user_managment.user.index');
+        return redirect()->route('user.index');
     }
 
     /**

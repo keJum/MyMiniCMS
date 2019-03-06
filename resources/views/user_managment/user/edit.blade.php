@@ -31,7 +31,7 @@
 
         <form class="form-horizontal" action="{{route('storeProfileS',$user)}}" method="post">
             {{ csrf_field() }}
-            @include('admin.user_managment.user.partials.form')
+            @include('user_managment.user.partials.form')
             <input type="hidden" name="userId" value="{{$user->id}}">
             <input type="hidden" name="image" value="{{@$images}}">
         </form>

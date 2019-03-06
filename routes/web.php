@@ -14,26 +14,34 @@
 /**
  * Управение пользователями 
  */
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
-    Route::get('/','DashboardController@dashboard')->name('admin.index');
-    Route::group(['prefix'=>'user_managment','namespace'=>'UserManagment'],function(){
-        Route::resource('/user','UserController',['as'=>'admin.user_managment']);
-        Route::post('/image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
-    });
+Route::group(['prefix'=>'user_managment'],function(){
+    Route::resource('user','UserController');
+    Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
+    Route::get('profile','UserController@showProfile',['middleware'=>['auth']])->name('user.profile');
+    Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
 });
 
+Route::group(['prefix'=>'role_managment'],function(){
+    Route::resource('role','RoleController');
+});
 
-Route::resource('role','RoleController');
+/**
+ * Управление отделами
+ */
+Route::group(['prefix'=>'department_managment'],function(){
+    Route::resource('/department','DepartmentController',['as'=>'department_managment']);
+});
 
 /**
  * Управение задачами
  */
 Route::group(['prefix'=>'task_managment'],function(){
-    Route::resource('/task','TaskController',['as'=>'task_managment']);
-    Route::get('/taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll');
-    Route::post('/update/task','TaskController@selectTask',['as'=>'task_managment'])->name('selectTask');
-    Route::get('/taskStatus/{id}','TaskController@nextTask',['as'=>'task_managment'])->name('nextTask');
-    Route::get('/task/succes/{id}','TaskController@succsexTask',['as'=>'task_managment'])->name('succsecTask');
+    Route::resource('task','TaskController',['as'=>'task_managment']);
+    Route::get('taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll');
+    Route::post('update/task','TaskController@selectTask',['as'=>'task_managment'])->name('selectTask');
+    Route::get('taskStatus/{id}','TaskController@nextTask',['as'=>'task_managment'])->name('nextTask');
+    Route::get('task/succes/{id}','TaskController@succsexTask',['as'=>'task_managment'])->name('succsecTask');
+    Route::resource('comment','CommentController');
 });
 
 
@@ -47,36 +55,3 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index',['middleware'=>['auth']])->name('home');
-
-
-
-/**
- *  Редактирование и просмотр своей информации
- */
-Route::group(['namespace'=>'Admin'],function(){
-    Route::group(['namespace'=>'UserManagment'],function(){
-        Route::get('/profile/{user}','UserController@show',['middleware'=>['auth']])->name('profile');
-        Route::post('/image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
-    });
-});
-
-Route::group(['namespace' => 'Admin'], function() {
-    Route::group(['namespace' => 'UserManagment','middleware'=>['auth']], function() {
-    Route::get('/profile','UserController@showProfile')->name('profile');
-    Route::get('/edit/profile','UserController@editProfile')->name('editProfile');
-    Route::post('/store/profile','UserController@updateProfile',['as'=>'admin.user_managment'])->name('storeProfileS');
-    });
-});
-
-/**
- * Управление отдеениями
- */
-Route::group(['prefix'=>'department_managment'],function(){
-    Route::resource('/department','DepartmentController',['as'=>'department_managment']);
-});
-
-/**
- * Управние коментариями
- */
-
-Route::resource('/comment','CommentController');

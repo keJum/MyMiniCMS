@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <a href="{{route('admin.user_managment.user.create')}}" class="btn btn-primay pull-right">
+        <a href="{{route('user.create')}}" class="btn btn-primay pull-right">
             Создать пользователя
         </a>
         <table class="table table-striped">
@@ -16,7 +16,7 @@
                 @forelse ($users as $user)
                 <tr>
                     <td>
-                        <a href="{{route('admin.user_managment.user.show',$user)}}">{{$user->name}}</a>
+                        <a href="{{route('user.show',$user)}}">{{$user->name}}</a>
                     </td>
                     <td>
                         {{$user->role}}
@@ -25,10 +25,10 @@
                         {{@$user->developer->specialty}}
                     </td>
                     <td class="text-right">
-                        <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('admin.user_managment.user.destroy',$user)}}" method="post">
+                        <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('user.destroy',$user)}}" method="post">
                             {{method_field('DELETE')}}
                             {{ csrf_field() }}
-                            <a href="{{route('admin.user_managment.user.edit',$user)}}" class="btn btn-default">Ред.</a>
+                            <a href="{{route('user.edit',$user)}}" class="btn btn-default">Ред.</a>
                             <button type="submit" class="btn">Удал.</button>
                         </form>
                     </td>

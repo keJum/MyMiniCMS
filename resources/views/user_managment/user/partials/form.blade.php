@@ -8,14 +8,12 @@
     </div>
 @endif
 
-@if (@$user)
+@isset($user->id)
     <label for="">
         Персональный id : {{@$user->id}} 
     </label>
     <hr>
 @endif
-
-{{var_dump($specialty)}};
 
 
 {{-- <div class="form-group">

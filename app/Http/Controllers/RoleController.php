@@ -14,7 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('admin.role_managment.role.index',[
+        return view('role_managment.role.index',[
             'roles' => Role::paginate(10)
         ]);
     }
@@ -26,7 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role_managment.role.create',[
+        return view('role_managment.role.create',[
             'role' => ''
         ]);
     }
@@ -59,7 +59,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return view('admin.role_managment.role.show',[
+        return view('role_managment.role.show',[
             'role' => $role
         ]);
     }
@@ -72,7 +72,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('admin.role_managment.role.edit',[
+        return view('role_managment.role.edit',[
             'role' => $role
         ]);
     }
