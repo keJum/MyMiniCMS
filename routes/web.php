@@ -17,7 +17,9 @@
 Route::group(['prefix'=>'user_managment'],function(){
     Route::resource('user','UserController');
     Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
-    Route::get('profile','UserController@showProfile',['middleware'=>['auth']])->name('user.profile');
+    Route::get('profile/show','UserController@showProfile',['middleware'=>['auth']])->name('user.showProfile');
+    Route::get('profile/edit','UserController@editProfile',['middleware'=>['auth']])->name('user.editProfile');
+    Route::get('profile/update','UserController@updateProfile',['middleware'=>['auth']])->name('user.updateProfile');
     Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
 });
 
@@ -25,6 +27,9 @@ Route::group(['prefix'=>'role_managment'],function(){
     Route::resource('role','RoleController');
 });
 
+Route::group(['prefix'=>'file_manager'],function(){
+    Route::post('load','FileloadController@load')->name('loadFile');
+});
 /**
  * Управление отделами
  */

@@ -16,7 +16,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    {{-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <!-- Fonts -->
@@ -76,7 +77,7 @@
                                     <a class="dropdown-item" href="{{route('task_managment.task.index')}}">
                                         Задачи 
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('user.profile') }}">
+                                    <a class="dropdown-item" href="{{ route('user.showProfile') }}">
                                         Профиль 
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

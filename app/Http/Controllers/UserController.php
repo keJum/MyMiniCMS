@@ -48,7 +48,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         
-        $validate = $request->validate([
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
@@ -58,14 +58,11 @@ class UserController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
-            'role' => $request['role']
         ]);
-        // $user = User::create($request->all());
-        $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
 
         // Mail::to($user)->send(new Welcome); 
 
-        return redirect()->route('user_managment.user.index');
+        return redirect()->route('user.index');
     }
 
 
@@ -157,7 +154,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $validate = $request->validate([
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)],
             'password' => ['nullable', 'string', 'min:6', 'confirmed']
@@ -165,16 +162,16 @@ class UserController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->role = $request['role'];
-        $user->imageAvatar = $request['imageAvatar'];
+        // $user->imageAvatar = $request['imageAvatar'];
         $request['password'] == null ? : $user->password = bcrypt($request['password']);
         // dd($request);
 
-        if ($user->developer()->count()){
-            $user->developer()->update($request->only('appointment','specialty','skill','schedule'));
-        }
-        else {
-            $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
-        }
+        // if ($user->developer()->count()){
+        //     $user->developer()->update($request->only('appointment','specialty','skill','schedule'));
+        // }
+        // else {
+        //     $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
+        // }
         
         $user->save();
 
@@ -189,7 +186,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->developer()->delete();
+        // $user->developer()->delete();
         $user->delete();
         return redirect()->route('user.index');
     }

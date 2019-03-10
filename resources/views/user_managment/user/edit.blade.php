@@ -1,39 +1,42 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        {{-- <form action="{{route('user.loadImage',$user)}}" method="post" enctype="multipart/form-data">
-            {{csrf_field()}}
-            <div class="form-group">
-                <input type="file" name="imageAvatar" id="">
-            </div>
-            <input type="hidden" name="viewRedir" value="">
-            <button type="sudmit" class="btn btn-primary">Згарузить</button>
-        </form>
+        {{-- Отправка изображения на сайт и получения ссылку  --}}
+            @isset($user->image)
+                <img src="{{asset('storage/'.$user->image)}}" class="mr-3" alt="Avatar">
+            @endisset
 
-            <img class="img-fluid" src="{{asset('/storage/'.$user->imageAvatar)}}" > --}}
-
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2">
-                <img class="img-fluid img-thumbnail" src="{{asset('/storage/'.$user->imageAvatar)}}" alt="Изображение" width="300px" height="300px">
-            </div>
-        </div>
-        <form action="{{route('user.loadImage',$user)}}" method="post" enctype="multipart/form-data">
-            <div class="form-grop">
+            <form id="contactform" action="{{route('loadFile')}}" method="post" class="validateform" name="send-contact" enctype="multipart/form-data"> 
                 {{ csrf_field() }}
-                <input type="file" name="image">
-            </div>
-            {{-- <input type="hidden" name="viewRedir" value="{{Request::url()}}"> --}}
-            <br>
-            <button id="btn" class="btn btn-default" type="submit">Загрузить на сервер </button>
-            <br>
-            <hr>
-        </form>
+                <input type="hidden" name="type" value="avatar">
+                <input type="file" name="image" >
+                <input type="submit" value="Закачать">
+            </form>
+            {{-- 
+            <script>
+            $(document).ready(function(){
+                $('#contactform').on('submit', function(e){
+                    e.preventDefault();
+                
+                    $.ajax({
+                        type: 'POST',
+                        url: '/file_manager/load ',
+                        data: $('#contactform').serialize(),
+                        success: function(result){
+                            console.log(result);
+                        }
+                    });
+                });
+            });
+            </script> 
+            --}}
 
-        <form class="form-horizontal" action="{{route('storeProfileS',$user)}}" method="post">
+        {{-- / Отправка изображения на сайт и получения ссылку  --}}
+        <form class="form-horizontal" action="{{route('user.update',$user)}}" method="post">
+            <input name="_method" type="hidden" value="PATCH">
             {{ csrf_field() }}
+            {{ method_field('put') }}
             @include('user_managment.user.partials.form')
-            <input type="hidden" name="userId" value="{{$user->id}}">
-            <input type="hidden" name="image" value="{{@$images}}">
         </form>
     </div>
 @endsection

@@ -25,7 +25,7 @@
         </tr>
         <tr>
           <th scope="row">Автар</th>
-          <td colspan="2"><img class="img-fluid img-thumbnail" src="{{asset('/storage/'.$user->imageAvatar)}}" alt="Изображение" width="300px" height="300px"></td>
+          <td colspan="2"><img class="img-fluid img-thumbnail" src="{{asset('storage/'.$user->image)}}" alt="Avatar" width="300px" height="300px"></td>
         </tr>
         <tr>
           <th scope="row">Роль пользователя</th>
@@ -147,7 +147,7 @@
 @endif
       </tbody>
     </table>
-    <form action="{{route('editProfile')}}" method="get">
+    <form action="{{route('user.edit',$user)}}" method="get">
         {{ csrf_field() }}
         <input type="hidden" name="userId" value="{{$user->id}}">
         <button type="submit" class="btn-sudmit">Редактировать.</button>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
+use function GuzzleHttp\Promise\all;
 
 class RoleController extends Controller
 {
@@ -27,7 +29,8 @@ class RoleController extends Controller
     public function create()
     {
         return view('role_managment.role.create',[
-            'role' => ''
+            'role' => '',
+            'users' => User::all()
         ]);
     }
 
@@ -73,7 +76,8 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         return view('role_managment.role.edit',[
-            'role' => $role
+            'role' => $role,
+            'users' => User::all()
         ]);
     }
 

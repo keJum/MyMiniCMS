@@ -28,18 +28,18 @@ class User extends Authenticatable
     ];
 
     /**
-     * Отношение обратное с таблицей Specialty
+     * Отношение обратное с таблицей Role
      */
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo('App\Specialty','role','id');
+        return $this->belongsTo('App\Role','role','id');
     }
     /**
-     * Отношение обратное с таблицей Role
+     * Отношение обратное с таблицей  Specialty
      */
     public function specialty()
     {
-        return $this->belongsTo('App\Role','specialty','id');
+        return $this->belongsTo('App\Specialty','specialty','id');
     }
     /**
      * Отношение обратное с таблицей Department (отделы)
