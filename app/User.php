@@ -44,7 +44,7 @@ class User extends Authenticatable
     /**
      * Отношение обратное с таблицей Department (отделы)
      */
-    public function department()
+    public function departments()
     {
         return $this->belongsTo('App\Department','department','id');
     }

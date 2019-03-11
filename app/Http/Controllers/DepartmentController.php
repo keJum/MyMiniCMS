@@ -47,11 +47,9 @@ class DepartmentController extends Controller
             'description'=> $request['description'],
             'imageAvatar' => $request['imageAvatar'],
         ]);
-        for($i=0;$i<count($request['taskRespon_id']);$i++){
+        for( $i = 0 ; $i < count($request['taskRespon_id']) ; $i++){
             $user = User::find($request['taskRespon_id'][$i]);
-            $user->developer()->update([
-                'department_id' => $department->id,
-            ]);
+            $user->department = $department->id;
             $user->save();
         }
 
@@ -104,22 +102,27 @@ class DepartmentController extends Controller
         $department->description = $request->description;
         $department->imageAvatar = $request->imageAvatar;
 
-        $department->developer()->update([
-            'department_id' => 'не указанно',
-        ]);
+        // $department->users()->update([
+        //     'department_id' => 'не указанно',
+        // ]);
 
+        // $department->user
+
+        foreach($department->users as $user){
+            $user->department = 'не указанно';
+            $user->save();
+        }
         
         $department->save();
         
-
-        for($i=0;$i<count($request['taskRespon_id']);$i++){
-            $user = User::find($request['taskRespon_id'][$i]);
-            $user->developer()->update([
-                'department_id' => $department->id,
-            ]);
-            $user->save();
+        
+        if ($request['taskRespon_id']){
+            foreach ($request['taskRespon_id'] as $depUser){
+                $user = User::find($depUser);
+                $user->department = $department->id;
+                $user->save();
+            }
         }
-
 
 
         return redirect()->route('department_managment.department.index');
@@ -133,13 +136,9 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-
-
-        // dd($department->developer->department_id);
-
-        $department->developer()->update([
-            'department_id' => 'не указанно',
-        ]);
+        foreach( $department->users as $user){
+            $user->department = 'не указанно';
+        }
         $department->delete();
         
         return redirect()->route('department_managment.department.index');

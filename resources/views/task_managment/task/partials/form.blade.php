@@ -14,6 +14,100 @@
     </label>
     <hr>
 @endif
+
+
+<label for="">Название</label>
+<input type="text" name="taskName" id="" placeholder="" value="{{@$task->taskName}}" class="form-control" required>
+
+<label for="">Описание</label>
+<textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"> {{@$task->description}} </textarea>
+
+<label for="exampleFormControlSelect1">Поставшик</label>
+<select name="taskProvider_id" class="form-control" id="exampleFormControlSelect1">
+    <option value="{{@$task->taskProvider_id}}">{{@$task->provider->name}}</option>
+    <hr>
+    @foreach ($users as $user)
+        @if ($user->name == @$task->provider->name)
+            @continue
+        @endif
+        <option value="{{$user->id}}">{{$user->name}}</option>
+    @endforeach
+</select>
+
+<label for="exampleFormControlSelect1">Отвественный</label>
+<select name="taskRespon_id" class="form-control" id="exampleFormControlSelect1">
+    <option value="{{@$task->taskRespon_id}}">{{@$task->responsible->name}}</option>
+    <hr>
+    @foreach ($users as $user)
+        @if ($user->name == @$task->responsible->name)
+            @continue
+        @endif
+        <option value="{{$user->id}}">{{$user->name}}</option>
+    @endforeach
+</select>
+
+<label for="exampleFormControlSelect1">Разработчик</label>
+<select name="taskDeveloper_id" class="form-control" id="exampleFormControlSelect1">
+    {{-- <option></option>
+    @foreach ($users as $user)
+        <option value="{{$user->id}}">{{$user->name}}</option>
+    @endforeach --}}
+    <option value="{{@$task->taskDeveloper_id}}">{{@$task->developer->name}}</option>
+    <hr>
+    @foreach ($users as $user)
+        @if ($user->name == @$task->developer->name)
+            @continue
+        @endif
+        <option value="{{$user->id}}">{{$user->name}}</option>
+    @endforeach
+</select>
+
+<label for="exampleFormControlSelect1">Тестек</label>
+<select name="taskTester_id" class="form-control" id="exampleFormControlSelect1">
+    {{-- <option></option>
+    @foreach ($users as $user)
+        <option value="{{$user->id}}">{{$user->name}}</option>
+    @endforeach --}}
+    <option value="{{@$task->taskTester_id}}">{{@$task->tester->name}}</option>
+    <hr>
+    @foreach ($users as $user)
+        @if ($user->name == @$task->tester->name)
+            @continue
+        @endif
+        <option value="{{$user->id}}">{{$user->name}}</option>
+    @endforeach
+</select>
+
+<label for="exampleFormControlSelect1">Важность</label>
+<select name="taskImportance" class="form-control" id="exampleSelect1">
+    <option {{@$task->taskImportance == '1' ? 'selected="selected"': ''}}>1</option>
+    <option {{@$task->taskImportance == '2' ? 'selected="selected"': ''}}>2</option>
+    <option {{@$task->taskImportance == '3' ? 'selected="selected"': ''}}>3</option>
+    <option {{@$task->taskImportance == '4' ? 'selected="selected"': ''}}>4</option>
+    <option {{@$task->taskImportance == '5' ? 'selected="selected"': ''}}>5</option>
+</select>
+<label for="exampleFormControlSelect1">Сложность</label>
+<select name="taskComplexity" class="form-control" id="exampleSelect1">
+    <option {{@$task->taskComplexity == '1' ?' selected="selected"': ''}}>1</option>
+    <option {{@$task->taskComplexity == '2' ?' selected="selected"': ''}}>2</option>
+    <option {{@$task->taskComplexity == '3' ?' selected="selected"': ''}}>3</option>
+    <option {{@$task->taskComplexity == '4' ?' selected="selected"': ''}}>4</option>
+    <option {{@$task->taskComplexity == '5' ?' selected="selected"': ''}}>5</option>
+</select>
+<label for="exampleFormControlSelect1">Прогресс</label>
+<select name="taskProgress" class="form-control" id="exampleSelect1">
+    <option {{@$task->taskProgress == '1' ? 'selected="selected"': ''}}>1</option>
+    <option {{@$task->taskProgress == '2' ? 'selected="selected"': ''}}>2</option>
+    <option {{@$task->taskProgress == '3' ? 'selected="selected"': ''}}>3</option>
+    <option {{@$task->taskProgress == '4' ? 'selected="selected"': ''}}>4</option>
+    <option {{@$task->taskProgress == '5' ? 'selected="selected"': ''}}>5</option>
+</select>
+
+<hr>
+
+<input type="submit" class="btn btn-primary" value="Сохранить">    
+
+
 @switch($user->role)
     @case('Admin')
         <label for="">Название</label>

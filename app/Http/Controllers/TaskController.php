@@ -38,7 +38,7 @@ class TaskController extends Controller
      */
     public function allIndex()
     {
-        return view('admin.task_managment.task.index',[
+        return view('task_managment.task.index',[
             'tasks' => Task::all()
         ]);       
     }

@@ -27,8 +27,8 @@
                         {{@$department->description}}
                     </td>
                     <td>
-                        @foreach ($department->developer as $developer)
-                            {{ $developer->user->name }};
+                        @foreach ($department->users as $user)
+                            {{ $user->name }};
                         @endforeach
                     </td>
                     {{-- <td>

@@ -90,6 +90,11 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        foreach($request['users'] as $idUser){
+            $user = User::find($idUser);
+            $user->role = $role->id;
+        }
+
         $accessResult ='';
         foreach ( $request['access'] as $access ){
             $accessResult .= $access;
@@ -98,6 +103,7 @@ class RoleController extends Controller
         $role->describe = $request['describe'];
         $role->access = $accessResult;
 
+        $user->save();
         $role->save();
 
         return redirect()->route('role.index');
