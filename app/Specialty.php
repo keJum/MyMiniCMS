@@ -12,6 +12,6 @@ class Specialty extends Model
 
     public function user()
     {
-        return $this->hasMany('App\User','specialty','id');
+        return $this->hasMany('App\User','specialty_id','id');
     }
 }

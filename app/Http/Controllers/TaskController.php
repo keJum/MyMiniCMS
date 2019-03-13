@@ -6,9 +6,9 @@ namespace App\Http\Controllers;
 use App\Task;
 use App\Department;
 use App\Comment;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -67,6 +67,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
 
         Task::create($request->all());
         return redirect()->route('task_managment.task.index');

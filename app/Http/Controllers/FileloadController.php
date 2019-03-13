@@ -17,7 +17,7 @@ class FileloadController extends Controller
                 $user = User::find(Auth::id());
                 $path = $request->file('image')->store('avatar','public');
                 // Storage::put('avatar/'.$id ,$file);
-                $user->image = $path;
+                $user->image_link = $path;
                 $user->save();
                 return redirect()->back();
                 break;

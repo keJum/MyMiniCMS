@@ -19,7 +19,7 @@
                         <a href="{{route('user.show',$user)}}">{{$user->name}}</a>
                     </td>
                     <td>
-                        {{@$user->roles->name}}
+                        {{@$user->role->name}}
                     </td>
                     <td>
                         {{@$user->developer->specialty}}

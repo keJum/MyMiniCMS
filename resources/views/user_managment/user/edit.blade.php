@@ -2,8 +2,8 @@
 @section('content')
     <div class="container">
         {{-- Отправка изображения на сайт и получения ссылку  --}}
-            @isset($user->image)
-                <img src="{{asset('storage/'.$user->image)}}" class="mr-3" alt="Avatar">
+            @isset($user->image_link)
+                <img src="{{asset('storage/'.$user->image_link)}}" class="mr-3" alt="Avatar">
             @endisset
 
             <form id="contactform" action="{{route('loadFile')}}" method="post" class="validateform" name="send-contact" enctype="multipart/form-data"> 

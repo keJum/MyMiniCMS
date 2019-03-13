@@ -25,7 +25,7 @@
         </tr>
         <tr>
           <th scope="row">Автар</th>
-          <td colspan="2"><img class="img-fluid img-thumbnail" src="{{asset('storage/'.$user->image)}}" alt="Avatar" width="300px" height="300px"></td>
+          <td colspan="2"><img class="img-fluid img-thumbnail" src="{{asset('storage/'.$user->image_link)}}" alt="Avatar" width="300px" height="300px"></td>
         </tr>
         <tr>
           <th scope="row">Роль пользователя</th>

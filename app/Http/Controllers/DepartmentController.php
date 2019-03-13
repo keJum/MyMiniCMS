@@ -55,9 +55,9 @@ class DepartmentController extends Controller
         /**
          * Свзязь один ко многим, несколько разработчиков
          */
-        foreach ($request['taskRespon_id'] as $responsible){
-            $user = User::find($responsible);
-            $user->department = $department->id;
+        foreach ($request['users_id'] as $user_id){
+            $user = User::find($user_id);
+            $user->department_id = $department->id;
             $user->save();
         }
 
@@ -95,8 +95,7 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Department $department)
@@ -107,21 +106,19 @@ class DepartmentController extends Controller
         $department->imageAvatar = $request->imageAvatar;
         $department->save();
         
-        if(isset($department->users)){
-            foreach ($department->users as $user){
-                $user->department = 'Не назначен';
+        if(isset($department->user)){
+            foreach ($department->user as $user){
+                $user->department_id = 'Не назначен';
                 $user->save();
             }
         }
-        if ($request['taskRespon_id']){
-            foreach ($request['taskRespon_id'] as $userId){
+        if ($request['users_id']){
+            foreach ($request['users_id'] as $userId){
                 $user = User::find($userId);
-                $user->department = $department->id;
+                $user->department_id = $department->id;
                 $user->save();
             }
         }
-
-
         return redirect()->route('department_managment.department.index');
     }
 
@@ -137,9 +134,9 @@ class DepartmentController extends Controller
         //     $responsible->department = 'не указанно';
         //     dd($responsible);
         // }
-        if(isset($department->users)){
-            foreach ($department->users as $user){
-                $user->department = 'Не назначен';
+        if(isset($department->user)){
+            foreach ($department->user as $user){
+                $user->department_id = 'Не назначен';
                 $user->save();
             }
         }

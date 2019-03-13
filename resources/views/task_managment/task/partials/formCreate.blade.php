@@ -29,8 +29,11 @@
     <hr>
     {{-- перебираем все отделы  --}}
     @foreach ($departments as $department)
-        @foreach ($department->users as $user)
-            <option value="{{$user->id}}">{{$user->name}} -- {{$user->roles->name}} </option>
+        @foreach ($department->user as $user)
+            {{-- see form to role created --}}
+            @if (strpos(@$user->role->access,'4'))
+                <option value="{{$user->id}}">{{$user->name}} - отдел ( {{$user->department->name}} )</option>
+            @endif
         @endforeach
     @endforeach
 </select>

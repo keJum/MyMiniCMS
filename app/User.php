@@ -30,23 +30,23 @@ class User extends Authenticatable
     /**
      * Отношение обратное с таблицей Role
      */
-    public function roles()
+    public function role()
     {
-        return $this->belongsTo('App\Role','role','id');
+        return $this->belongsTo('App\Role','role_id','id');
     }
     /**
      * Отношение обратное с таблицей  Specialty
      */
     public function specialty()
     {
-        return $this->belongsTo('App\Specialty','specialty','id');
+        return $this->belongsTo('App\Specialty','specialty_id','id');
     }
     /**
      * Отношение обратное с таблицей Department (отделы)
      */
-    public function departments()
+    public function department()
     {
-        return $this->belongsTo('App\Department','department','id');
+        return $this->belongsTo('App\Department','department_id','id');
     }
 
     /**

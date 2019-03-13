@@ -27,7 +27,7 @@
                         {{@$department->description}}
                     </td>
                     <td>
-                        @foreach ($department->users as $user)
+                        @foreach ($department->user as $user)
                             {{ $user->name }};
                         @endforeach
                     </td>

@@ -16,18 +16,6 @@
 @endif
 
 
-
-
-{{-- <div class="form-group">
-    <input type="file" name="imageAvatar" id="">
-</div>
-<button type="sudmit" class="btn btn-primary">Згарузить</button>
-
-@isset($user->imageAvatar)
-<img class="img-fluid" src="{{asset('/storage/'.$user->imageAvatar)}}" >
-@endisset --}}
-
-
 <label for="">Имя</label>
 <input type="text" name="name" id="" placeholder="Имя" value="{{@$user->name}} " class="form-control" required>
 

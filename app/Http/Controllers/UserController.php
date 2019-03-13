@@ -128,10 +128,8 @@ class UserController extends Controller
         ]);
         $user->name = $request['name'];
         $user->email = $request['email'];
-        $user->role = $request['role'];
-        // $user->imageAvatar = $request['imageAvatar'];
+        $user->role_id = $request['role'];
         $request['password'] == null ? : $user->password = bcrypt($request['password']);
-        // dd($request);
 
         if ($user->developer()->count()){
             $user->developer()->update($request->only('appointment','specialty','skill','schedule'));
@@ -161,18 +159,8 @@ class UserController extends Controller
         ]);
         $user->name = $request['name'];
         $user->email = $request['email'];
-        $user->role = $request['role'];
-        // $user->imageAvatar = $request['imageAvatar'];
+        $user->role_id = $request['role'];
         $request['password'] == null ? : $user->password = bcrypt($request['password']);
-        // dd($request);
-
-        // if ($user->developer()->count()){
-        //     $user->developer()->update($request->only('appointment','specialty','skill','schedule'));
-        // }
-        // else {
-        //     $user->developer()->create($request->only('appointment','specialty','skill','schedule'));
-        // }
-        
         $user->save();
 
         return redirect()->route('user.index');
@@ -186,7 +174,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        // $user->developer()->delete();
+        /**
+         * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         * Добавить привзяности 
+         */
         $user->delete();
         return redirect()->route('user.index');
     }
@@ -203,7 +195,7 @@ class UserController extends Controller
          * необходимо прописать в маршруте путь /image/upload/{user}
          */
         $path = $request->file('image')->store('avatar','public');
-        $user->imageAvatar = $path;
+        $user->image_link = $path;
         $user->save();
         return redirect()->back();
     }

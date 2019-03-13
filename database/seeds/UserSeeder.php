@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
         // factory(App\User::class, 'admin', 1)->create();
         DB::table('users')->insert([
             'name' => 'Администратор',
-            'role' => '1',
+            'role_id' => '1',
             'email' => 'adm@adm.com',
             'password'=>bcrypt('123456'),
             'remember_token'=>str_random(10)

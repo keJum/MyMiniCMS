@@ -32,8 +32,8 @@
             {{$user->name}} 
            
         
-            {{-- @isset($user->roles->name)
-                пользователя уже имеет роль   {{$user->roles->name}}
+            {{-- @isset($user->role->name)
+                пользователя уже имеет роль   {{$user->role->name}}
             @endisset --}}
         </label>
         <br>
