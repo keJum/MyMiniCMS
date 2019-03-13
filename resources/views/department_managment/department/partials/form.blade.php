@@ -8,12 +8,12 @@
     </div>
 @endif
 
-@if (@$department)
+@isset($department->id)
     <label for="">
         Персональный id отдела : {{@$department->id}} 
     </label>
     <hr>
-@endif
+@endisset
 
 
 {{-- <div class="form-group">

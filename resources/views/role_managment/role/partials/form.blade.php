@@ -48,42 +48,42 @@
     <br>
     <input class="form-check-input" type="checkbox" value="1" name="access[]" id="defaultCheck1" {{(strpos(@$role->access,'1') !== false) ? 'checked':''}}>
     <label class="form-check-label" for="defaultCheck1" >
-        только создание и редактированию текста
+        Составление задач
     </label> 
     <br>
     <input class="form-check-input" type="checkbox" value="2" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'2') !== false) ? 'checked':''}}>
     <label class="form-check-label" for="defaultCheck1" >
-        выполнение своих задач
+        Разработка задач
     </label>
     <br>
     <input class="form-check-input" type="checkbox" value="3" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'3') !== false) ? 'checked':''}}>
     <label class="form-check-label" for="defaultCheck1">
-        доступ к редактированию задач
+        Тестирование задач
     </label>
     <br>
     <input class="form-check-input" type="checkbox" value="4" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'4') !== false) ? 'checked':''}}>
     <label class="form-check-label" for="defaultCheck1">
-        доступ к списку всех сотрудников
+        Контроль задач
     </label>
     <br>
     <input class="form-check-input" type="checkbox" value="5" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'5') !== false) ? 'checked':''}}>
     <label class="form-check-label" for="defaultCheck1">
-        доступ ко всем отделам
+        Доступ к отделам 
     </label>
     <br>
     <input class="form-check-input" type="checkbox" value="6" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'6') !== false) ? 'checked':''}}>
     <label class="form-check-label" for="defaultCheck1">
-        доступ к пользователям
+        Доступ к пользователям
     </label>
     <br>
     <input class="form-check-input" type="checkbox" value="7" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'7') !== false) ? 'checked':''}} >
     <label class="form-check-label" for="defaultCheck1">
-        доступ к ролям
+        Доступ к ролям
     </label>
     <br>
     <input class="form-check-input" type="checkbox" value="8" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'8') !== false) ? 'checked':''}}>
     <label class="form-check-label" for="defaultCheck1">
-        доступ к навыкам
+        Доступ ко всем задачам
     </label>
     
 </div>

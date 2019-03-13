@@ -8,12 +8,9 @@
     </div>
 @endif
 
-@if (@$task)
-    <label for="">
-        Номер задачи id :  {{@$task->id}}
-    </label>
-    <hr>
-@endif
+<label for="">
+    Номер задачи id :  {{@$task->id}}
+</label>
 
 
 <label for="">Название</label>

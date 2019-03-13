@@ -41,22 +41,27 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $department = Department::create([
             'name'=> $request['name'],
             'description'=> $request['description'],
             'imageAvatar' => $request['imageAvatar'],
         ]);
-        for( $i = 0 ; $i < count($request['taskRespon_id']) ; $i++){
-            $user = User::find($request['taskRespon_id'][$i]);
+
+        /**
+         * Связь одни ко одному, так как нужен только одни руководитель 
+         */
+        // $department->responsible = $request['responsible'];
+        
+        /**
+         * Свзязь один ко многим, несколько разработчиков
+         */
+        foreach ($request['taskRespon_id'] as $responsible){
+            $user = User::find($responsible);
             $user->department = $department->id;
             $user->save();
         }
 
-
-        // $department->developer()->create([
-        //     'department_id' => $department->id
-        // ]);
+        $department->save();
         return redirect()->route('department_managment.department.index');
     }
 
@@ -97,28 +102,20 @@ class DepartmentController extends Controller
     public function update(Request $request, Department $department)
     {
 
-        // dd($request);
         $department->name = $request->name;
         $department->description = $request->description;
         $department->imageAvatar = $request->imageAvatar;
-
-        // $department->users()->update([
-        //     'department_id' => 'не указанно',
-        // ]);
-
-        // $department->user
-
-        foreach($department->users as $user){
-            $user->department = 'не указанно';
-            $user->save();
-        }
-        
         $department->save();
         
-        
+        if(isset($department->users)){
+            foreach ($department->users as $user){
+                $user->department = 'Не назначен';
+                $user->save();
+            }
+        }
         if ($request['taskRespon_id']){
-            foreach ($request['taskRespon_id'] as $depUser){
-                $user = User::find($depUser);
+            foreach ($request['taskRespon_id'] as $userId){
+                $user = User::find($userId);
                 $user->department = $department->id;
                 $user->save();
             }
@@ -136,9 +133,17 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        foreach( $department->users as $user){
-            $user->department = 'не указанно';
+        // foreach( $department->responsibles as $responsible){
+        //     $responsible->department = 'не указанно';
+        //     dd($responsible);
+        // }
+        if(isset($department->users)){
+            foreach ($department->users as $user){
+                $user->department = 'Не назначен';
+                $user->save();
+            }
         }
+
         $department->delete();
         
         return redirect()->route('department_managment.department.index');

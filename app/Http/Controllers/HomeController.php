@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\User;
+use App\User; 
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller

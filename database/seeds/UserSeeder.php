@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'remember_token'=>str_random(10)
           ]);
         DB::table('roles')->insert([
+            'id' => 1,
             'name' => 'administrator',
             'describe' => 'adm',
             'access' => 12345678,

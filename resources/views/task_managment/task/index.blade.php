@@ -35,7 +35,7 @@
                             {{@$task->provider->name}}
                         </td>
                         <td>
-                            {{$task->responsible->name}}
+                            {{@$task->responsible->name}}
                         </td>
                         <td class="text-right">
                             <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('task_managment.task.destroy',$task)}}" method="post">

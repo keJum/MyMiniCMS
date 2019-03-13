@@ -51,11 +51,10 @@ class TaskController extends Controller
     public function create()
     {
         $user = User::find(Auth::id());
-        $departments  = Department::all();
         return view('task_managment.task.create',[
             'task'=>[''],
             'user' => $user,
-            'departments' => $departments,
+            'departments' => Department::all(),
             'users' => User::all()
         ]);
     }
@@ -69,8 +68,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
 
-        $user = Task::create($request->all());
-        
+        Task::create($request->all());
         return redirect()->route('task_managment.task.index');
     }
 

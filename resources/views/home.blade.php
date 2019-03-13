@@ -15,9 +15,7 @@
                     @endif
                     Добро пожаловать
                     {{$user->name}}
-                    вы вошли как 
-
-                    <a href="/admin">{{$user->role}}</a>
+                    вы вошли как {{$user->roles->name}}
                     <hr> Вы имеете полный доступ к возмодностям всех ролей, управлению пользователями и управлению отделами.
                     <br>
                     <a class="btn btn-primary btn-lg btn-block" href="{{route('taskAll')}}" style="margin-top: 60px;" >
