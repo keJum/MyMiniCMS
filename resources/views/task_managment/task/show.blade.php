@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-default">Редактировать задачу</a>
         {{-- Описание задачи --}}
         <div class="row">
             <br>

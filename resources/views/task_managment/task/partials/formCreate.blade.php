@@ -8,24 +8,18 @@
     </div>
 @endif
 
-@if (@$task)
-    <label for="">
-        Номер задачи id :  {{@$task->id}}
-    </label>
-    <hr>
-@endif
 <label for="">Название</label>
-<input type="text" name="taskName" id="" placeholder="" value="{{@$task->taskName}}" class="form-control" required>
+<input type="text" name="name" id="" placeholder="" value="{{@$task->taskName}}" class="form-control" required>
 
 <label for="">Описание</label>
 <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"> {{@$task->description}} </textarea>
 
 
-<input type="hidden" name="taskProvider_id" value="{{$user->id}}">
+<input type="hidden" name="provider_id" value="{{$user->id}}">
 
 <label for="exampleFormControlSelect1">Отвественный</label>
-<select name="taskRespon_id" class="form-control" id="exampleFormControlSelect1">
-    <option value="{{@$task->taskRespon_id}}">{{@$task->responsible->name}}</option>
+<select name="respon_id" class="form-control" id="exampleFormControlSelect1">
+    <option value="{{@$task->respon_id}}">{{@$task->responsible->name}}</option>
     <hr>
     {{-- перебираем все отделы  --}}
     @foreach ($departments as $department)

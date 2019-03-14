@@ -20,13 +20,16 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $user = User::find(Auth::id());
+        // $user = User::find(Auth::id());
 
+        // return view('task_managment.task.index',[
+        //     'tasksTeamLiead' => Task::where('taskRespon_id',$user->id)->get(),
+        //     'tasksProvider' => Task::where('taskProvider_id',$user->id)->get(),
+        //     'tasksDeveloper' => Task::where('taskDeveloper_id',$user->id)->get(),
+        //     'tasksTester' => Task::where('taskTester_id',$user->id)->get()
+        // ]);
         return view('task_managment.task.index',[
-            'tasksTeamLiead' => Task::where('taskRespon_id',$user->id)->get(),
-            'tasksProvider' => Task::where('taskProvider_id',$user->id)->get(),
-            'tasksDeveloper' => Task::where('taskDeveloper_id',$user->id)->get(),
-            'tasksTester' => Task::where('taskTester_id',$user->id)->get()
+            'tasks' => Task::all()
         ]);
 
     }
@@ -67,9 +70,14 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
 
-        Task::create($request->all());
+        Task::create([
+            'name' => $request['name'],
+            'description'   => $request['description'],
+            'importance'    => $request['importance'],
+            'provider_id'   => $request['provider_id'],
+            'respon_id'     => $request['respon_id']
+        ]);
         return redirect()->route('task_managment.task.index');
     }
 
@@ -135,15 +143,15 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
 
-        $task->taskName = $request['taskName'];
+        $task->name = $request['name'];
         $task->description = $request['description'];
-        $task->taskProvider_id = $request['taskProvider_id'];
-        $task->taskRespon_id = $request['taskRespon_id'];
-        $task->taskDeveloper_id = $request['taskDeveloper_id'];
-        $task->taskTester_id = $request['taskTester_id'];
-        $task->taskImportance = $request['taskImportance'];
-        $task->taskComplexity = $request['taskComplexity'];
-        $task->taskProgress = $request['taskProgress'];
+        $task->provider_id = $request['provider_id'];
+        $task->respon_id = $request['respon_id'];
+        $task->developer_id = $request['developer_id'];
+        $task->tester_id = $request['tester_id'];
+        $task->importance = $request['importance'];
+        $task->complexity = $request['complexity'];
+        $task->progress = $request['progress'];
         $task->startDevelopment_at = $request['startDevelopment_at'];
         $task->startTesting_at = $request['startTesting_at'];
         $task->finishTesting_at = $request['finishTesting_at'];

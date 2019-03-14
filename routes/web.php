@@ -28,7 +28,7 @@ Route::group(['prefix'=>'role_managment'],function(){
 });
 
 Route::group(['prefix'=>'file_manager'],function(){
-    Route::post('load','FileloadController@load')->name('loadFile');
+    Route::post('load/{user}','FileloadController@load')->name('loadFile');
 });
 /**
  * Управление отделами

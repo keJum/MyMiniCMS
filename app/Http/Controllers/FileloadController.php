@@ -9,14 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class FileloadController extends Controller
 {
-    public function load( Request $request ){
+    public function load( Request $request, User $user){
 
         switch ($request->type) {
             case 'avatar':
-                // dd($request);
-                $user = User::find(Auth::id());
+                $user = User::find($user->id);
                 $path = $request->file('image')->store('avatar','public');
-                // Storage::put('avatar/'.$id ,$file);
                 $user->image_link = $path;
                 $user->save();
                 return redirect()->back();

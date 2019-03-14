@@ -6,12 +6,23 @@
                 <img src="{{asset('storage/'.$user->image_link)}}" class="mr-3" alt="Avatar">
             @endisset
 
-            <form id="contactform" action="{{route('loadFile')}}" method="post" class="validateform" name="send-contact" enctype="multipart/form-data"> 
+            <form id="contactform" action="{{route('loadFile',$user)}}" method="post" class="validateform" name="send-contact" enctype="multipart/form-data"> 
                 {{ csrf_field() }}
                 <input type="hidden" name="type" value="avatar">
                 <input type="file" name="image" >
                 <input type="submit" value="Закачать">
             </form>
+        {{-- / Отправка изображения на сайт и получения ссылку  --}}
+        <form class="form-horizontal" action="{{route('user.update',$user)}}" method="post">
+            <input name="_method" type="hidden" value="PATCH">
+            {{ csrf_field() }}
+            {{ method_field('put') }}
+            @include('user_managment.user.partials.form')
+        </form>
+    </div>
+@endsection
+
+
             {{-- 
             <script>
             $(document).ready(function(){
@@ -30,13 +41,3 @@
             });
             </script> 
             --}}
-
-        {{-- / Отправка изображения на сайт и получения ссылку  --}}
-        <form class="form-horizontal" action="{{route('user.update',$user)}}" method="post">
-            <input name="_method" type="hidden" value="PATCH">
-            {{ csrf_field() }}
-            {{ method_field('put') }}
-            @include('user_managment.user.partials.form')
-        </form>
-    </div>
-@endsection

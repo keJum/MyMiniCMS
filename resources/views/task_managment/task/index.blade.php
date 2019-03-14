@@ -15,21 +15,17 @@
                 <th class="text-right">Действие</th>
             </thead>
             <tbody>
-                {{-- Provider tasks --}}
-                @if (@$tasksProvider)
-                    @forelse (@$tasksProvider as $task)
-                    <tr>
-                        <td colspan="3" class="text-center"><h2>Задачи постовщика </h2></td>
-                    </tr>
-                    <tr {{ $task->taskStatus == 3 ? 'bgcolor="green"' : '' }} >                 
+                    @forelse (@$tasks as $task)
+
+                    <tr {{ $task->progress == 5 ? 'bgcolor="#8FBC8F"' : '' }} >    
                         <td>
-                            <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
+                            <a href="{{route('task_managment.task.show',$task)}}">{{$task->name}}</a>
                         </td>
                         <td>
-                            {{$task->taskImportance}}
+                            {{$task->importance}}
                         </td>
                         <td>
-                            {{$task->taskProgress}}
+                            {{$task->progress}}
                         </td>
                         <td>
                             {{@$task->provider->name}}
@@ -47,128 +43,10 @@
                         </td>
                     </tr>                    
                     @empty
-                    {{-- <tr>
-                        <td colspan="3" class="text-center"><h2>Нет задач</h2></td>
-                    </tr> --}}
-                    @endforelse
-                @endif
-
-                {{-- Developer task --}}
-                @if (@$tasksDeveloper)
-                    @forelse (@$tasksDeveloper as $task)
                     <tr>
-                        <td colspan="3" class="text-center"><h2>Задачи разработчика</h2></td>
-                     </tr>
-                    <tr {{ $task->taskStatus == 3 ? 'bgcolor="green"' : '' }} >      
-                        <td>
-                            <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
-                        </td>
-                        <td>
-                            {{$task->taskImportance}}
-                        </td>
-                        <td>
-                            {{$task->taskProgress}}
-                        </td>
-                        <td>
-                            {{@$task->provider->name}}
-                        </td>                        
-                        <td>
-                            {{$task->responsible->name}}
-                        </td>
-                        <td class="text-right">
-                            <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('task_managment.task.destroy',$task)}}" method="post">
-                                {{method_field('DELETE')}}
-                                {{ csrf_field() }}
-                                <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-default">Ред.</a>
-                                <button type="submit" class="btn">Удал.</button>
-                            </form>
-                        </td>
-                    </tr>                    
-                    @empty
-                    {{-- <tr>
                         <td colspan="3" class="text-center"><h2>Нет задач</h2></td>
-                    </tr> --}}
-                    @endforelse
-                @endif
-                
-                {{-- Tester task --}}
-
-                @if(@$tasksTester)
-                    @forelse (@$tasksTester as $task)
-                    <tr>
-                        <td colspan="3" class="text-center"><h2>Задачи тестировшика</h2></td>
                     </tr>
-                    <tr {{ $task->taskStatus == 3 ? 'bgcolor="green"' : '' }} >      
-                        <td>
-                            <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
-                        </td>
-                        <td>
-                            {{$task->taskImportance}}
-                        </td>
-                        <td>
-                            {{$task->taskProgress}}
-                        </td>
-                        <td>
-                             {{@$task->tester->name}}
-                        </td>
-                        <td>
-                            {{$task->responsible->name}}
-                        </td>
-                        <td class="text-right">
-                            <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('task_managment.task.destroy',$task)}}" method="post">
-                                {{method_field('DELETE')}}
-                                {{ csrf_field() }}
-                                <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-default">Ред.</a>
-                                <button type="submit" class="btn">Удал.</button>
-                            </form>
-                        </td>
-                    </tr>                    
-                    @empty
-                    {{-- <tr>
-                        <td colspan="3" class="text-center"><h2>Нет задач</h2></td>
-                    </tr> --}}
                     @endforelse
-                @endif
-
-                {{-- Team lead --}}
-                @if(@$tasksTeamLiead)
-
-                @forelse (@$tasksTeamLiead as $task)
-                <tr>
-                    <td colspan="3" class="text-center"><h2>Задачи руководителя группы</h2></td>
-                </tr>
-                <tr {{ $task->taskStatus == 3 ? 'bgcolor="green"' : '' }} >      
-                    <td>
-                        <a href="{{route('task_managment.task.destroy',$task)}}">{{$task->taskName}}</a>
-                    </td>
-                    <td>
-                        {{$task->taskImportance}}
-                    </td>
-                    <td>
-                        {{$task->taskProgress}}
-                    </td>
-                    <td>
-                        {{@$task->provider->name}}
-                    </td>
-                    <td>
-                        {{$task->responsible->name}}
-                    </td>
-                    <td class="text-right">
-                        <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('task_managment.task.destroy',$task)}}" method="post">
-                            {{method_field('DELETE')}}
-                            {{ csrf_field() }}
-                            <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-default">Ред.</a>
-                            <button type="submit" class="btn">Удал.</button>
-                        </form>
-                    </td>
-                </tr>                    
-                @empty
-                {{-- <tr>
-                    <td colspan="3" class="text-center"><h2>Нет задач</h2></td>
-                </tr> --}}
-                @endforelse
-                @endif
-
             </tbody>
         </table>
     </div>

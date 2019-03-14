@@ -2,10 +2,6 @@
 
 @section('content')
   <div class="container">
-
-
-
-
     <h1>Информация о отделе</h1>
     <table class="table table-hover">
       <thead>
@@ -34,8 +30,8 @@
         <tr>
           <th scope="row">Сотрудники</th>
           <td colspan="2">
-            @foreach ($department->developer as $developer)
-              {{ $developer->user->name }}
+            @foreach ($department->user as $user)
+              {{ $user->name }}
             @endforeach
           </td>
         </tr>
