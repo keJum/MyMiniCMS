@@ -92,7 +92,7 @@ class RoleController extends Controller
     {
         foreach($request['users'] as $idUser){
             $user = User::find($idUser);
-            $user->role = $role->id;
+            $user->role_id = $role->id;
         }
 
         $accessResult ='';

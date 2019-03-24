@@ -95,7 +95,8 @@ class TaskController extends Controller
             'user' => User::find(Auth::id()),
             'userAuth' => User::find(Auth::id()),
             'users' => User::all(),
-            'comments' => Comment::where('idObject','=', $task->id)->get()
+            'comments' => Comment::where('idObject','=', $task->id)->get(),
+            'departments' => Department::all(),
         ]);
     }
 
@@ -112,7 +113,8 @@ class TaskController extends Controller
         return view('task_managment.task.edit',[
             'user'=>$user,
             'task'=>$task,
-            'users'=>User::all()
+            'users'=>User::all(),
+            'departments' => Department::all()
         ]);
     }
 
@@ -143,6 +145,11 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
 
+        // dd($request['progress']);
+        $user = User::find($request['user']);
+
+        // dd($request['status']);
+
         $task->name = $request['name'];
         $task->description = $request['description'];
         $task->provider_id = $request['provider_id'];
@@ -152,6 +159,7 @@ class TaskController extends Controller
         $task->importance = $request['importance'];
         $task->complexity = $request['complexity'];
         $task->progress = $request['progress'];
+        $task->status = $request['status'];
         $task->startDevelopment_at = $request['startDevelopment_at'];
         $task->startTesting_at = $request['startTesting_at'];
         $task->finishTesting_at = $request['finishTesting_at'];
@@ -178,7 +186,7 @@ class TaskController extends Controller
     /**
      * Пометка о том что задача завершила определенный этап и передаётся следующиму
      */
-    public function nextTask(Request $request, $task){
+    public function next(Request $request, $task){
         $task = Task::find($task);
         $user = User::find(Auth::id());
 

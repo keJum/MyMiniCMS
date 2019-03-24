@@ -25,8 +25,7 @@
 <label for="users"> Пользователи </label>
 <div id="users" class="form-check">
     @foreach ($users as $user)
-    
-        <input class="form-check-input" type="checkbox" value="{{$user->id}}" name="users[]" id="defaultCheck{{@$user->id}}" {{(@$user->role == @$role->id) ? 'checked':''}}>
+        <input class="form-check-input" type="checkbox" value="{{$user->id}}" name="users[]" id="defaultCheck{{@$user->id}}" {{(@$user->role_id == @$role->id) ? 'checked':''}}>
         <label class="form-check-label" for="defaultCheck{{@$user->id}}" >
             {{-- {{var_dump($user->role)}} --}}
             {{$user->name}} 
@@ -48,7 +47,7 @@
     <br>
     <input class="form-check-input" type="checkbox" value="1" name="access[]" id="defaultCheck1" {{(strpos(@$role->access,'1') !== false) ? 'checked':''}}>
     <label class="form-check-label" for="defaultCheck1" >
-        Составление задач
+        Изменение имени и описания у задач
     </label> 
     <br>
     <input class="form-check-input" type="checkbox" value="2" id="defaultCheck1" name="access[]" {{(strpos(@$role->access,'2') !== false) ? 'checked':''}}>
