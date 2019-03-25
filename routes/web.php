@@ -12,6 +12,29 @@
 */
 
 /**
+ * --------------------------
+ * Статусы задачи:
+ *  0   - задача на распределении   
+ *  1   - задача на проверки 
+ *  2   - задача на переработки
+ *  3   - задача работает 
+ *  4   - задача потвердена 
+ *  5   - задача в архиве 
+ * ---------------------------------
+ * Доступы пользователей :
+ *  1   - доступ к изменению содержания задачи 
+ *  2   - доступ к прогрессу задачи 
+ *  3   - доступ к проверки работы задачи
+ *  4   - доступ к завершению задачи
+ *  5   - доступ к отдлам 
+ *  6   - доступ к пользователям
+ *  7   - доступ к ролям
+ *  8   - доступ к списку задач
+ */
+
+
+
+/**
  * Управение пользователями 
  */
 Route::group(['prefix'=>'user_managment'],function(){
@@ -44,8 +67,9 @@ Route::group(['prefix'=>'task_managment'],function(){
     Route::resource('task','TaskController',['as'=>'task_managment']);
     Route::get('taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll');
     Route::post('update/task','TaskController@selectTask',['as'=>'task_managment'])->name('selectTask');
-    Route::get('task/next/{id}','TaskController@next',['as'=>'task_managment'])->name('next');
-    Route::get('task/succes/{id}','TaskController@succsexTask',['as'=>'task_managment'])->name('succsecTask');
+    // Route::get('task/next/{id}','TaskController@next',['as'=>'task_managment'])->name('next');
+    Route::get('/task/success/{task}/{str}','TaskController@success')->name('successTask');
+    // Route::get('task/succes/{id}','TaskController@succsex',['as'=>'task_managment'])->name('succsecTask');
     Route::resource('comment','CommentController');
 });
 

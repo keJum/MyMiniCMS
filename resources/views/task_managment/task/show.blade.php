@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-default">Редактировать задачу</a>
+        <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-defoult">Редактировать задачу</a>
         <hr>
         {{-- Описание задачи --}}
         <div class="row">
@@ -10,16 +10,9 @@
             <div class="col-sm-9">
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                        <form class="form-horizontal" action="{{route('next',$task)}}" method="get">
-                               
-                            {{ csrf_field() }}
-                            
-                            <input type="hidden" name="taskId" value="{{$task->id}}">
-                            
-                            <h1 class="display-4">Задача:  {{$task->name}} <br></h1>
-                            <h2>Описание:</h2>
-                            <p> {{@$task->description}} </p>
-                        </form>
+                        <h1 class="display-4">Задача:  {{$task->name}} <br></h1>
+                        <h2>Описание:</h2>
+                        <p> {{@$task->description}} </p>
                     </div>
                 </div>
             </div>
@@ -48,17 +41,23 @@
                 <hr>
                 @switch(@$task->status)
                     @case(0)
-                        Задача не проверенна
+                        задача на распределении   
                         @break
                     @case(1)
-                        Задача не работает
+                        задача на проверки
                         @break
                     @case(2)
-                        Задача работает
+                        задача на переработки
                         @break
                     @case(3)
-                        Задача потвержденна
+                        задача работает
                         @break
+                    @case(4)
+                        задача потвердена
+                    @break
+                    @case(4)
+                        задача в архиве 
+                    @break
                     @default
                 @endswitch
             </div>

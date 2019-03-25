@@ -55,13 +55,21 @@
         {{-- перебираем все отделы  --}}
         @foreach ($departments as $department)
             @foreach ($department->user as $userDepart)
-                {{-- see form to role created --}}
+                {{-- роли можно посмотреть в route/web.php --}}
                 @if (strpos(@$userDepart->role->access,'4'))
                     <option value="{{$userDepart->id}}">{{$userDepart->name}} - отдел ( {{$userDepart->department->name}} )</option>
                 @endif
             @endforeach
         @endforeach
-    </select>     
+    </select>
+    <br>
+    {{-- endTask указывает что задачу завершили  --}}
+    <a href="{{route('successTask',['task'=>$task,'str'=>'endTask'])}}" class="btn btn-success" onclick=""> Заврешить  задачу </a>
+    {{-- <form action="{{route('successTask',$task)}}" method="get">
+        <input type="hidden" name="str" value="endTask">
+        <input type="submit" class="btn btn-danger" value="Завершить задачу">
+    </form> --}}
+    <br>     
           
 @endif
 
@@ -86,19 +94,19 @@
     <h1>Права на проверку задачи</h1>
     <label for="exampleRadios1">Работает задача ? </label>       
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="status" id="exampleRadios3" value="0" checked>
+        <input class="form-check-input" type="radio" name="status" id="exampleRadios3" value="1" checked>
         <label class="form-check-label" for="exampleRadios3">
           Не проверинно 
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="1">
+        <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="2">
         <label class="form-check-label" for="exampleRadios2">
             Не работает 
         </label>
     </div>        
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="2" >
+        <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="3" >
         <label class="form-check-label" for="exampleRadios1">
           Работает
         </label>
@@ -144,30 +152,9 @@
         <option {{@$task->complexity == '5' ?' selected="selected"': ''}}>5</option>
     </select>
 
-    <br>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="customCheck1" name="status" onclick="alert('Завершить задачу?')" value="3">
-        <label class="custom-control-label" for="customCheck1">
-            потвердить ?
-            <br>
-            @switch(@$task->status)
-                @case(0)
-                    Задача не проверенна
-                    @break
-                @case(1)
-                    Задача не работает
-                    @break
-                @case(2)
-                    Задача работает
-                    @break
-                @case(3)
-                    Задача завершенна
-                    @break
-                @default
-                    
-            @endswitch
-        </label>
-    </div>
+    <br>    
+    {{-- readyTask указывает что задачу готово  --}}
+    <a href="{{route('successTask',['task'=>$task,'str'=>'readyTask'])}}" class="btn btn-success" onclick=""> Заврешить  задачу </a>
 
 @endif
 

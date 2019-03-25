@@ -55,10 +55,10 @@ class TaskController extends Controller
     {
         $user = User::find(Auth::id());
         return view('task_managment.task.create',[
-            'task'=>[''],
-            'user' => $user,
-            'departments' => Department::all(),
-            'users' => User::all()
+            'task'          =>[''],
+            'user'          => $user,
+            'departments'   => Department::all(),
+            'users'         => User::all()
         ]);
     }
 
@@ -72,11 +72,12 @@ class TaskController extends Controller
     {
 
         Task::create([
-            'name' => $request['name'],
+            'name'          => $request['name'],
             'description'   => $request['description'],
             'importance'    => $request['importance'],
             'provider_id'   => $request['provider_id'],
-            'respon_id'     => $request['respon_id']
+            'respon_id'     => $request['respon_id'],
+            'status'        => 0
         ]);
         return redirect()->route('task_managment.task.index');
     }
@@ -91,12 +92,12 @@ class TaskController extends Controller
     {
         // dd(User::find(Auth::id()));
         return view('task_managment.task.show',[
-            'task' => $task,
-            'user' => User::find(Auth::id()),
-            'userAuth' => User::find(Auth::id()),
-            'users' => User::all(),
-            'comments' => Comment::where('idObject','=', $task->id)->get(),
-            'departments' => Department::all(),
+            'task'          => $task,
+            'user'          => User::find(Auth::id()),
+            'userAuth'      => User::find(Auth::id()),
+            'users'         => User::all(),
+            'comments'      => Comment::where('idObject','=', $task->id)->get(),
+            'departments'   => Department::all(),
         ]);
     }
 
@@ -111,10 +112,10 @@ class TaskController extends Controller
         //Отделы ролей показываются в шаблоне blade
         $user = User::find(Auth::id());
         return view('task_managment.task.edit',[
-            'user'=>$user,
-            'task'=>$task,
-            'users'=>User::all(),
-            'departments' => Department::all()
+            'user'          =>$user,
+            'task'          =>$task,
+            'users'         =>User::all(),
+            'departments'   => Department::all()
         ]);
     }
 
@@ -125,8 +126,8 @@ class TaskController extends Controller
         $task = Task::where('id',$request['taskId'])->first();
         
         $task->update([
-            'taskProgress' => $request['taskProgress'],
-            'taskProvider_id' => $task->taskProvider_id,
+            'taskProgress'      => $request['taskProgress'],
+            'taskProvider_id'   => $task->taskProvider_id,
 
         ]);
 
@@ -148,22 +149,29 @@ class TaskController extends Controller
         // dd($request['progress']);
         $user = User::find($request['user']);
 
+        /**
+         * Если разработчик завершил задачу на процесс ( этап ) 5 
+         */
+        if ( $request['progress'] == 5  ){
+            $task->status  = 1; 
+        }
+
         // dd($request['status']);
 
-        $task->name = $request['name'];
-        $task->description = $request['description'];
-        $task->provider_id = $request['provider_id'];
-        $task->respon_id = $request['respon_id'];
-        $task->developer_id = $request['developer_id'];
-        $task->tester_id = $request['tester_id'];
-        $task->importance = $request['importance'];
-        $task->complexity = $request['complexity'];
-        $task->progress = $request['progress'];
-        $task->status = $request['status'];
-        $task->startDevelopment_at = $request['startDevelopment_at'];
-        $task->startTesting_at = $request['startTesting_at'];
-        $task->finishTesting_at = $request['finishTesting_at'];
-        $task->finish_at = $request['finish_at'];
+        $task->name                 = $request['name'];
+        $task->description          = $request['description'];
+        $task->provider_id          = $request['provider_id'];
+        $task->respon_id            = $request['respon_id'];
+        $task->developer_id         = $request['developer_id'];
+        $task->tester_id            = $request['tester_id'];
+        $task->importance           = $request['importance'];
+        $task->complexity           = $request['complexity'];
+        $task->progress             = $request['progress'];
+        $task->status               = $request['status'];
+        $task->startDevelopment_at  = $request['startDevelopment_at'];
+        $task->startTesting_at      = $request['startTesting_at'];
+        $task->finishTesting_at     = $request['finishTesting_at'];
+        $task->finish_at            = $request['finish_at'];
 
         $task->save();
         return redirect()->route('task_managment.task.index');
@@ -182,89 +190,107 @@ class TaskController extends Controller
         return redirect()->route('task_managment.task.index');
     }
 
+    public function success( Task $task, $str )
+    {
+        switch ($str) {
+            case 'endTask':
+                $task->status = 5;
+                break;
+            case 'readyTask':
+                $task->status = 4;
+                break;
+            default:
+                break;
+        }
+        $task->save();
+        return redirect()->route('task_managment.task.index');
+
+        
+    }
+
 
     /**
      * Пометка о том что задача завершила определенный этап и передаётся следующиму
      */
-    public function next(Request $request, $task){
-        $task = Task::find($task);
-        $user = User::find(Auth::id());
+    // public function next(Request $request, $task){
+    //     $task = Task::find($task);
+    //     $user = User::find(Auth::id());
 
-        if ($user->role == 'Team lead' ){
-            /**
-             * Назаначении разарботчика
-             */
-            if (!empty($request['taskDeveloper_id'])){
-                $mytime = Carbon::now();
-                $time =  $mytime->toDateTimeString();
-                $task->taskDeveloper_id = $request['taskDeveloper_id'];
-                $task->startDevelopment_at = $time;
-            }
-            /**
-             * Назначение тестровщика
-             */
-            if (!empty($request['taskTester_id'])){
-                $task->taskTester_id = $request['taskTester_id'];
-            }
-            $task->taskStatus = 1 ;
-            $task->save();
-            /**
-             * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-             * вставить уведомление
-             */
-        }
-        if ($user->role == 'Devoloper' && $task->taskStatus = 1 ){
-            /**
-             * Кнопка начать задачу 
-             */
-            if ( $request['start'] == 'true'){
-                $mytime = Carbon::now();
-                $time =  $mytime->toDateTimeString();
-                $task->finishDevelopment_at = $time;
-            }
-            /**
-             *  Кнопка завершить задачу
-             */
-            if ( $request['success'] == 'true' ){
+    //     if ($user->role == 'Team lead' ){
+    //         /**
+    //          * Назаначении разарботчика
+    //          */
+    //         if (!empty($request['taskDeveloper_id'])){
+    //             $mytime = Carbon::now();
+    //             $time =  $mytime->toDateTimeString();
+    //             $task->taskDeveloper_id = $request['taskDeveloper_id'];
+    //             $task->startDevelopment_at = $time;
+    //         }
+    //         /**
+    //          * Назначение тестровщика
+    //          */
+    //         if (!empty($request['taskTester_id'])){
+    //             $task->taskTester_id = $request['taskTester_id'];
+    //         }
+    //         $task->taskStatus = 1 ;
+    //         $task->save();
+    //         /**
+    //          * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //          * вставить уведомление
+    //          */
+    //     }
+    //     if ($user->role == 'Devoloper' && $task->taskStatus = 1 ){
+    //         /**
+    //          * Кнопка начать задачу 
+    //          */
+    //         if ( $request['start'] == 'true'){
+    //             $mytime = Carbon::now();
+    //             $time =  $mytime->toDateTimeString();
+    //             $task->finishDevelopment_at = $time;
+    //         }
+    //         /**
+    //          *  Кнопка завершить задачу
+    //          */
+    //         if ( $request['success'] == 'true' ){
 
-                $mytime = Carbon::now();
-                $time =  $mytime->toDateTimeString();
-                $task->taskStatus = 2 ;
-                $task->startDevelopment_at = $time;
+    //             $mytime = Carbon::now();
+    //             $time =  $mytime->toDateTimeString();
+    //             $task->taskStatus = 2 ;
+    //             $task->startDevelopment_at = $time;
 
-            }
-            $task->taskProgress = $request['taskProgress'];
-            $task->save();
-        }
+    //         }
+    //         $task->taskProgress = $request['taskProgress'];
+    //         $task->save();
+    //     }
 
-        if ($user->role == 'Tester' && $task->taskStatus = 2 ){
+    //     if ($user->role == 'Tester' && $task->taskStatus = 2 ){
 
-            /**
-             * Кнопка начать задачу 
-             */
-            if ( $request['start'] == 'true'){
-                $mytime = Carbon::now();
-                $time =  $mytime->toDateTimeString();
-                $task->startTesting_at = $time;
-            }
+    //         /**
+    //          * Кнопка начать задачу 
+    //          */
+    //         if ( $request['start'] == 'true'){
+    //             $mytime = Carbon::now();
+    //             $time =  $mytime->toDateTimeString();
+    //             $task->startTesting_at = $time;
+    //         }
 
-            /**
-             * Кнопка завершить задачу
-             */
-            if ( $request['success'] == 'true' ){
+    //         /**
+    //          * Кнопка завершить задачу
+    //          */
+    //         if ( $request['success'] == 'true' ){
 
-                $mytime = Carbon::now();
-                $time =  $mytime->toDateTimeString();
-                $task->taskStatus = 3 ;
-                $task->finishTesting_at = $time;
+    //             $mytime = Carbon::now();
+    //             $time =  $mytime->toDateTimeString();
+    //             $task->taskStatus = 3 ;
+    //             $task->finishTesting_at = $time;
 
-            }
+    //         }
 
-            $task->taskProgress = $request['taskProgress'];
-            $task->save();
-        }
+    //         $task->taskProgress = $request['taskProgress'];
+    //         $task->save();
+    //     }
 
-        return redirect()->back();
-    }
+    //     return redirect()->back();
+    // }
 
 }

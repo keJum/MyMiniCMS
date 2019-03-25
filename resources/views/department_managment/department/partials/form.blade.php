@@ -27,7 +27,7 @@
 @foreach ($users as $user)
     <div class="form-check">
         
-        @if (@$department->id == @$user->developer->department_id)
+        @if (@$department->id == @$user->department_id)
             <input class="form-check-input" type="checkbox" name="users_id[]" value="{{$user->id}}" id="defaultCheck1" checked> 
             <label class="form-check-label">
                 {{@$user->name}} роль: {{@$user->role->name}} 
