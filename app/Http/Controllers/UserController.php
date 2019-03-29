@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\Welcome;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notification;
 
 class UserController extends Controller
 {
@@ -198,5 +199,31 @@ class UserController extends Controller
         $user->image_link = $path;
         $user->save();
         return redirect()->back();
+    }
+    
+    /**
+     * Функция списка всех уведолмения авторизированого пользователя 
+     * 
+     */
+    public function notificationIndex(){
+
+        $user = User::find(Auth::id());
+        return view('user_managment.notification.index',[
+            'user' => $user,
+        ]);
+
+    }
+    public function notificationRead( User $user ){
+        // $notification = Notification::find($notification);
+
+        // dd($notification);
+        // $notification->update(['read_at' => Carbon::now()]);;
+        foreach ($user->unreadNotifications as $notification) {
+            $notification->markAsRead();
+        }
+        $user = User::find(Auth::id());
+        return view('user_managment.notification.index',[
+            'user' => $user,
+        ]);
     }
 }

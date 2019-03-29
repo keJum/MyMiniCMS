@@ -10,6 +10,8 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\InvoiceTask;
+use Illuminate\Support\Facades\Notification;
 
 class TaskController extends Controller
 {
@@ -71,7 +73,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
 
-        Task::create([
+        $task = Task::create([
             'name'          => $request['name'],
             'description'   => $request['description'],
             'importance'    => $request['importance'],
@@ -79,6 +81,13 @@ class TaskController extends Controller
             'respon_id'     => $request['respon_id'],
             'status'        => 0
         ]);
+        
+        if(isset($task->responsible)){ $users[] = $task->responsible; }
+        if(isset($task->provider)){ $users[] = $task->provider; }
+        if(isset($task->developer)){ $users[] = $task->developer; }
+        if(isset($task->tester)){ $users[] = $task->tester; }
+        Notification::send( $users ,new InvoiceTask($task,'crate'));
+
         return redirect()->route('task_managment.task.index');
     }
 
@@ -90,6 +99,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        
         // dd(User::find(Auth::id()));
         return view('task_managment.task.show',[
             'task'          => $task,
@@ -145,18 +155,13 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-
-        // dd($request['progress']);
-        $user = User::find($request['user']);
-
         /**
          * Если разработчик завершил задачу на процесс ( этап ) 5 
          */
         if ( $request['progress'] == 5  ){
             $task->status  = 1; 
         }
-
-        // dd($request['status']);
+        
 
         $task->name                 = $request['name'];
         $task->description          = $request['description'];
@@ -172,8 +177,14 @@ class TaskController extends Controller
         $task->startTesting_at      = $request['startTesting_at'];
         $task->finishTesting_at     = $request['finishTesting_at'];
         $task->finish_at            = $request['finish_at'];
-
         $task->save();
+
+        if(isset($task->responsible)){ $users[] = $task->responsible; }
+        if(isset($task->provider)){ $users[] = $task->provider; }
+        if(isset($task->developer)){ $users[] = $task->developer; }
+        if(isset($task->tester)){ $users[] = $task->tester; }
+        Notification::send( $users ,new InvoiceTask($task,'update'));
+
         return redirect()->route('task_managment.task.index');
     }
 
@@ -190,14 +201,31 @@ class TaskController extends Controller
         return redirect()->route('task_managment.task.index');
     }
 
+    /**
+     * Метод для работы с завершением задачи 
+     */
+
     public function success( Task $task, $str )
     {
+
         switch ($str) {
             case 'endTask':
                 $task->status = 5;
+                
+                if(isset($task->responsible)){ $users[] = $task->responsible; }
+                if(isset($task->provider)){ $users[] = $task->provider; }
+                if(isset($task->developer)){ $users[] = $task->developer; }
+                if(isset($task->tester)){ $users[] = $task->tester; }
+                Notification::send( $users ,new InvoiceTask($task,'end'));
                 break;
             case 'readyTask':
                 $task->status = 4;
+
+                if(isset($task->responsible)){ $users[] = $task->responsible; }
+                if(isset($task->provider)){ $users[] = $task->provider; }
+                if(isset($task->developer)){ $users[] = $task->developer; }
+                if(isset($task->tester)){ $users[] = $task->tester; }
+                Notification::send( $users ,new InvoiceTask($task,'ready'));
                 break;
             default:
                 break;
@@ -207,90 +235,5 @@ class TaskController extends Controller
 
         
     }
-
-
-    /**
-     * Пометка о том что задача завершила определенный этап и передаётся следующиму
-     */
-    // public function next(Request $request, $task){
-    //     $task = Task::find($task);
-    //     $user = User::find(Auth::id());
-
-    //     if ($user->role == 'Team lead' ){
-    //         /**
-    //          * Назаначении разарботчика
-    //          */
-    //         if (!empty($request['taskDeveloper_id'])){
-    //             $mytime = Carbon::now();
-    //             $time =  $mytime->toDateTimeString();
-    //             $task->taskDeveloper_id = $request['taskDeveloper_id'];
-    //             $task->startDevelopment_at = $time;
-    //         }
-    //         /**
-    //          * Назначение тестровщика
-    //          */
-    //         if (!empty($request['taskTester_id'])){
-    //             $task->taskTester_id = $request['taskTester_id'];
-    //         }
-    //         $task->taskStatus = 1 ;
-    //         $task->save();
-    //         /**
-    //          * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //          * вставить уведомление
-    //          */
-    //     }
-    //     if ($user->role == 'Devoloper' && $task->taskStatus = 1 ){
-    //         /**
-    //          * Кнопка начать задачу 
-    //          */
-    //         if ( $request['start'] == 'true'){
-    //             $mytime = Carbon::now();
-    //             $time =  $mytime->toDateTimeString();
-    //             $task->finishDevelopment_at = $time;
-    //         }
-    //         /**
-    //          *  Кнопка завершить задачу
-    //          */
-    //         if ( $request['success'] == 'true' ){
-
-    //             $mytime = Carbon::now();
-    //             $time =  $mytime->toDateTimeString();
-    //             $task->taskStatus = 2 ;
-    //             $task->startDevelopment_at = $time;
-
-    //         }
-    //         $task->taskProgress = $request['taskProgress'];
-    //         $task->save();
-    //     }
-
-    //     if ($user->role == 'Tester' && $task->taskStatus = 2 ){
-
-    //         /**
-    //          * Кнопка начать задачу 
-    //          */
-    //         if ( $request['start'] == 'true'){
-    //             $mytime = Carbon::now();
-    //             $time =  $mytime->toDateTimeString();
-    //             $task->startTesting_at = $time;
-    //         }
-
-    //         /**
-    //          * Кнопка завершить задачу
-    //          */
-    //         if ( $request['success'] == 'true' ){
-
-    //             $mytime = Carbon::now();
-    //             $time =  $mytime->toDateTimeString();
-    //             $task->taskStatus = 3 ;
-    //             $task->finishTesting_at = $time;
-
-    //         }
-
-    //         $task->taskProgress = $request['taskProgress'];
-    //         $task->save();
-    //     }
-
-    //     return redirect()->back();
-    // }
 
 }

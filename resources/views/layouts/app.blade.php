@@ -80,6 +80,9 @@
                                     <a class="dropdown-item" href="{{ route('user.showProfile') }}">
                                         Профиль 
                                     </a>
+                                    <a href="{{route('notification.index')}}" class="dropdown-item">
+                                        Уведомления
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

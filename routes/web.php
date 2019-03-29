@@ -14,6 +14,7 @@
 /**
  * --------------------------
  * Статусы задачи:
+ * 
  *  0   - задача на распределении   
  *  1   - задача на проверки 
  *  2   - задача на переработки
@@ -22,6 +23,7 @@
  *  5   - задача в архиве 
  * ---------------------------------
  * Доступы пользователей :
+ * 
  *  1   - доступ к изменению содержания задачи 
  *  2   - доступ к прогрессу задачи 
  *  3   - доступ к проверки работы задачи
@@ -30,6 +32,14 @@
  *  6   - доступ к пользователям
  *  7   - доступ к ролям
  *  8   - доступ к списку задач
+ * ------------------------------------
+ * Событие: 
+ * 
+ * crete   - создание задачи и отправка события подписанным
+ * edit     - событие на измененеие задачи 
+ * end     - событие на закрытие задачи 
+ * combaek     - событие на возвращение задачи 
+ * -----------------------------------------------------------
  */
 
 
@@ -39,11 +49,19 @@
  */
 Route::group(['prefix'=>'user_managment'],function(){
     Route::resource('user','UserController');
+    /**
+     * Image 
+      */ 
     Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
+    // Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
     Route::get('profile/show','UserController@showProfile',['middleware'=>['auth']])->name('user.showProfile');
     Route::get('profile/edit','UserController@editProfile',['middleware'=>['auth']])->name('user.editProfile');
     Route::get('profile/update','UserController@updateProfile',['middleware'=>['auth']])->name('user.updateProfile');
-    Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
+    /**
+     * notification
+     */
+    Route::get('notification/index','UserController@notificationIndex')->name('notification.index');
+    Route::get('notification/read/{user}','UserController@notificationRead')->name('notification.read');
 });
 
 Route::group(['prefix'=>'role_managment'],function(){

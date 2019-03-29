@@ -6,6 +6,8 @@ use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\InvoiceTask;
+use Illuminate\Support\Facades\Notification;
 
 class CommentController extends Controller
 {
@@ -44,6 +46,18 @@ class CommentController extends Controller
             'idSubject' => $userid,
             'commentText' => $request['description']
         ]);
+
+        $task = $comment->task;
+        // dd($task);
+        
+        if(isset($task->responsible)){ $users[] = $task->responsible; }
+        if(isset($task->provider)){ $users[] = $task->provider; }
+        if(isset($task->developer)){ $users[] = $task->developer; }
+        if(isset($task->tester)){ $users[] = $task->tester; }
+
+        // dd($users);
+        Notification::send( $users ,new InvoiceTask($task,'comment'));
+
 
         return redirect()->back();
     }

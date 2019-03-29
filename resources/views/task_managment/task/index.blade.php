@@ -17,7 +17,7 @@
             <tbody>
                     @forelse (@$tasks as $task)
 
-                    <tr {{ $task->progress == 5 ? 'bgcolor="#8FBC8F"' : '' }} >    
+                    <tr {{ $task->status == 5 ? 'bgcolor="#8FBC8F"' : '' }} >    
                         <td>
                             <a href="{{route('task_managment.task.show',$task)}}">{{$task->name}}</a>
                         </td>

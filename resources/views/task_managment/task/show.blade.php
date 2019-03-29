@@ -55,7 +55,7 @@
                     @case(4)
                         задача потвердена
                     @break
-                    @case(4)
+                    @case(5)
                         задача в архиве 
                     @break
                     @default
