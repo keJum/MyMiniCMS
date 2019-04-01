@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
-class CheckDeveloper
+class CheckSeven
 {
     /**
      * Handle an incoming request.
@@ -14,10 +16,11 @@ class CheckDeveloper
      * @return mixed
      */
     public function handle($request, Closure $next)
-    { 
-        if ($request->user()->hasRole('Devoloper'))
-        return $next($request);
-        else
-        return back()->withInput();
+    {
+        $user = User::find( Auth::id());
+        if ( preg_match('/7/', $user->role->access)){
+            return $next($request);        
+        }
+        return redirect()->back();
     }
 }

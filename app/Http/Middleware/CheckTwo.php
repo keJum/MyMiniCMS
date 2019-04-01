@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
-class CheckTester
+class CheckTwo
 {
     /**
      * Handle an incoming request.
@@ -15,9 +17,10 @@ class CheckTester
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->hasRole('Tester'))
-        return $next($request);
-        else
-        return back()->withInput();
+        $user = User::find(Auth::id());
+        if ( preg_match( '/2/' ,  $user)){
+            return $next($request);
+        }
+        return redirect()->back();
     }
 }

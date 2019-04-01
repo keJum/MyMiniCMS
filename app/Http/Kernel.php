@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+
 class Kernel extends HttpKernel
 {
     /**
@@ -63,11 +64,15 @@ class Kernel extends HttpKernel
         /**
          * Custom middleware
          */
-        'admin' => \App\Http\Middleware\CheckAdmin::class,
-        'developer' => \App\Http\Middleware\CheckDeveloper::class,
-        'taskManager' => \App\Http\Middleware\CheckTaskManager::class,
-        'teamLead' => \App\Http\Middleware\CheckTeamLead::class,
-        'tester' => \App\Http\Middleware\CheckTester::class,
+        'one' => \App\Http\Middleware\CheckOne::class,
+        'two' => \App\Http\Middleware\CheckTwo::class,
+        'tree' => \App\Http\Middleware\CheckTree::class,
+        'four' => \App\Http\Middleware\CheckFour::class,
+        'five' => \App\Http\Middleware\CheckFive::class,
+        'six' => \App\Http\Middleware\CheckSix::class,
+        'seven' => \App\Http\Middleware\CheckSeven::class,
+        'eight' => \App\Http\Middleware\CheckEight::class
+        
     ];
 
     /**

@@ -24,14 +24,14 @@
  * ---------------------------------
  * Доступы пользователей :
  * 
- *  1   - доступ к изменению содержания задачи 
- *  2   - доступ к прогрессу задачи 
- *  3   - доступ к проверки работы задачи
- *  4   - доступ к завершению задачи
- *  5   - доступ к отдлам 
- *  6   - доступ к пользователям
- *  7   - доступ к ролям
- *  8   - доступ к списку задач
+ *  one   - доступ к изменению содержания задачи 
+ *  two   - доступ к прогрессу задачи 
+ *  tree   - доступ к проверки работы задачи
+ *  four   - доступ к завершению задачи
+ *  five   - доступ к отдлам 
+ *  six   - доступ к пользователям
+ *  seven   - доступ к ролям
+ *  eight   - доступ к списку задач
  * ------------------------------------
  * Событие: 
  * 
@@ -42,59 +42,31 @@
  * -----------------------------------------------------------
  */
 
-
-
-/**
- * Управение пользователями 
- */
-Route::group(['prefix'=>'user_managment'],function(){
-    Route::resource('user','UserController');
-    /**
-     * Image 
-      */ 
+Route::group(['prefix'=>'user_managment','middleware'=>['auth']],function(){
+    Route::resource('user','UserController')->middleware('eight');
     Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
-    // Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
-    Route::get('profile/show','UserController@showProfile',['middleware'=>['auth']])->name('user.showProfile');
-    Route::get('profile/edit','UserController@editProfile',['middleware'=>['auth']])->name('user.editProfile');
-    Route::get('profile/update','UserController@updateProfile',['middleware'=>['auth']])->name('user.updateProfile');
-    /**
-     * notification
-     */
+    Route::get('profile/show','UserController@showProfile')->name('user.showProfile');
+    Route::get('profile/edit','UserController@editProfile')->name('user.editProfile');
+    Route::get('profile/update','UserController@updateProfile')->name('user.updateProfile');
     Route::get('notification/index','UserController@notificationIndex')->name('notification.index');
     Route::get('notification/read/{user}','UserController@notificationRead')->name('notification.read');
 });
-
 Route::group(['prefix'=>'role_managment'],function(){
-    Route::resource('role','RoleController');
+    Route::resource('role','RoleController')->middleware('seven');
 });
-
-Route::group(['prefix'=>'file_manager'],function(){
+Route::group(['prefix'=>'file_manager','middleware'=>['auth']],function(){
     Route::post('load/{user}','FileloadController@load')->name('loadFile');
 });
-/**
- * Управление отделами
- */
 Route::group(['prefix'=>'department_managment'],function(){
-    Route::resource('/department','DepartmentController',['as'=>'department_managment']);
+    Route::resource('/department','DepartmentController',['as'=>'department_managment'])->middleware('five');
 });
-
-/**
- * Управение задачами
- */
-Route::group(['prefix'=>'task_managment'],function(){
+Route::group(['prefix'=>'task_managment','middleware'=>['auth']],function(){
     Route::resource('task','TaskController',['as'=>'task_managment']);
-    Route::get('taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll');
+    Route::get('taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll')->middleware('eight');
     Route::post('update/task','TaskController@selectTask',['as'=>'task_managment'])->name('selectTask');
-    // Route::get('task/next/{id}','TaskController@next',['as'=>'task_managment'])->name('next');
     Route::get('/task/success/{task}/{str}','TaskController@success')->name('successTask');
-    // Route::get('task/succes/{id}','TaskController@succsex',['as'=>'task_managment'])->name('succsecTask');
     Route::resource('comment','CommentController');
 });
-
-
-/**
- * Стандратные
- */
 Route::get('/', function () {
     return view('welcome');
 });

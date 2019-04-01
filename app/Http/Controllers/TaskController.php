@@ -22,18 +22,19 @@ class TaskController extends Controller
      */
     public function index()
     {
-        // $user = User::find(Auth::id());
+        /**
+         *  'type' => 'person', необходима для того чтобы узнать от кого пришла
+         */
+        $user = User::find(Auth::id());
+        $tasks[] = Task::where('respon_id',$user->id)->get();
+        $tasks[] = Task::where('provider_id',$user->id)->get();
+        $tasks[] = Task::where('developer_id',$user->id)->get();
+        $tasks[] = Task::where('tester_id',$user->id)->get();
 
-        // return view('task_managment.task.index',[
-        //     'tasksTeamLiead' => Task::where('taskRespon_id',$user->id)->get(),
-        //     'tasksProvider' => Task::where('taskProvider_id',$user->id)->get(),
-        //     'tasksDeveloper' => Task::where('taskDeveloper_id',$user->id)->get(),
-        //     'tasksTester' => Task::where('taskTester_id',$user->id)->get()
-        // ]);
         return view('task_managment.task.index',[
-            'tasks' => Task::all()
+            'type' => 'person',
+            'tasks' => $tasks
         ]);
-
     }
 
     /**
@@ -44,6 +45,7 @@ class TaskController extends Controller
     public function allIndex()
     {
         return view('task_managment.task.index',[
+            'type' => 'all',
             'tasks' => Task::all()
         ]);       
     }
@@ -163,27 +165,33 @@ class TaskController extends Controller
         }
         
 
-        $task->name                 = $request['name'];
-        $task->description          = $request['description'];
-        $task->provider_id          = $request['provider_id'];
-        $task->respon_id            = $request['respon_id'];
-        $task->developer_id         = $request['developer_id'];
-        $task->tester_id            = $request['tester_id'];
-        $task->importance           = $request['importance'];
-        $task->complexity           = $request['complexity'];
-        $task->progress             = $request['progress'];
-        $task->status               = $request['status'];
-        $task->startDevelopment_at  = $request['startDevelopment_at'];
-        $task->startTesting_at      = $request['startTesting_at'];
-        $task->finishTesting_at     = $request['finishTesting_at'];
-        $task->finish_at            = $request['finish_at'];
+        if(isset($request['name']                )){  $task->name                = $request['name'];                  }
+        if(isset($request['description']         )){  $task->description         = $request['description'];           }
+        if(isset($request['provider_id']         )){  $task->provider_id         = $request['provider_id'];           }
+        if(isset($request['respon_id']           )){  $task->respon_id           = $request['respon_id'];             }
+        if(isset($request['developer_id']        )){  $task->developer_id        = $request['developer_id'];          }
+        if(isset($request['tester_id']           )){  $task->tester_id           = $request['tester_id'];             }
+        if(isset($request['importance']          )){  $task->importance          = $request['importance'];            }
+        if(isset($request['complexity']          )){  $task->complexity          = $request['complexity'];            }
+        if(isset($request['progress']            )){  $task->progress            = $request['progress'];              }
+        if(isset($request['status']              )){  $task->status              = $request['status'];                }
+        if(isset($request['startDevelopment_at'] )){  $task->startDevelopment_at = $request['startDevelopment_at'];   }
+        if(isset($request['startTesting_at']     )){  $task->startTesting_at     = $request['startTesting_at'];       }
+        if(isset($request['finishTesting_at']    )){  $task->finishTesting_at    = $request['finishTesting_at'];      }
+        if(isset($request['finish_at']           )){  $task->finish_at           = $request['finish_at'];             }
+
+        // dd($task);
         $task->save();
 
+        $users[] ='';
+        
         if(isset($task->responsible)){ $users[] = $task->responsible; }
         if(isset($task->provider)){ $users[] = $task->provider; }
         if(isset($task->developer)){ $users[] = $task->developer; }
         if(isset($task->tester)){ $users[] = $task->tester; }
-        Notification::send( $users ,new InvoiceTask($task,'update'));
+        if ($users[0] !== ''){
+            Notification::send( $users ,new InvoiceTask($task,'update'));
+        }
 
         return redirect()->route('task_managment.task.index');
     }
