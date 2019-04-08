@@ -34,9 +34,45 @@ class HomeController extends Controller
         $tasks += Task::where('taskRespon_id',Auth::id())->count();
         $user = User::find(Auth::id());
 
+        $url_data = [
+            array(
+                'title' => 'dka-developrt',
+                'url' => 'http://dka-dep.ru'
+            ),
+            array(
+                'title' => 'leaca',
+                'url' => 'http://leaxa.ru'
+            )
+            ];
+
         return view('home',[
             'taskCount' => $tasks,
-            'user' => $user
+            'user' => $user,
+            'url_data' => $url_data
         ]);
+    }
+    public function ajax()
+    {
+        return  [
+            array(
+                'title' => 'dka-developrtLOL',
+                'url' => 'http://dka-dep.ru'
+            ),
+            array(
+                'title' => 'leaca',
+                'url' => 'http://leaxa.ru'
+            )
+            ];
+    }
+    public function line()
+    {
+        return [
+            'labels' => ['март','апрель','май','июнь'],
+            'datasets' => array([
+                'label' => 'Продажи',
+                'backgroundColor' => '#F26202',
+                'data' => [15000,500,10000,300000],
+            ])
+        ];
     }
 }

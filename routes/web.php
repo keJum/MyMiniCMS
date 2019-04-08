@@ -71,6 +71,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/lineGet/json','HomeControlle@line');
+
+
+
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index',['middleware'=>['auth']])->name('home');
+
+Route::get('/home/ajax','HomeController@ajax');

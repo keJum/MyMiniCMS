@@ -79,16 +79,11 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-md-2">
-            <div class="card">
-                <div class="card-header">
-                    Пофиль пользователя
-                </div>
-                <div class="card-body">
-                
-                </div>
-            </div>
-        </div> --}}
+        <example-component></example-component>
+        <prop-component v-bind:url-data="{{json_encode($url_data)}}">        </prop-component>
+        <prop-ajax-component></prop-ajax-component>
+
+        <chartline-component></chartline-component>
     </div>
 </div>
 @endsection
