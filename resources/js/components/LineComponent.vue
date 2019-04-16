@@ -20,7 +20,7 @@
             }
         },
         mounted(){
-            this.update()
+            this.updata()
         },
         methods: {
             updata: function(){

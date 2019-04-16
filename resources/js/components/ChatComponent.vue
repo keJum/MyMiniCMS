@@ -3,7 +3,7 @@
         <hr>
         <div class="row">
         	<div class="col-sm-8">
-        		<textarea class="form-control" rows="10" readonly="">{{messages.join('\n')}}</textarea>
+        		<!-- <textarea class="form-control" rows="10" readonly="">{{messages.join('\n')}}</textarea> -->
         		<hr>
         		<input type="text" class="form-control" v-model="textMessage" @keyup.enter="sendMessage" @keydown="actionUser">
                 <span v-if="isActive">{{isActive.name}} набирает сообщение...</span>

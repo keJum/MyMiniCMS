@@ -23,6 +23,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/storage/fontAwesome/css/font-awesome.min.css">
+
     {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
 
     <!-- Styles -->
@@ -30,7 +32,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        {{-- <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -51,16 +53,12 @@
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">
-                                    {{-- {{ __('Login') }} --}}
                                     Войти
                                 </a>
                             </li>
                             <li class="nav-item">
                                 @if (Route::has('register'))
-                                    {{-- <a class="nav-link" href="{{ route('register') }}">
-                                        {{-- {{ __('Register') }} --}}
-                                        {{-- Регистрация
-                                    </a>  --}}
+
                                 @endif
                             </li>
                         @else
@@ -86,7 +84,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{-- {{ __('Logout') }} --}}
+                                       
                                         Выход
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -94,19 +92,64 @@
                                     </form>
                                 </div>
                             </li>
-
-                            {{-- <a class="nav-link" href="{{route('task_managment.task.index')}}">
-                                    Управление задачами
-                                </a> --}}
-
                         @endguest
                     </ul>
                 </div>
             </div>
-        </nav>
-        <main class="py-4">
-            @yield('content')
-        </main>
+        </nav> --}}
+        {{-- @dump(list(
+                [
+                    'title'=>'/lexa',
+                    'url'=>'/lexa'
+                ],
+                [
+                    'title'=>'/test'
+                    'url'=>'/test'
+                ]
+            )) --}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1 col-sm-12">
+            <menu-burger-component
+            v-bind:url-data="{{ json_encode([
+                array(
+                    'title' => 'Домой',
+                    'url' => route('home'),
+                    'icon' => 'fa fa-home'
+                ),
+                array(
+                    'title' => 'Задачи',
+                    'url' => route('task_managment.task.index'),
+                    'icon' => 'fa fa-thumb-tack'
+                ),
+                array(
+                    'title'=>'Профиль',
+                    'url'=>route('user.showProfile'),
+                    'icon' => 'fa fa-user' 
+                ),
+                array(
+                    'title'=>'Уведомления',
+                    'url'=>route('notification.index'),
+                    'icon' => 'fa fa-bell-o'
+                ),
+                array(
+                    'title'=>'Выйти',
+                    'url'=>route('logout'),
+                    'icon' => 'fa fa-exit'
+                ),
+                ])}}"
+            ></menu-burger-component>
+        </div>
+        <div class="col-md-11 col-sm-12" style="top: 60px;">
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
     </div>
+</div>
+
+
+    </div>
+
 </body>
 </html>

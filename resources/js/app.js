@@ -22,6 +22,9 @@ Vue.component('prop-component',require('./components/PropComponent.vue'));
 Vue.component('prop-ajax-component',require('./components/PropAjaxComponent.vue'));
 // Vue.component('rightMenu-component',require('./components/RightMenuComponent.vue'));
 Vue.component('chartline-component',require('./components/LineComponent.vue'));
+Vue.component('menu-burger-component',require('./components/BurgerComponent.vue'));
+Vue.component('avatar-component',require('./components/AvatarComponent.vue'));
+// Vue.component('kanban-component',require('./components/KenbanComponent.vue'));
 
 // Vue.component('chat-component',require('./components/ChatComponent.vue'));
 

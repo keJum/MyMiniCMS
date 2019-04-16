@@ -25,7 +25,12 @@
         "laravel-echo": "^1.5.3",
         "pusher-js": "^4.4.0",
         "sweetalert": "^2.1.2",
+        "v-show-slide": "^1.6.0",
+        "vue-accordion-menu": "^0.1.46",
+        "vue-avatar-component": "^1.2.4",
+        "vue-burger-menu": "^2.0.1",
         "vue-chartjs": "^3.4.2",
+        "vue-kanban": "^1.4.0",
         "vue-sidebar-menu": "^3.6.3"
     }
 }

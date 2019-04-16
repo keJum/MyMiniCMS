@@ -42,7 +42,15 @@ class HomeController extends Controller
             array(
                 'title' => 'leaca',
                 'url' => 'http://leaxa.ru'
-            )
+            ),
+            array(
+                'title' => 'leaca',
+                'url' => 'http://leaxa.ru'
+            ),
+            array(
+                'title' => 'leaca',
+                'url' => 'http://leaxa.ru'
+            ),
             ];
 
         return view('home',[

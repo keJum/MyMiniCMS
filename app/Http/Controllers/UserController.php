@@ -11,6 +11,7 @@ use App\Mail\Welcome;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notification;
+use function GuzzleHttp\json_encode;
 
 class UserController extends Controller
 {
@@ -160,7 +161,7 @@ class UserController extends Controller
         ]);
         $user->name = $request['name'];
         $user->email = $request['email'];
-        $user->role_id = $request['role'];
+        // $user->role_id = $request['role'] ? $request['role'] : $user->role_id;
         $request['password'] == null ? : $user->password = bcrypt($request['password']);
         $user->save();
 
@@ -225,5 +226,13 @@ class UserController extends Controller
         return view('user_managment.notification.index',[
             'user' => $user,
         ]);
+    }
+
+    /**
+     * Ajax Vue.js
+     */
+    public function ajaxUser(){
+        $user = Auth::user();
+        return json_encode($user);
     }
 }

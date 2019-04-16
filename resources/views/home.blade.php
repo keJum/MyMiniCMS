@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-5">
             <div class="card">
                 <div class="card-header">Панель управления</div>
 
@@ -79,11 +79,13 @@
                 </div>
             </div>
         </div>
-        <example-component></example-component>
+        {{-- <example-component></example-component>
         <prop-component v-bind:url-data="{{json_encode($url_data)}}">        </prop-component>
         <prop-ajax-component></prop-ajax-component>
 
-        <chartline-component></chartline-component>
+        <chartline-component></chartline-component> --}}
     </div>
+    
 </div>
+{{-- <menu-burger-component></menu-burger-component> --}}
 @endsection

@@ -2,10 +2,6 @@
 
 @section('content')
   <div class="container">
-
-
-
-
     <h1>Информация о пользователе</h1>
     <table class="table table-hover">
       <thead>
@@ -13,7 +9,7 @@
           <th scope="col">Имя пользователя </th>
           <th scope="col">{{$user->name}}</th>
         </tr>
-      </thead>
+        </thead>
       <tbody>
         <tr>
           <th scope="row">Личный id пользователя</th>
@@ -35,7 +31,7 @@
           <th scope="row">Почта</th>
           <td colspan="2">{{$user->email}}</td>
         </tr>
-@if (@$user->developer->specialty)
+      @if (@$user->developer->specialty)
         <tr>
           <th scope="row">Специальность</th>
           <td colspan="2">{{$user->developer->specialty}}</td>
@@ -52,105 +48,23 @@
           <th scope="row">Расписание</th>
           <td colspan="2">{{$user->developer->schedule}}</td>
         </tr>
+      @endif
       </tbody>
     </table>
 
-    <hr>
-
-{{-- @if ($user->providerTask->count())
-    <h3>Поставщик Задачи</h3>
-
-      <table class="table table-hover table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Название</th>
-            <th scope="col">Кто назначил</th>
-            <th scope="col">Разработчик</th>
-            <th scope="col">Тестер</th>
-            <th scope="col">Важность</th>
-          </tr>
-        </thead>
-        <tbody>
-@foreach ($user->providerTask as $task)
-            <tr>
-              <th scope="row">{{$task->id}}</th>
-              <td>{{$task->taskName}}</td>
-              <td>{{$task->provider->name}}</td>
-              <td>{{@$task->developer->name}}</td>
-              <td>{{$task->tester->name}}</td>
-            </tr>
-@endforeach
-        </tbody>
-      </table>
-@endif --}}
-
-
-{{-- @if ($user->developerTask->count())
-    <h3>Разработчки Задачи</h3>
-
-      <table class="table table-hover table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Название</th>
-            <th scope="col">Кто назначил</th>
-            <th scope="col">Разработчик</th>
-            <th scope="col">Тестер</th>
-            <th scope="col">Важность</th>
-          </tr>
-        </thead>
-        <tbody>
-@foreach ($user->developerTask as $task)
-            <tr>
-              <th scope="row">{{$task->id}}</th>
-              <td>{{$task->taskName}}</td>
-              <td>{{$task->provider->name}}</td>
-              <td>{{@$task->developer->name}}</td>
-              <td>{{$task->tester->name}}</td>
-            </tr>
-@endforeach
-        </tbody>
-      </table>
-@endif --}}
-
-{{-- @if ($user->testerTask->count())
-    <h3>Тестировшик Задачи</h3>
-
-      <table class="table table-hover table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Название</th>
-            <th scope="col">Кто назначил</th>
-            <th scope="col">Разработчик</th>
-            <th scope="col">Тестер</th>
-            <th scope="col">Важность</th>
-          </tr>
-        </thead>
-        <tbody>
-@foreach ($user->testerTask as $task)
-            <tr>
-              <th scope="row">{{$task->id}}</th>
-              <td>{{$task->taskName}}</td>
-              <td>{{$task->provider->name}}</td>
-              <td>{{@$task->developer->name}}</td>
-              <td>{{$task->tester->name}}</td>
-            </tr>
-@endforeach
-        </tbody>
-      </table>
-@endif --}}
-
-    
-
-@endif
-      </tbody>
-    </table>
     <form action="{{route('user.edit',$user)}}" method="get">
         {{ csrf_field() }}
         <input type="hidden" name="userId" value="{{$user->id}}">
-        <button type="submit" class="btn-sudmit">Редактировать.</button>
+        <button type="submit" class="btn btn-sudmit">Редактировать.</button>
+    </form>
+    <br>
+    <a  class="btn btn-danger" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+     Выход
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
     </form>
   </div>
 @endsection
