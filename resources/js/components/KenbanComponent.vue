@@ -18,21 +18,21 @@
 
 <script>
     import vueKanban from 'vue-kanban'  
-   //  export default {
-   //      components: {
-   //         vueKanban
-   //      },
-   //      data() {
-   //       return {
-   //          stages: ['on-hold', 'in-progress', 'needs-review', 'approved'],
-   //          blocks: [
-   //             {
-   //                id: 1,
-   //                status: 'on-hold',
-   //                title: 'Test',
-   //             },
-   //          ],
-   //       };
-   //    }
-   //  }
+    export default {
+        components: {
+           vueKanban
+        },
+        data() {
+         return {
+            stages: ['on-hold', 'in-progress', 'needs-review', 'approved'],
+            blocks: [
+               {
+                  id: 1,
+                  status: 'on-hold',
+                  title: 'Test',
+               },
+            ],
+         };
+      }
+    }
 </script>

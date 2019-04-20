@@ -55,7 +55,7 @@
         methods: {
             update: function(){
                 axios.post('/ajax/user').then((response)=>{
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.image = '/storage/'+response.data.image_link;
                     this.username = response.data.name;
                     // userData = response;

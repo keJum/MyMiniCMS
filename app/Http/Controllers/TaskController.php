@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\InvoiceTask;
 use Illuminate\Support\Facades\Notification;
+use function GuzzleHttp\json_encode;
 
 class TaskController extends Controller
 {
@@ -242,6 +243,31 @@ class TaskController extends Controller
         return redirect()->route('task_managment.task.index');
 
         
+    }
+
+    public function ajaxUserTask ()
+    {
+        $user = User::find(Auth::id());
+        $tasks[] = Task::where('respon_id',$user->id)->get();
+        $tasks[] = Task::where('provider_id',$user->id)->get();
+        $tasks[] = Task::where('developer_id',$user->id)->get();
+        $tasks[] = Task::where('tester_id',$user->id)->get();
+        // dump($tasks);
+        $array=[];
+
+        foreach ($tasks as $item ){
+            for ($i=0; $i < count($item); $i++) { 
+                $array[] = $item[$i];
+            }
+        }   
+        // dd($array);
+        $tasks=[];
+        $tasks[] = $array[0];
+        
+        $array = array_unique($array);
+
+        return json_encode($array);
+
     }
 
 }

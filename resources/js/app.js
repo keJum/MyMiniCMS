@@ -9,6 +9,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -24,7 +25,17 @@ Vue.component('prop-ajax-component',require('./components/PropAjaxComponent.vue'
 Vue.component('chartline-component',require('./components/LineComponent.vue'));
 Vue.component('menu-burger-component',require('./components/BurgerComponent.vue'));
 Vue.component('avatar-component',require('./components/AvatarComponent.vue'));
+Vue.component('accardion-component',require('./components/AccardionComponent.vue'));
+// Vue.component('sort-table-component',require('./components/TableSortComponent.vue'));
+Vue.component('task-table-component',require('./components/TaskTabelComponent.vue'));
+// Vue.component('modal-component',require('./components/ModalComponent.vue'));
+
+
+
 // Vue.component('kanban-component',require('./components/KenbanComponent.vue'));
+
+
+
 
 // Vue.component('chat-component',require('./components/ChatComponent.vue'));
 

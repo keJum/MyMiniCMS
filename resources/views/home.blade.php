@@ -13,11 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    Добро пожаловать
-                    {{$user->name}}
-                    вы вошли как {{@$user->role->name}}
-                    <hr> Вы имеете полный доступ к возмодностям всех ролей, управлению пользователями и управлению отделами.
-                    <br>
                     <a class="btn btn-primary btn-lg btn-block" href="{{route('taskAll')}}" style="margin-top: 60px;" >
                         Все задачи
                     </a>
@@ -31,7 +26,7 @@
                         Все роли
                     </a>
 
-                    @switch($user->role)
+                    {{-- @switch($user->role)
                         @case('Admin')
                             <a href="/admin">{{$user->role}}</a>
                             <hr> Вы имеете полный доступ к возмодностям всех ролей, управлению пользователями и управлению отделами.
@@ -70,7 +65,7 @@
                         @break
                         @default
                             Не известно
-                    @endswitch
+                    @endswitch --}}
                     <hr>
                     У вас задач:
                     <a  href="{{route('task_managment.task.index')}}">
@@ -84,8 +79,19 @@
         <prop-ajax-component></prop-ajax-component>
 
         <chartline-component></chartline-component> --}}
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-header">
+                    Задачи
+                </div>
+                <div class="card-body">
+                    <task-table-component></task-table-component>
+                    {{-- <modal-component></modal-component> --}}
+                </div>
+            </div>
+        </div>
     </div>
-    
+
 </div>
 {{-- <menu-burger-component></menu-burger-component> --}}
 @endsection

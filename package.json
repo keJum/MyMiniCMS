@@ -15,7 +15,7 @@
         "cross-env": "^5.2.0",
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
-        "lodash": "^4.17.5",
+        "lodash": "^4.17.11",
         "popper.js": "^1.12",
         "vue": "^2.5.17"
     },
@@ -30,7 +30,10 @@
         "vue-avatar-component": "^1.2.4",
         "vue-burger-menu": "^2.0.1",
         "vue-chartjs": "^3.4.2",
-        "vue-kanban": "^1.4.0",
-        "vue-sidebar-menu": "^3.6.3"
+        "vue-sidebar-menu": "^3.6.3",
+        "vue-sorted-table": "^1.1.1",
+        "vue-table-component": "^1.9.2",
+        "vue-window-modal": "git+https://github.com/ropbla9/vue-window-modal.git",
+        "watch": "^1.0.2"
     }
 }
