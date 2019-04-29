@@ -22,11 +22,11 @@
             title: String,
             width: {
                 type: String,
-                default: '600px'
+                default: '300px'
             },
             height: {
                 type: String,
-                default: '600px'
+                default: '300px'
             },
             backgroundColor: {
                 type: String,

@@ -8,6 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VModal from 'vue-js-modal'
+// import VModal from 'vue-js-modal'
 
 
 /**
@@ -21,14 +23,22 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('prop-component',require('./components/PropComponent.vue'));
 Vue.component('prop-ajax-component',require('./components/PropAjaxComponent.vue'));
-// Vue.component('rightMenu-component',require('./components/RightMenuComponent.vue'));
 Vue.component('chartline-component',require('./components/LineComponent.vue'));
 Vue.component('menu-burger-component',require('./components/BurgerComponent.vue'));
 Vue.component('avatar-component',require('./components/AvatarComponent.vue'));
 Vue.component('accardion-component',require('./components/AccardionComponent.vue'));
-// Vue.component('sort-table-component',require('./components/TableSortComponent.vue'));
 Vue.component('task-table-component',require('./components/TaskTabelComponent.vue'));
+// Vue.component('modal-component',require('./components/ModalOPENS.vue'));
+
+// Vue.component('vmodal-components',require('./components/ModalOpenComponent.vue'));
+
+
 // Vue.component('modal-component',require('./components/ModalComponent.vue'));
+// Vue.component('menuside-component',require('./components/SideMenuComponent.vue'));
+// Vue.component('sort-table-component',require('./components/TableSortComponent.vue'));
+// Vue.component('modal-component',require('./components/ModalComponent.vue'));
+// Vue.component('rightMenu-component',require('./components/RightMenuComponent.vue'));
+
 
 
 

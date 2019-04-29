@@ -31,6 +31,9 @@ class TaskController extends Controller
         $tasks[] = Task::where('provider_id',$user->id)->get();
         $tasks[] = Task::where('developer_id',$user->id)->get();
         $tasks[] = Task::where('tester_id',$user->id)->get();
+        // dd($tasks);
+        $tasks = array_unique($tasks);
+        
 
         return view('task_managment.task.index',[
             'type' => 'person',
@@ -254,16 +257,13 @@ class TaskController extends Controller
         $tasks[] = Task::where('tester_id',$user->id)->get();
         // dump($tasks);
         $array=[];
-
         foreach ($tasks as $item ){
             for ($i=0; $i < count($item); $i++) { 
                 $array[] = $item[$i];
             }
-        }   
-        // dd($array);
+        }
         $tasks=[];
         $tasks[] = $array[0];
-        
         $array = array_unique($array);
 
         return json_encode($array);
