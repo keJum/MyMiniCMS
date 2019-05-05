@@ -84,4 +84,17 @@ class User extends Authenticatable
         else false;
         // return User::where('role', $role)->get();
     }
+
+    // public function tasks(){
+    //     // $tasks[] = Task::where('respon_id',$user->id)->get();
+    //     $tasks[] = $this->providerTask();
+    //     $tasks[] = $this->developerTask();
+    //     $tasks[] = $this->testerTask();
+    //     // dd($tasks);
+    //     $tasks = array_unique($tasks);
+    //     var_dump($tasks);
+    //     die
+    //     // dd($tasks);
+    //     return $tasks;
+    // }
 }

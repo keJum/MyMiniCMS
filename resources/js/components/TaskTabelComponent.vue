@@ -1,6 +1,6 @@
 <template>
 
-    <table-component
+    <table-component 
         :data="table"
         sort-by="songs"
         sort-order="asc"

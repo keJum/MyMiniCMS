@@ -3,157 +3,78 @@
 @section('content')
 
 <div class="container">
-        <div class="row my-2">
-            <div class="col-lg-8 order-lg-2">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Профиль</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Редактировать</a>
-                    </li>
-                </ul>
-                <div class="tab-content py-4">
-                    <div class="tab-pane active" id="profile">
-                        <h5 class="mb-3">Профиль пользователя</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Имя :</h6>
-                                <p>
-                                    {{$user->name}}
-                                </p>
-                                <h6>Роль : </h6>
-                                <p>
-                                    {{$user->role->name}}
-                                </p>
-                                <h6>
-                                    Отдел : </h6>
-                                <p>
-                                    {{$user->department->name}}
-                                </p>
+    <div class="card">
+        <div class="card-header">
+            <h1>Профиль</h1>
+        </div>
+        <div class="card-body">
+            <div class="row my-2">
+                <div class="col-lg-4 order-lg-1 text-center">
+                    <img src="{{asset('storage/'.$user->image_link)}}" class="mx-auto img-fluid  d-block" alt="avatar" style="margin-bottom: 10px;">
+                </div> <br>
+                <div class="col-lg-8 order-lg-2">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Просмотр</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Редактировать</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content py-4">
+                        <div class="tab-pane active" id="profile">
+                            <h5 class="mb-3">Информация</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Имя :</h6>
+                                    <p>
+                                        {{$user->name}}
+                                    </p>
+                                    <h6>Роль : </h6>
+                                    <p>
+                                        {{$user->role->name}}
+                                    </p>
+                                    <h6>
+                                        Отдел : </h6>
+                                    <p>
+                                        {{@$user->department->name}}
+                                    </p>
+                                </div>
+                                <div class="col-md-12">
+                                    <h5 class="mt-2"><i class="fas fa-tasks float-right"></i>Задачи:</h5>
+                                    <task-table-component></task-table-component>
+                                </div>
                             </div>
-                            <div class="col-md-12">
-                                <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
-                                <table class="table table-sm table-hover table-striped">
-                                    <tbody>  
-                                        @dump($user->tasks)   
-                                        {{-- @forelse ($user->tasks as $task)
-                                            {{dump($task)}}
-                                        @empty
-                                            
-                                        @endforelse                                --}}
-                                        <tr>
-                                            <td>
-                                                <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <!--/row-->
                         </div>
-                        <!--/row-->
-                    </div>
-                    <div class="tab-pane" id="edit">
-                        <form role="form">
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">First name</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="Jane">
+                        <div class="tab-pane" id="edit">
+                            <form id="contactform" action="{{route('loadFile',$user)}}" method="post" class="validateform" name="send-contact" enctype="multipart/form-data"> 
+                                {{ csrf_field() }}
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="hidden" name="type" value="avatar">
+                                        <input class="custom-file-input" id="inputGroupFile04" type="file" name="image" >
+                                        <label class="custom-file-label" for="inputGroupFile04">Выбрать файл</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <input class="btn btn-outline-secondary" type="submit" value="Закачать">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Last name</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="Bishop">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="email" value="email@gmail.com">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Company</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Website</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="url" value="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Address</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="" placeholder="Street">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label"></label>
-                                <div class="col-lg-6">
-                                    <input class="form-control" type="text" value="" placeholder="City">
-                                </div>
-                                <div class="col-lg-3">
-                                    <input class="form-control" type="text" value="" placeholder="State">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
-                                <div class="col-lg-9">
-                                    <select id="user_time_zone" class="form-control" size="0">
-                                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                                        <option value="Alaska">(GMT-09:00) Alaska</option>
-                                        <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                                        <option value="Arizona">(GMT-07:00) Arizona</option>
-                                        <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                                        <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                                        <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                                        <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="janeuser">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="password" value="11111122333">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="password" value="11111122333">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label"></label>
-                                <div class="col-lg-9">
-                                    <input type="reset" class="btn btn-secondary" value="Cancel">
-                                    <input type="button" class="btn btn-primary" value="Save Changes">
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                            <hr>
+                            <form class="form-horizontal" action="{{route('user.update',$user)}}" method="post">
+                                <input name="_method" type="hidden" value="PATCH">
+                                {{ csrf_field() }}
+                                {{ method_field('put') }}
+                                @include('user_managment.user.partials.form')
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 order-lg-1 text-center">
-                <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
-                <h6 class="mt-2">Upload a different photo</h6>
-                <label class="custom-file">
-                    <input type="file" id="file" class="custom-file-input">
-                    <span class="custom-file-control">Choose file</span>
-                </label>
-            </div>
         </div>
     </div>
+</div>
 
 
   {{-- <div class="container-fluid text-center">
