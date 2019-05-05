@@ -4,17 +4,6 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    Задачи
-                </div>
-                <div class="card-body">
-                    <task-table-component></task-table-component>
-                    {{-- <modal-component></modal-component> --}}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
             <div class="d-flex justify-content-around bd-highlight row ">
                 <div class="card p-2 bd-highlight" style="width: 18rem; margin: 1rem">
                     <div class="card-body">
@@ -57,11 +46,7 @@
                     </div>
                 </div>
             </div>
-        {{-- <example-component></example-component>
-        <prop-component v-bind:url-data="{{json_encode($url_data)}}">        </prop-component>
-        <prop-ajax-component></prop-ajax-component>
-
-        <chartline-component></chartline-component> --}}
+        </div>
     </div>
 
 </div>

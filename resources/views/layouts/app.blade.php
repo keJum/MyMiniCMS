@@ -25,6 +25,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/storage/fontAwesome/css/font-awesome.min.css">
 
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
 
     <!-- Styles -->
@@ -109,8 +111,8 @@
             )) --}}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-1 col-sm-12">
-            <menu-burger-component
+        <div class="col">
+            {{-- <menu-burger-component
             v-bind:url-data="{{ json_encode([
                 array(
                     'title' => 'Домой',
@@ -138,11 +140,14 @@
                     'icon' => 'fa fa-exit'
                 ),
                 ])}}"
-            ></menu-burger-component>
+            ></menu-burger-component> --}}
+
+            <menu-component></menu-component>
         </div>
-        <div class="col-md-11 col-sm-12" style="top: 60px;">
+        <div class="col-11" style="top: 60px;">
             <main class="py-4">
                 @yield('content')
+                {{-- <modal-component></modal-component> --}}
             </main>
         </div>
     </div>

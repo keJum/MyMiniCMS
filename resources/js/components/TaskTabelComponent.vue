@@ -25,12 +25,7 @@ export default {
    },
    data:function(){
       return{
-         table:[
-            // { ID: '1', name: 'lexa', status: 3, edit: '<a href="#"> edit </a>' },
-            // { ID: '2', name: '18/06/1942', status: 70 },
-            // { ID: '4', name: '25/02/1943', status: 22 },
-            // { ID: '3', name: '07/07/1940', status: 2 },
-         ]
+         table:[/**jfksdjfksjfksdjfksdjfks */]
       }
    },
    mounted(){
@@ -38,8 +33,11 @@ export default {
    },
    methods:{
       update:function(){
-         axios.post('ajax/userTask').then((response)=>{
-            response.data.forEach(item => {
+         axios.post('/ajax/userTask').then((response)=>{
+            var table = this.table;
+            Object.keys(response.data).forEach(function (key) {
+                var item = response.data[key];
+                console.log(item);
                 var strStatus ='';
                 switch (Number.parseInt(item.status)) {
                         case 0:
@@ -64,9 +62,7 @@ export default {
                         strStatus = 'Не известный статус '
                         break;
                 }
-                console.log('<a href="/task_managment/task/'+item.id+'">'+ item.name + '</a>');
-                this.table.push({
-                    //   'ID': item.id,
+                table.push({
                     'name': '<a href="/task_managment/task/'+item.id+'">'+ item.name + '</a>',
                     'status': strStatus
                 });

@@ -28,26 +28,9 @@ Vue.component('menu-burger-component',require('./components/BurgerComponent.vue'
 Vue.component('avatar-component',require('./components/AvatarComponent.vue'));
 Vue.component('accardion-component',require('./components/AccardionComponent.vue'));
 Vue.component('task-table-component',require('./components/TaskTabelComponent.vue'));
-// Vue.component('modal-component',require('./components/ModalOPENS.vue'));
-
-// Vue.component('vmodal-components',require('./components/ModalOpenComponent.vue'));
-
+Vue.component('menu-component',require('./components/MenuComponent.vue'));
 
 // Vue.component('modal-component',require('./components/ModalComponent.vue'));
-// Vue.component('menuside-component',require('./components/SideMenuComponent.vue'));
-// Vue.component('sort-table-component',require('./components/TableSortComponent.vue'));
-// Vue.component('modal-component',require('./components/ModalComponent.vue'));
-// Vue.component('rightMenu-component',require('./components/RightMenuComponent.vue'));
-
-
-
-
-// Vue.component('kanban-component',require('./components/KenbanComponent.vue'));
-
-
-
-
-// Vue.component('chat-component',require('./components/ChatComponent.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
