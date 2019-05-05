@@ -1,4 +1,4 @@
-version: "3"
+version: "3.3"
 
 services:
     nginx:
@@ -9,6 +9,8 @@ services:
             - 8090:80
         links:
             - fpm
+        volumes:
+            - ./:/var/www/laravel-docker
     fpm:
         build:
             context: .

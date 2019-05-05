@@ -28,10 +28,10 @@ class HomeController extends Controller
     {
         // $user = User::find(Auth::id());
 
-        $tasks = Task::where('taskProvider_id',Auth::id())->count();
-        $tasks += Task::where('taskDeveloper_id',Auth::id())->count();
-        $tasks += Task::where('taskTester_id',Auth::id())->count();
-        $tasks += Task::where('taskRespon_id',Auth::id())->count();
+        // $tasks = Task::where('taskProvider_id',Auth::id())->count();
+        // $tasks += Task::where('taskDeveloper_id',Auth::id())->count();
+        // $tasks += Task::where('taskTester_id',Auth::id())->count();
+        // $tasks += Task::where('taskRespon_id',Auth::id())->count();
         $user = User::find(Auth::id());
 
         $url_data = [
@@ -54,7 +54,7 @@ class HomeController extends Controller
             ];
 
         return view('home',[
-            'taskCount' => $tasks,
+            // 'taskCount' => $tasks,
             'user' => $user,
             'url_data' => $url_data
         ]);
