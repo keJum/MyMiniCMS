@@ -235,4 +235,8 @@ class UserController extends Controller
         $user = Auth::user();
         return json_encode($user);
     }
+
+    public function notificationReading( Notification $notification){
+        dump($notification);
+    }
 }

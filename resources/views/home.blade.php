@@ -8,7 +8,11 @@
                 <img src="{{asset('storage/'.$user->image_link)}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{$user->name}}</h5>
-                    <p class="card-text">{{@$user->role->name}}</p>
+                    <p class="card-text">
+                        {{@$user->role->name}}
+                        <hr>
+                        У вас уведомления {{count($user->unreadNotifications)}}
+                    </p>
                 </div>
             </div>
         </div>

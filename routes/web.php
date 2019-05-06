@@ -50,6 +50,8 @@ Route::group(['prefix'=>'user_managment','middleware'=>['auth']],function(){
     Route::get('profile/update','UserController@updateProfile')->name('user.updateProfile');
     Route::get('notification/index','UserController@notificationIndex')->name('notification.index');
     Route::get('notification/read/{user}','UserController@notificationRead')->name('notification.read');
+    Route::get('notification/reading/{notification}}','UserController@notificationReading')->name('notification.reading');
+    Route::post('notificoation/count','UserController@notificationList');
 });
 Route::group(['prefix'=>'role_managment'],function(){
     Route::resource('role','RoleController')->middleware('seven');

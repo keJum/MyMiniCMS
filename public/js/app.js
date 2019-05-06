@@ -90292,6 +90292,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         SidebarMenu: __WEBPACK_IMPORTED_MODULE_0_vue_sidebar_menu__["SidebarMenu"]
     },
+    methods: {
+        update: function update() {
+            axios.get('notification/count').then(function (response) {});
+        }
+    },
     data: function data() {
         return {
             menu: [{
@@ -90306,7 +90311,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 title: 'Профиль',
                 icon: 'fas fa-user-alt'
             }, {
-                href: 'user_managment/notification/index',
+                href: '/user_managment/notification/index',
                 title: 'Уведомления',
                 icon: 'fas fa-bell'
             }, {

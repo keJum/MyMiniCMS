@@ -8,7 +8,7 @@
             </div>
             <div class="card-body">    
                 <div class="text-center">
-                    <a href="{{route('task_managment.task.create')}}" class="btn btn-primary pull-center">
+                    <a href="{{route('user.create')}}" class="btn btn-primary pull-right">
                         <i class="fas fa-plus-square"></i> Создать пользователя
                     </a>    
                 </div>

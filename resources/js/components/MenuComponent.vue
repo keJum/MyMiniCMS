@@ -9,6 +9,13 @@
           components: {
             SidebarMenu
         },
+        methods:{
+            update:function(){
+                axios.get('notification/count').then((response)=>{
+                    
+                })
+            }
+        },
         data() {
             return {
                 menu: [
@@ -27,7 +34,7 @@
                         icon:'fas fa-user-alt',
                     },
                     {
-                        href: 'user_managment/notification/index',
+                        href: '/user_managment/notification/index',
                         title: 'Уведомления',
                         icon: 'fas fa-bell',
                     },
