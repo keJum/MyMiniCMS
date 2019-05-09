@@ -28,7 +28,10 @@ Vue.component('menu-burger-component',require('./components/BurgerComponent.vue'
 Vue.component('avatar-component',require('./components/AvatarComponent.vue'));
 Vue.component('accardion-component',require('./components/AccardionComponent.vue'));
 Vue.component('task-table-component',require('./components/TaskTabelComponent.vue'));
+Vue.component('task-archive-component',require('./components/ArchiveTaskComponent'));
+Vue.component('user-table-component',require('./components/UserTabelComponent.vue'));
 Vue.component('menu-component',require('./components/MenuComponent.vue'));
+
 
 // Vue.component('modal-component',require('./components/ModalComponent.vue'));
 

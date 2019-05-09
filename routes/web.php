@@ -24,12 +24,12 @@
  * ---------------------------------
  * Доступы пользователей :
  * 
- *  one   - доступ к изменению содержания задачи 
- *  two   - доступ к прогрессу задачи 
- *  tree   - доступ к проверки работы задачи
- *  four   - доступ к завершению задачи
- *  five   - доступ к отдлам 
- *  six   - доступ к пользователям
+ *  one     - доступ к изменению содержания задачи 
+ *  two     - доступ к прогрессу задачи 
+ *  tree    - доступ к проверки работы задачи
+ *  four    - доступ к завершению задачи
+ *  five    - доступ к отдлам 
+ *  six     - доступ к пользователям
  *  seven   - доступ к ролям
  *  eight   - доступ к списку задач
  * ------------------------------------
@@ -52,6 +52,7 @@ Route::group(['prefix'=>'user_managment','middleware'=>['auth']],function(){
     Route::get('notification/read/{user}','UserController@notificationRead')->name('notification.read');
     Route::get('notification/reading/{notification}}','UserController@notificationReading')->name('notification.reading');
     Route::post('notificoation/count','UserController@notificationList');
+    Route::post('user/list','UserController@userList');
 });
 Route::group(['prefix'=>'role_managment'],function(){
     Route::resource('role','RoleController')->middleware('seven');
@@ -67,6 +68,7 @@ Route::group(['prefix'=>'task_managment','middleware'=>['auth']],function(){
     Route::get('taskAll','TaskController@allIndex',['as'=>'task_managment'])->name('taskAll')->middleware('eight');
     Route::post('update/task','TaskController@selectTask',['as'=>'task_managment'])->name('selectTask');
     Route::get('/task/success/{task}/{str}','TaskController@success')->name('successTask');
+    Route::get('/task/archive/index','TaskController@archiveIndex')->name('archive.index');
     Route::resource('comment','CommentController');
 });
 Route::get('/', function () {

@@ -8,13 +8,16 @@
             </div>
             <div class="card-body">    
                 <div class="text-center">
+                    
                     <a href="{{route('user.create')}}" class="btn btn-primary pull-right">
                         <i class="fas fa-plus-square"></i> Создать пользователя
                     </a>    
                 </div>
                 <br>
                 <br>
-                @include('user_managment.user.partials.userList')
+                <div style="max-width: 100%; overflow: auto;">
+                    <user-table-component></user-table-component>
+                </div>
             </div>
         </div>
     </div>

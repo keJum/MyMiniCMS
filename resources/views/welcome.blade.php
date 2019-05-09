@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>DMS</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -70,7 +70,7 @@
                     @auth
                         <a href="{{ url('/home') }}">Домой</a>
                     @else
-                        <a href="{{ route('login') }}">Логи</a>
+                        <a href="{{ route('login') }}">Логин</a>
 
                         @if (Route::has('register'))
                             {{-- <a href="{{ route('register') }}">Регистрация</a> --}}

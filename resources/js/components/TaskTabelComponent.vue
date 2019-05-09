@@ -12,6 +12,7 @@
         >
         
         <!-- <table-column show="ID" label="Номер задачи" data-type="numeric"></table-column> -->
+        <table-column show="id" label="id"></table-column>
         <table-column show="name" label="Имя" ></table-column>
         <table-column show="status" label="Статус"  ></table-column>
     </table-component>
@@ -57,12 +58,14 @@ export default {
                         break;
                         case 5:
                         return
+                        strStatus = 'задача в архиве'
                         break;
                         default:
                         strStatus = 'Не известный статус '
                         break;
                 }
                 table.push({
+                    'id' : item.id,
                     'name': '<a href="/task_managment/task/'+item.id+'">'+ item.name + '</a>',
                     'status': strStatus
                 });

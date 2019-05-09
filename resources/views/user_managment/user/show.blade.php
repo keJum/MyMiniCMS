@@ -32,7 +32,7 @@
                                     </p>
                                     <h6>Роль : </h6>
                                     <p>
-                                        {{$user->role->name}}
+                                        {{@$user->role->name}}
                                     </p>
                                     <h6>
                                         Отдел : </h6>
@@ -44,6 +44,15 @@
                                     <h5 class="mt-2"><i class="fas fa-tasks float-right"></i>Задачи:</h5>
                                     <task-table-component></task-table-component>
                                 </div>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                
+                                 Выход
+                             </a>
+                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                 @csrf
+                             </form>
                             </div>
                             <!--/row-->
                         </div>

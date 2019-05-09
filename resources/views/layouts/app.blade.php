@@ -34,126 +34,65 @@
 </head>
 <body>
     <div id="app">
-        {{-- <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+        <div class="text-right">
+            @guest
+
+            @else
+                <a class="btn btn-danger" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"
+                    style="margin: 10px;">
+
+                    Выход
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            @endguest
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    {{-- <menu-burger-component
+                    v-bind:url-data="{{ json_encode([
+                        array(
+                            'title' => 'Домой',
+                            'url' => route('home'),
+                            'icon' => 'fa fa-home'
+                        ),
+                        array(
+                            'title' => 'Задачи',
+                            'url' => route('task_managment.task.index'),
+                            'icon' => 'fa fa-thumb-tack'
+                        ),
+                        array(
+                            'title'=>'Профиль',
+                            'url'=>route('user.showProfile'),
+                            'icon' => 'fa fa-user' 
+                        ),
+                        array(
+                            'title'=>'Уведомления',
+                            'url'=>route('notification.index'),
+                            'icon' => 'fa fa-bell-o'
+                        ),
+                        array(
+                            'title'=>'Выйти',
+                            'url'=>route('logout'),
+                            'icon' => 'fa fa-exit'
+                        ),
+                        ])}}"
+                    ></menu-burger-component> --}}
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">
-                                    Войти
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                @if (Route::has('register'))
-
-                                @endif
-                            </li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                   {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-                                
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{route('home')}}">
-                                        Домой 
-                                    </a>
-                                    <a class="dropdown-item" href="{{route('task_managment.task.index')}}">
-                                        Задачи 
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('user.showProfile') }}">
-                                        Профиль 
-                                    </a>
-                                    <a href="{{route('notification.index')}}" class="dropdown-item">
-                                        Уведомления
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                       
-                                        Выход
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                    <menu-component></menu-component>
+                </div>
+                <div class="col-11" style="top: 60px;">
+                    <main class="py-4">
+                        @yield('content')
+                        {{-- <modal-component></modal-component> --}}
+                    </main>
                 </div>
             </div>
-        </nav> --}}
-        {{-- @dump(list(
-                [
-                    'title'=>'/lexa',
-                    'url'=>'/lexa'
-                ],
-                [
-                    'title'=>'/test'
-                    'url'=>'/test'
-                ]
-            )) --}}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            {{-- <menu-burger-component
-            v-bind:url-data="{{ json_encode([
-                array(
-                    'title' => 'Домой',
-                    'url' => route('home'),
-                    'icon' => 'fa fa-home'
-                ),
-                array(
-                    'title' => 'Задачи',
-                    'url' => route('task_managment.task.index'),
-                    'icon' => 'fa fa-thumb-tack'
-                ),
-                array(
-                    'title'=>'Профиль',
-                    'url'=>route('user.showProfile'),
-                    'icon' => 'fa fa-user' 
-                ),
-                array(
-                    'title'=>'Уведомления',
-                    'url'=>route('notification.index'),
-                    'icon' => 'fa fa-bell-o'
-                ),
-                array(
-                    'title'=>'Выйти',
-                    'url'=>route('logout'),
-                    'icon' => 'fa fa-exit'
-                ),
-                ])}}"
-            ></menu-burger-component> --}}
-
-            <menu-component></menu-component>
         </div>
-        <div class="col-11" style="top: 60px;">
-            <main class="py-4">
-                @yield('content')
-                {{-- <modal-component></modal-component> --}}
-            </main>
-        </div>
-    </div>
-</div>
-
-
     </div>
 
 </body>

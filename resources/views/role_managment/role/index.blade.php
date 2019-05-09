@@ -11,30 +11,21 @@
                     <div style="max-width: 100%; overflow: auto;">
                         <table class="table table-striped" >
                             <thead>
+                                <th>ID</th>
                                 <th>Название</th>
                                 <th>Описание</th>
-                                <th>Доступы</th>
-                                <th class="text-right">Действие</th>
                             </thead>
                             <tbody>
                                 @forelse ($roles as $role)
                                 <tr>
                                     <td>
+                                        {{$role->id}}
+                                    </td>
+                                    <td>
                                         <a href="{{route('role.show',$role)}}">{{$role->name}}</a>
                                     </td>
                                     <td>
                                         {{$role->describe}}
-                                    </td>
-                                    <td>
-                                        {{@$role->access}}
-                                    </td>
-                                    <td class="text-right">
-                                        <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('role.destroy',$role)}}" method="post">
-                                            {{method_field('DELETE')}}
-                                            {{ csrf_field() }}
-                                            <a href="{{route('role.edit',$role)}}" class="btn btn-default">Ред.</a>
-                                            <button type="submit" class="btn">Удал.</button>
-                                        </form>
                                     </td>
                                 </tr>                    
                                 @empty

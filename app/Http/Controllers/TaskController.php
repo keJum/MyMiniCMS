@@ -270,4 +270,9 @@ class TaskController extends Controller
 
     }
 
+    public function archiveIndex ()
+    {
+        return view('task_managment.task.archive.index');
+    }
+
 }

@@ -43,12 +43,17 @@
                         icon: 'fas fa-tasks',
                         child: [
                             {
-                                href: '/task_managment/task ',
-                                title: 'Список',
-                            },
-                            {
                                 href: '/task_managment/task/create ',
                                 title: 'Создать'
+                            },
+                            {
+                                href: '/task_managment/task ',
+                                title: 'Список актуальных задач',
+                            },
+                            
+                            {
+                                href: '/task_managment/task/archive/index ',
+                                title: 'Архив задач'
                             }
                         ]
                     }

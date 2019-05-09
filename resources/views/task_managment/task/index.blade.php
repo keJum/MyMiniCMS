@@ -4,13 +4,16 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Задачи
+                <h1> Актуальные задачи </h1>
             </div>
             <div class="card-body">
-
-                <p class="card-text">
-                    <task-table-component></task-table-component>
-                </p>
+                <div style="max-width: 100%; overflow: auto;">
+                    <p class="card-text">
+                        <div style="max-width: 100%; overflow: auto;">
+                            <task-table-component></task-table-component>
+                        </div>
+                    </p>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="text-center">

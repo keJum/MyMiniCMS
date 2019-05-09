@@ -239,4 +239,18 @@ class UserController extends Controller
     public function notificationReading( Notification $notification){
         dump($notification);
     }
+
+    public function userList(){
+        $users = User::all();
+        foreach( $users as $user){
+            $arr[] = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'department' => $user->department->name,
+                'role' => $user->role->name
+            ];
+        }
+        return json_encode($arr);
+    }
 }
