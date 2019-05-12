@@ -43,7 +43,8 @@
  */
 
 Route::group(['prefix'=>'user_managment','middleware'=>['auth']],function(){
-    Route::resource('user','UserController')->middleware('eight');
+    // Route::resource('user','UserController')->middleware('eight');
+    Route::resource('user','UserController');
     Route::post('image/upload/{user}','UserController@uploadImageAvatar')->name('user.loadImage');
     Route::get('profile/show','UserController@showProfile')->name('user.showProfile');
     Route::get('profile/edit','UserController@editProfile')->name('user.editProfile');
@@ -53,6 +54,10 @@ Route::group(['prefix'=>'user_managment','middleware'=>['auth']],function(){
     Route::get('notification/reading/{notification}}','UserController@notificationReading')->name('notification.reading');
     Route::post('notificoation/count','UserController@notificationList');
     Route::post('user/list','UserController@userList');
+
+    Route::get('message/index','MessageController@index')->name('message.index');
+    Route::get('message/create/{user}','MessageController@create')->name('message.create');
+    Route::post('message/update/{user}','MessageController@update')->name('message.update');
 });
 Route::group(['prefix'=>'role_managment'],function(){
     Route::resource('role','RoleController')->middleware('seven');

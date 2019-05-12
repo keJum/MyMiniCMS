@@ -72,6 +72,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment','idSubject','id');
     }
 
+    public function messageSender()
+    {
+        return $this->hasMany('App\Message','sender_id','id');
+    }
+
+    public function messageRecipient()
+    {
+        return $this->hasMany('App\Message','recipient_id','id');
+    }
+
 
     /**
      * Возращаем роль 

@@ -92,7 +92,7 @@ class TaskController extends Controller
         if(isset($task->provider)){ $users[] = $task->provider; }
         if(isset($task->developer)){ $users[] = $task->developer; }
         if(isset($task->tester)){ $users[] = $task->tester; }
-        Notification::send( $users ,new InvoiceTask($task,'crate'));
+        Notification::send( $users ,new InvoiceTask($task,'task','newTask'));
 
         return redirect()->route('task_managment.task.index');
     }
@@ -194,7 +194,7 @@ class TaskController extends Controller
         if(isset($task->developer)){ $users[] = $task->developer; }
         if(isset($task->tester)){ $users[] = $task->tester; }
         if ($users[0] !== ''){
-            Notification::send( $users ,new InvoiceTask($task,'update'));
+            Notification::send( $users ,new InvoiceTask($task,'task','updateTask'));
         }
 
         return redirect()->route('task_managment.task.index');
@@ -228,7 +228,7 @@ class TaskController extends Controller
                 if(isset($task->provider)){ $users[] = $task->provider; }
                 if(isset($task->developer)){ $users[] = $task->developer; }
                 if(isset($task->tester)){ $users[] = $task->tester; }
-                Notification::send( $users ,new InvoiceTask($task,'end'));
+                Notification::send( $users ,new InvoiceTask($task,'task','endTask'));
                 break;
             case 'readyTask':
                 $task->status = 4;
@@ -237,7 +237,7 @@ class TaskController extends Controller
                 if(isset($task->provider)){ $users[] = $task->provider; }
                 if(isset($task->developer)){ $users[] = $task->developer; }
                 if(isset($task->tester)){ $users[] = $task->tester; }
-                Notification::send( $users ,new InvoiceTask($task,'ready'));
+                Notification::send( $users ,new InvoiceTask($task,'task','readyTask'));
                 break;
             default:
                 break;

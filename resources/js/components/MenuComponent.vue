@@ -39,8 +39,13 @@
                         icon: 'fas fa-bell',
                     },
                     {
+                        href: '/user_managment/message/index',
+                        title: 'Сообщения',
+                        icon: 'far fa-envelope-open'
+                    },
+                    {
                         title: 'Задачи',
-                        icon: 'fas fa-tasks',
+                        icon: 'fas fa-clipboard-list',
                         child: [
                             {
                                 href: '/task_managment/task/create ',

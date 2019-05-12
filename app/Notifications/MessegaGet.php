@@ -6,16 +6,17 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use function GuzzleHttp\json_encode;
-use App\Task;
+use App\Message;
 use Carbon\Carbon;
+use phpDocumentor\Reflection\Types\String_;
 
-class InvoiceTask extends Notification
+class MessegaGet extends Notification
 {
     use Queueable;
 
-    private $task;
+    private $message;
     private $type;
+    private $sender;
     private $text;
     private $data;
 
@@ -24,9 +25,10 @@ class InvoiceTask extends Notification
      *
      * @return void
      */
-    public function __construct(Task $task, String $type , String $str)
+    public function __construct(Message $message, String $type, String $str)
     {
-        $this->task = $task;
+        $this->message = $message;
+        $this->sender = $message->userSender->name;
         $this->type = $type;
         $this->text = $str;
         $this->data = Carbon::now()->toDateString();
@@ -65,9 +67,9 @@ class InvoiceTask extends Notification
      */
     public function toArray($notifiable)
     {
-        // dd($this->describe);
         return [
-            'task' => $this->task->id,
+            'sender' => $this->sender,
+            'message' => $this->message,
             'type' => $this->type,
             'data' => $this->data
         ];

@@ -17,6 +17,7 @@
         <table-column show="role" label="Роль"></table-column>
         <table-column show="department" label="Отдел"></table-column>
         <table-column show="email" label="Почта"></table-column>
+        <table-column show="message" label=""></table-column>
     </table-component>
 </template>
 <script>
@@ -46,7 +47,10 @@ export default {
                         'role' : item.role,
                         'department' : item.department,
                         'name': '<a href="/user_managment/user/'+item.id+'">'+ item.name + '</a>',
-                        'email': item.email
+                        'email': item.email,
+                        'message': '<a  class="btn btn-primary" href="/user_managment/message/create/'+item.id+'">'+ 
+                                        '<i class="far fa-envelope"></i>' +' Написать'+
+                                    '</a>'
                     });
                 });
             });
