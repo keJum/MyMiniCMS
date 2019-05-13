@@ -16,3 +16,5 @@ yarn-error.log
 database.db
 develop_base.db
 .1.env
+/storage/app/avatar/
+/storage/app/public/avatar/
