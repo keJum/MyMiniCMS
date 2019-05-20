@@ -10,11 +10,11 @@
             <ul class="list-unstyled">
                 @forelse ($message as $item)
                     <li class="media">
-                        <img src="..." class="mr-3" alt="...">
-                        <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
+                            <img src="{{asset('storage/'.$item->userSender->image_link)}}" class="mr-3" alt="avatar" width="50px" height="50px">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">{{$item->userSender->name}}</h5>
+                                <a href="{{route('message.create',$item->userSender)}}">{{$item->text}} </a>
+                            </div>
                     </li>
                     <br>                    
                 @empty

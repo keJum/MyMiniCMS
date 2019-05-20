@@ -31,6 +31,7 @@ Vue.component('task-table-component',require('./components/TaskTabelComponent.vu
 Vue.component('task-archive-component',require('./components/ArchiveTaskComponent'));
 Vue.component('user-table-component',require('./components/UserTabelComponent.vue'));
 Vue.component('menu-component',require('./components/MenuComponent.vue'));
+Vue.component('chat-component',require('./components/ChatComponent.vue'));
 
 
 // Vue.component('modal-component',require('./components/ModalComponent.vue'));

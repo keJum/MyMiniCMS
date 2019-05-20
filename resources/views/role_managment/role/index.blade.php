@@ -13,7 +13,7 @@
                             <thead>
                                 <th>ID</th>
                                 <th>Название</th>
-                                <th>Описание</th>
+                                <th></th>
                             </thead>
                             <tbody>
                                 @forelse ($roles as $role)
@@ -25,7 +25,7 @@
                                         <a href="{{route('role.show',$role)}}">{{$role->name}}</a>
                                     </td>
                                     <td>
-                                        {{$role->describe}}
+                                        <a href="{{route('role.edit',$role)}}" class="btn btn-success">Изменить</a>
                                     </td>
                                 </tr>                    
                                 @empty

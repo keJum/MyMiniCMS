@@ -17,6 +17,7 @@ class MessageController extends Controller
         $user = User::find(Auth::id());
         $message[] = $user->messageRecipient;
         $message[] = $user->messageSeder;
+        // dd($message);
         
         $array=[];
         foreach ($message as $item ){
@@ -29,11 +30,11 @@ class MessageController extends Controller
         natsort($message);
 
         foreach ($message as $item ){
-            echo($item);
-            echo '<hr>';
+            $groupUser[$item->userSender->name] = $item;
+            // $groupUser[$item->]
         }
-
-        dd($message);
+        // dd($groupUser);
+        $message = $groupUser;
 
         return view('user_managment.message.index',[
             'user' => $user,
