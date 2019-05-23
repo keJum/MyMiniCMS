@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/storage/fontAwesome/css/font-awesome.min.css">
 
     <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
 
@@ -94,6 +95,8 @@
             </div>
         </div>
     </div>
-
+ {{-- Script --}}
+ <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    
 </body>
 </html>

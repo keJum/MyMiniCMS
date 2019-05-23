@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable()->default('без названия');
-            $table->string('description')->nullable()->default('без описания');
+            $table->string('description',4096)->nullable()->default('без описания');
             $table->integer('file')->nullable();
             $table->string('provider_id')->nullable()->default('не назначен');
             $table->string('respon_id')->nullable()->default('не назначен');

@@ -39,7 +39,7 @@
                                     </form>  
                                     <br>
                                     <hr>
-                                    {{$know->text}}
+                                    {!! @$know->text !!}
                                 </div>   
                             @endforeach
                         </div>

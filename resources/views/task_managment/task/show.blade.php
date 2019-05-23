@@ -17,7 +17,7 @@
                             <div class="container">
                                 <h1 class="display-4">Задача:  {{$task->name}} <br></h1>
                                 <h2>Описание:</h2>
-                                <p> {{@$task->description}} </p>
+                                <p> {!!@$task->description!!} </p>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                                             <h4 class="media-heading user_name" style="margin-left: 20px;">
                                                     {{$comment->user->name}}
                                             </h4>
-                                                {{$comment->commentText}}
+                                                {!!$comment->commentText!!}
                                             <hr>
                                         </div>
                                     </div>

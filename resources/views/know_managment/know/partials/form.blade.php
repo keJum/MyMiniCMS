@@ -9,11 +9,11 @@
 @endif
 
 <label for="theme">Тема</label>
-<input type="text" name="theme" id="theme" value="{{@$know->theme}}" class="form-control" required>
+<input type="text" name="theme" id="theme" value="{{@$know->theme}}" class="form-control" required >
 
 <label for="text">Текст</label>
-<textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"> 
-    {{@$know->text}} 
+<textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" > 
+    {!! @$know->text!!} 
 </textarea>
 
 <hr>

@@ -36444,6 +36444,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 __webpack_require__(149);
+$(document).ready(function () {
+  CKEDITOR.replace('exampleFormControlTextarea1');
+});
 
 window.Vue = __webpack_require__(173);
 

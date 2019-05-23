@@ -6,6 +6,10 @@
  */
 
 require('./bootstrap');
+$(document).ready(function(){
+    CKEDITOR.replace( 'exampleFormControlTextarea1' );
+})
+
 
 window.Vue = require('vue');
 import VModal from 'vue-js-modal'

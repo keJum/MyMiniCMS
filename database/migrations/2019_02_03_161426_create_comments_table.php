@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('idObject');    // Task
             $table->integer('idSubject');   // User
-            $table->string('commentText');  // текст комментария
+            $table->string('commentText',4096);  // текст комментария
             $table->timestamps();
         });
     }

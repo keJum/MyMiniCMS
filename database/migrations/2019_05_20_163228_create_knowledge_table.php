@@ -17,7 +17,7 @@ class CreateKnowledgeTable extends Migration
             $table->increments('id');
             $table->integer('department_id')->nullable();
             $table->string('theme')->nullable();
-            $table->string('text')->nullable();
+            $table->string('text',4096)->nullable();
             $table->timestamps();
         });
     }
