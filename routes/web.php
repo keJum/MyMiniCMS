@@ -58,7 +58,13 @@ Route::group(['prefix'=>'user_managment','middleware'=>['auth']],function(){
     Route::get('message/index','MessageController@index')->name('message.index');
     Route::get('message/create/{user}','MessageController@create')->name('message.create');
     Route::post('message/update/{user}','MessageController@update')->name('message.update');
+
 });
+
+Route::group(['prefix'=>'know_managment','middleware'=>['auth']],function(){
+    Route::resource('knowledge',"KnowledgeController");
+});
+
 Route::group(['prefix'=>'role_managment'],function(){
     Route::resource('role','RoleController')->middleware('seven');
 });

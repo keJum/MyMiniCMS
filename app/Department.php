@@ -16,4 +16,9 @@ class Department extends Model
     {
         return $this->hasMany('App\User','department_id','id');
     }
+
+    public function knowledge()
+    {
+        return $this->belongsTo('App\knowledge','department_id','id');
+    }
 }

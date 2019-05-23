@@ -14,7 +14,9 @@ class KnowledgeController extends Controller
      */
     public function index()
     {
-        //
+        return view('know_managment.know.index',[
+            'knows' => knowledge::all()
+        ]);
     }
 
     /**
@@ -24,7 +26,9 @@ class KnowledgeController extends Controller
      */
     public function create()
     {
-        //
+        return view('know_managment.know.create',[
+            'know'=>[''],
+        ]);
     }
 
     /**
@@ -35,7 +39,12 @@ class KnowledgeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        knowledge::create([
+            'theme' => $request['theme'],
+            'text' => $request['text']
+        ]);
+
+        return redirect()->route('knowledge.index');
     }
 
     /**
@@ -57,7 +66,9 @@ class KnowledgeController extends Controller
      */
     public function edit(knowledge $knowledge)
     {
-        //
+        return view('know_managment.know.edit',[
+            'know' => $knowledge
+        ]);
     }
 
     /**
@@ -69,7 +80,11 @@ class KnowledgeController extends Controller
      */
     public function update(Request $request, knowledge $knowledge)
     {
-        //
+        if(isset($request['theme'])) $knowledge->theme = $request['theme'];
+        if(isset($request['text'])) $knowledge->text = $request['text'];
+        $knowledge->save();
+
+        return redirect()->route('knowledge.index');
     }
 
     /**
@@ -80,6 +95,7 @@ class KnowledgeController extends Controller
      */
     public function destroy(knowledge $knowledge)
     {
-        //
+        $knowledge->delete();
+        return redirect()->route('knowledge.index');
     }
 }

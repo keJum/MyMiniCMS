@@ -15,6 +15,9 @@ class CreateKnowledgeTable extends Migration
     {
         Schema::create('knowledge', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('department_id')->nullable();
+            $table->string('theme')->nullable();
+            $table->string('text')->nullable();
             $table->timestamps();
         });
     }

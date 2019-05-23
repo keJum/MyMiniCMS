@@ -30,6 +30,16 @@
                 </div> --}}
                 <div class="card p-2 bd-highlight" style="width: 18rem; margin: 1rem">
                     <div class="card-body">
+                        <a href="{{route('knowledge.index')}}">
+                            <center>
+                                <i class="fas fa-atlas fa-5x mb-4" aria-hidden="true"></i>
+                                <h5 class="card-title">База знаний</h5>
+                            </center>
+                        </a>
+                    </div>
+                </div>
+                {{-- <div class="card p-2 bd-highlight" style="width: 18rem; margin: 1rem">
+                    <div class="card-body">
                         <a href="{{route('taskAll')}}">
                             <center>
                                 <i class="fa fa-tasks fa-5x mb-4" aria-hidden="true"  ></i>
@@ -37,7 +47,7 @@
                             </center>
                         </a>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card p-2 bd-highlight" style="width: 18rem; margin: 1rem">
                     <div class="card-body">
                         <a href="{{route('user.index')}}">
