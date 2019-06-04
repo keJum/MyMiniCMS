@@ -17,7 +17,7 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->integer('sender_id');
             $table->integer('recipient_id');
-            $table->string('text');
+            $table->string('text',4096);
             $table->timestamps();
         });
     }

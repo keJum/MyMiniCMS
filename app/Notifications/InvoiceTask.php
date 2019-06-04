@@ -69,6 +69,7 @@ class InvoiceTask extends Notification
         return [
             'task' => $this->task->id,
             'type' => $this->type,
+            'text' => $this->text,
             'data' => $this->data
         ];
     }

@@ -2,12 +2,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h1>Задача </h1>
+            <h1>Задача: {{$task->name}}</h1>
         </div>
         <div class="card-body">
             <div class="container">
-                <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-secondary">Редактировать задачу</a>
-                <hr>
                 {{-- Описание задачи --}}
                 <div class="row">
                     <br>
@@ -15,13 +13,14 @@
                     <div class="col-sm-9">
                         <div class="jumbotron jumbotron-fluid">
                             <div class="container">
-                                <h1 class="display-4">Задача:  {{$task->name}} <br></h1>
                                 <h2>Описание:</h2>
                                 <p> {!!@$task->description!!} </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3">
+                        <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-secondary ">Редактировать задачу</a>
+                        <hr>
                         <h2>
                             Поставщик
                         </h2>
@@ -33,12 +32,12 @@
                         {{@$task->responsible->name}}
                         <hr>
                         <h2>
-                            Разработчик
+                            Исполнитель
                         </h2>
                         {{@$task->developer->name}}
                         <hr>
                         <h2>
-                            Тестировщик
+                            Проверяющий
                         </h2>
                         {{@$task->tester->name}}
                         <hr>
@@ -49,7 +48,7 @@
                                 задача на распределении   
                                 @break
                             @case(1)
-                                задача на проверки
+                                задача на проверке
                                 @break
                             @case(2)
                                 задача на переработки
@@ -65,6 +64,11 @@
                             @break
                             @default
                         @endswitch
+
+                        @isset($task->importance)
+                            <br>
+                            Задача имеет приоритет {{$task->importance}}
+                        @endisset
                     </div>
                 </div>
             </div>
@@ -95,29 +99,29 @@
         
                             {{-- Форма добавления комментария --}}
                             <div class="media">
-                                    <a class="media-left" href="#">
-                                        <img src="{{asset('storage/'.$userAuth->image_link)}}" width="50" height="50">
-                                    </a>
-                                    <div class="media-body" style="margin-left: 40px;">
-                                        
-                                        <h4 class="media-heading user_name" style="margin-left: 20px;">
-                                            {{$userAuth->name}}
-                                        </h4>
-                                        
-        
-                                        <form class="form-horizontal" action="{{route('comment.store')}}" method="POST">
-                                            {{ csrf_field() }}
-                                            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Текст коментария">  </textarea>
-                                            <input type="hidden" name="idUser" value="{{$userAuth->id}}">
-                                            <input type="hidden" name="idTask" value="{{$task->id}}">
-                                            <br>
-                                            <input type="submit" class="btn btn-primary" value="Обуликовать">    
-                                        </form>
-        
-        
-                                        <hr>
-                                    </div>
+                                <a class="media-left" href="#">
+                                    <img src="{{asset('storage/'.$userAuth->image_link)}}" width="50" height="50">
+                                </a>
+                                <div class="media-body" style="margin-left: 40px;">
+                                    
+                                    <h4 class="media-heading user_name" style="margin-left: 20px;">
+                                        {{$userAuth->name}}
+                                    </h4>
+                                    
+    
+                                    <form class="form-horizontal" action="{{route('comment.store')}}" method="POST">
+                                        {{ csrf_field() }}
+                                        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Текст коментария">  </textarea>
+                                        <input type="hidden" name="idUser" value="{{$userAuth->id}}">
+                                        <input type="hidden" name="idTask" value="{{$task->id}}">
+                                        <br>
+                                        <input type="submit" class="btn btn-primary" value="Обуликовать">    
+                                    </form>
+    
+    
+                                    <hr>
                                 </div>
+                            </div>
                         </div>   
                     </div>
                 </div>

@@ -56,7 +56,7 @@ class CommentController extends Controller
         if(isset($task->tester)){ $users[] = $task->tester; }
 
         // dd($users);
-        Notification::send( $users ,new InvoiceTask($task,'task','newComment'));
+        Notification::send( $users ,new InvoiceTask($task,'task','Новый комментарий'));
 
 
         return redirect()->back();
@@ -107,3 +107,6 @@ class CommentController extends Controller
         //
     }
 }
+
+
+

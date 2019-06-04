@@ -25,7 +25,13 @@
                                         <a href="{{route('role.show',$role)}}">{{$role->name}}</a>
                                     </td>
                                     <td>
-                                        <a href="{{route('role.edit',$role)}}" class="btn btn-success">Изменить</a>
+                                    <form onsubmit="if(confirm('Удалить?')){return true} else {return false} " action="{{route('role.destroy',$role)}}" method="post">
+                                        {{method_field('DELETE')}}
+                                        {{ csrf_field() }}
+                                        <a href="{{route('role.edit',$role)}}" class="btn btn-success pull-right " style="margin-left:1rem"><i class="fas fa-edit"></i></a>
+                                        <button class="pull-right btn btn-danger" type="submit" ><i class="fas fa-trash"></i></button>
+                                        <br>
+                                    </form> 
                                     </td>
                                 </tr>                    
                                 @empty

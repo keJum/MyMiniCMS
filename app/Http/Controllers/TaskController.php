@@ -92,7 +92,7 @@ class TaskController extends Controller
         if(isset($task->provider)){ $users[] = $task->provider; }
         if(isset($task->developer)){ $users[] = $task->developer; }
         if(isset($task->tester)){ $users[] = $task->tester; }
-        Notification::send( $users ,new InvoiceTask($task,'task','newTask'));
+        Notification::send( $users ,new InvoiceTask($task,'task','Новая задача'));
 
         return redirect()->route('task_managment.task.index');
     }
@@ -125,7 +125,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //Отделы ролей показываются в шаблоне blade
+        //группы ролей показываются в шаблоне blade
         $user = User::find(Auth::id());
         return view('task_managment.task.edit',[
             'user'          =>$user,
@@ -194,7 +194,7 @@ class TaskController extends Controller
         if(isset($task->developer)){ $users[] = $task->developer; }
         if(isset($task->tester)){ $users[] = $task->tester; }
         if ($users[0] !== ''){
-            Notification::send( $users ,new InvoiceTask($task,'task','updateTask'));
+            Notification::send( $users ,new InvoiceTask($task,'task','Задача обновленна'));
         }
 
         return redirect()->route('task_managment.task.index');
@@ -228,7 +228,7 @@ class TaskController extends Controller
                 if(isset($task->provider)){ $users[] = $task->provider; }
                 if(isset($task->developer)){ $users[] = $task->developer; }
                 if(isset($task->tester)){ $users[] = $task->tester; }
-                Notification::send( $users ,new InvoiceTask($task,'task','endTask'));
+                Notification::send( $users ,new InvoiceTask($task,'task','Задача закрыта'));
                 break;
             case 'readyTask':
                 $task->status = 4;
@@ -237,7 +237,7 @@ class TaskController extends Controller
                 if(isset($task->provider)){ $users[] = $task->provider; }
                 if(isset($task->developer)){ $users[] = $task->developer; }
                 if(isset($task->tester)){ $users[] = $task->tester; }
-                Notification::send( $users ,new InvoiceTask($task,'task','readyTask'));
+                Notification::send( $users ,new InvoiceTask($task,'task','Задача готова'));
                 break;
             default:
                 break;

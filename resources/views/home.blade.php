@@ -63,7 +63,7 @@
                         <a href="{{route('department_managment.department.index')}}">
                             <center>
                                 <i class="fa fa-id-badge  fa-5x mb-4" aria-hidden="true"  ></i>
-                                <h5 class="card-title">Все отделы</h5>
+                                <h5 class="card-title">Все группы</h5>
                             </center>
                         </a>
                     </div>

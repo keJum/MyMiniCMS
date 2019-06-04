@@ -19,13 +19,13 @@
                                         <div class="media-body ">
                                             <h5 class="mt-0 mb-1">{{@$item->userSender->name }}</h5>
                                                 <p style="	word-wrap: break-word;
-                                                word-break: break-all;">{{@$item->text}}</p>
+                                                word-break: break-all;">{!!@$item->text!!}</p>
                                         </div>
                                     @else
                                     <div class="media-body text-right " style="margin-right: 10px;">
                                         <h5 class="mt-0 mb-1">{{@$item->userSender->name }}</h5>
                                         <p style="	word-wrap: break-word;
-                                        word-break: break-all;"> {{@$item->text}}</p>
+                                        word-break: break-all;"> {!!@$item->text!!}</p>
                                     </div>
                                     <img src="{{asset('/storage/'.$item->userSender->image_link)}}" class="mr-3" alt="..." width="50px" height="50px">
                                     @endif

@@ -13,7 +13,7 @@
                             <img src="{{asset('storage/'.$item->userSender->image_link)}}" class="mr-3" alt="avatar" width="50px" height="50px">
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">{{$item->userSender->name}}</h5>
-                                <a href="{{route('message.create',$item->userSender)}}">{{$item->text}} </a>
+                                <a href="{{route('message.create',$item->userSender)}}">{!!$item->text!!} </a>
                             </div>
                     </li>
                     <br>                    

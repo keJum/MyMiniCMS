@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h1>Отделы</h1>
+                <h1>группы</h1>
             </div>
             <div class="card-body">
                 <div class="container-fluid">

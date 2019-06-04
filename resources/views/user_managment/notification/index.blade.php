@@ -4,7 +4,7 @@
     <div class="container">
 <div class="card">
     <div class="card-header">
-        Список уведомлений
+        <h1> Список уведомлений </h1>
     </div>
     <div class="card-body">
         <p class="card-text">
@@ -38,7 +38,7 @@
                                     </td>    
 
                                     <td>
-                                        {{$notification->data['type']}}
+                                        {{$notification->data['text']}}
                                     </td>  
                                     <td>
                                         {{$notification->created_at}}

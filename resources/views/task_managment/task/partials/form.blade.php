@@ -47,12 +47,12 @@
                             <select name="respon_id" class="form-control" id="exampleFormControlSelect1">
                                 <option value="{{@$task->respon_id}}">{{@$task->responsible->name}}</option>
                                 <hr>
-                                {{-- перебираем все отделы  --}}
+                                {{-- перебираем все группы  --}}
                                 @foreach ($departments as $department)
                                     @foreach ($department->user as $userDepart)
                                         {{-- роли можно посмотреть в route/web.php --}}
                                         @if (strpos(@$userDepart->role->access,'4'))
-                                            <option value="{{$userDepart->id}}">{{$userDepart->name}} - отдел ( {{$userDepart->department->name}} )</option>
+                                            <option value="{{$userDepart->id}}">{{$userDepart->name}} - отдел ( {{$userDepart->department->name}} ) </option>
                                         @endif
                                     @endforeach
                                 @endforeach

@@ -21,7 +21,7 @@
 <select name="respon_id" class="form-control" id="exampleFormControlSelect1">
     <option value="{{@$task->respon_id}}">{{@$task->responsible->name}}</option>
     <hr>
-    {{-- перебираем все отделы  --}}
+    {{-- перебираем все группы  --}}
     @foreach ($departments as $department)
         @foreach ($department->user as $user)
             {{-- see form to role created --}}

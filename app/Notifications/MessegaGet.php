@@ -70,6 +70,7 @@ class MessegaGet extends Notification
         return [
             'sender' => $this->sender,
             'message' => $this->message,
+            'text'=>$this->text,
             'type' => $this->type,
             'data' => $this->data
         ];

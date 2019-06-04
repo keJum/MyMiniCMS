@@ -3,7 +3,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            Создание задачи
+            <h1>Создание задачи</h1>
         </div>
         <div class="card-body">
             <p class="card-text">

@@ -28,7 +28,7 @@ class MessageController extends Controller
         $message = $array;
         $message = array_unique($message);
         natsort($message);
-
+        $groupUser=[];
         foreach ($message as $item ){
             $groupUser[$item->userSender->name] = $item;
             // $groupUser[$item->]
@@ -77,7 +77,7 @@ class MessageController extends Controller
             'text' => $request['text']
         ]);
 
-        Notification::send( $user ,new MessegaGet($message,'message','newMessage'));
+        Notification::send( $user ,new MessegaGet($message,'message','Новое сообщение'));
         return back();
     }
 
