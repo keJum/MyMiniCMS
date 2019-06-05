@@ -16,7 +16,7 @@ use function GuzzleHttp\json_encode;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Показать список пользователей.
      *
      * @return \Illuminate\Http\Response
      */

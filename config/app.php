@@ -4,12 +4,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Name
+    | Имя приложения
     |--------------------------------------------------------------------------
     |
-    | This value is the name of your application. This value is used when the
-    | framework needs to place the application's name in a notification or
-    | any other location as required by the application or its packages.
+    | Это значение - название вашего приложения. Это значение используется, когда
+    | Фреймворк должен поместить имя приложения в уведомлении или
+    | любое другое местоположение, как требуется приложением или его пакетами.
     |
     */
 
@@ -17,12 +17,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Environment
+    | Прикладная среда
     |--------------------------------------------------------------------------
     |
-    | This value determines the "environment" your application is currently
-    | running in. This may determine how you prefer to configure various
-    | services the application utilizes. Set this in your ".env" file.
+    | Это значение определяет «среду», в которой ваше приложение в настоящее время
+    | работает. Это может определить, как вы предпочитаете настраивать различные
+    | сервисы, которые использует приложение. Установите это в своем файле .env.
     |
     */
 
@@ -30,12 +30,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Debug Mode
+    | Режим отладки приложения
     |--------------------------------------------------------------------------
     |
-    | When your application is in debug mode, detailed error messages with
-    | stack traces will be shown on every error that occurs within your
-    | application. If disabled, a simple generic error page is shown.
+    | Когда ваше приложение находится в режиме отладки, подробные сообщения об ошибках с
+    | следы стека будут отображаться при каждой ошибке, которая происходит внутри вашего
+    | приложение. Если отключено, отображается простая страница общих ошибок.
     |
     */
 
@@ -43,12 +43,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application URL
+    | URL приложения
     |--------------------------------------------------------------------------
     |
-    | This URL is used by the console to properly generate URLs when using
-    | the Artisan command line tool. You should set this to the root of
-    | your application so that it is used when running Artisan tasks.
+    | Этот URL-адрес используется консолью для правильной генерации URL-адресов при использовании
+    | инструмент командной строки Artisan. Вы должны установить это в корень
+    | ваше приложение, чтобы оно использовалось при выполнении задач Artisan.
     |
     */
 
@@ -58,12 +58,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Timezone
+    | Часовой пояс приложения
     |--------------------------------------------------------------------------
     |
-    | Here you may specify the default timezone for your application, which
-    | will be used by the PHP date and date-time functions. We have gone
-    | ahead and set this to a sensible default for you out of the box.
+    | Здесь вы можете указать часовой пояс по умолчанию для вашего приложения, который
+    | будет использоваться PHP-функцией date и date-time. Мы ушли
+    | вперед и установите это разумное значение по умолчанию для вас из коробки.
     |
     */
 
@@ -71,51 +71,51 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Locale Configuration
+    | Конфигурация локали приложения
     |--------------------------------------------------------------------------
     |
-    | The application locale determines the default locale that will be used
-    | by the translation service provider. You are free to set this value
-    | to any of the locales which will be supported by the application.
+    | Локаль приложения определяет локаль по умолчанию, которая будет использоваться
+    | поставщиком услуг перевода. Вы можете установить это значение
+    | на любой из языков, которые будут поддерживаться приложением.
     |
     */
 
     'locale' => 'en',
 
     /*
-    |--------------------------------------------------------------------------
-    | Application Fallback Locale
-    |--------------------------------------------------------------------------
-    |
-    | The fallback locale determines the locale to use when the current one
-    | is not available. You may change the value to correspond to any of
-    | the language folders that are provided through your application.
-    |
+    | ------------------------------------------------- -------------------------
+    | Языковой стандарт приложения
+    | ------------------------------------------------- -------------------------
+    |
+    | Резервная локаль определяет локаль, которая будет использоваться при текущей
+    | не доступен. Вы можете изменить значение, чтобы соответствовать любому из
+    | языковые папки, которые предоставляются через ваше приложение.
+    |
     */
 
     'fallback_locale' => 'en',
 
     /*
-    |--------------------------------------------------------------------------
-    | Faker Locale
-    |--------------------------------------------------------------------------
-    |
-    | This locale will be used by the Faker PHP library when generating fake
-    | data for your database seeds. For example, this will be used to get
-    | localized telephone numbers, street address information and more.
+    | ------------------------------------------------- -------------------------
+    | Faker Locale
+    | ------------------------------------------------- -------------------------
+    |
+    | Эта локаль будет использоваться PHP-библиотекой Faker при создании фейка
+    | данные для вашей базы данных семян. Например, это будет использоваться для получения
+    | локализованные номера телефонов, информация об адресе улицы и многое другое.
     |
     */
 
     'faker_locale' => 'en_US',
 
     /*
-    |--------------------------------------------------------------------------
-    | Encryption Key
-    |--------------------------------------------------------------------------
-    |
-    | This key is used by the Illuminate encrypter service and should be set
-    | to a random, 32 character string, otherwise these encrypted strings
-    | will not be safe. Please do this before deploying an application!
+   | ------------------------------------------------- -------------------------
+    | Ключ шифрования
+    | ------------------------------------------------- -------------------------
+    |
+    | Этот ключ используется службой шифрования Illuminate и должен быть установлен
+    | в случайную строку из 32 символов, в противном случае эти зашифрованные строки
+    | не будет в безопасности. Пожалуйста, сделайте это перед развертыванием приложения!
     |
     */
 
@@ -125,20 +125,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Autoloaded Service Providers
-    |--------------------------------------------------------------------------
-    |
-    | The service providers listed here will be automatically loaded on the
-    | request to your application. Feel free to add your own services to
-    | this array to grant expanded functionality to your applications.
+    | Автозагрузочные сервис-провайдеры
+    | ------------------------------------------------- -------------------------
+    |
+    | Поставщики услуг, перечисленные здесь, будут автоматически загружены на
+    | запрос к вашей заявке. Не стесняйтесь добавлять свои собственные услуги в
+    | этот массив для предоставления расширенной функциональности вашим приложениям.
     |
     */
 
     'providers' => [
 
         /*
-         * Laravel Framework Service Providers...
-         */
+         * сервис-провайдер фреймворка Laravel Framework ...
+         */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -163,34 +163,26 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
-
-        /*
-         * Application Service Providers...
-         */
+         * Сервис-провайдер внешние пакеты ...
+         */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        /**
-         * Other Service
-         */
         Unisharp\Ckeditor\ServiceProvider::class,
 
     ],
 
     /*
-    |--------------------------------------------------------------------------
-    | Class Aliases
-    |--------------------------------------------------------------------------
-    |
-    | This array of class aliases will be registered when this application
-    | is started. However, feel free to register as many as you wish as
-    | the aliases are "lazy" loaded so they don't hinder performance.
-    |
+    | ------------------------------------------------- -------------------------
+    | Объект псевдонимов
+    | ------------------------------------------------- -------------------------
+    |
+    | Этот массив псевдонимов классов будет зарегистрирован, когда это приложение
+    | запущен Тем не менее, не стесняйтесь регистрировать столько, сколько хотите
+    | псевдонимы загружаются так, чтобы они не мешали работе.
+    |
     */
 
     'aliases' => [
