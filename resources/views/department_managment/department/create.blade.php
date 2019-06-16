@@ -3,7 +3,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h1> Создание отдела </h1>
+            <h1> Создание группыа </h1>
         </div>
         <div class="card-body">
             <p class="card-text">

@@ -10,38 +10,39 @@
 
 @isset($department->id)
     <label for="">
-        Персональный id отдела : {{@$department->id}} 
+        Персональный id группы : {{@$department->id}} 
     </label>
     <hr>
 @endisset
 
-
-
-<label for="">Имя</label>
-<input type="text" name="name" id="" placeholder="Имя" value="{{@$department->name}} " class="form-control" required>
-
-<label for="">Описание</label>
-<textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3">{{@$department->description}}</textarea>
-
-<label for="">Сотрудники</label>
-@foreach ($users as $user)
-    <div class="form-check">
-        
-        @if (@$department->id == @$user->department_id)
-            <input class="form-check-input" type="checkbox" name="users_id[]" value="{{$user->id}}" id="defaultCheck1" checked> 
-            <label class="form-check-label">
-                {{@$user->name}} роль: {{@$user->role->name}} 
-            </label>
-        @else  
-            <input class="form-check-input" type="checkbox" name="users_id[]" value="{{$user->id}}" >
-            <label class="form-check-label">
-                {{@$user->name}} роль: {{@$user->role->name}}
-            </label>
-        @endif
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <label for="">Имя</label>
+            <input type="text" name="name" id="" placeholder="Имя" value="{{@$department->name}} " class="form-control" required>
+            <label for="">Описание</label>
+            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3">{{@$department->description}}</textarea>
+        </div>
+        <div class="col-sm-6">
+            <label for="">Сотрудники</label>
+            @foreach ($users as $user)
+                <div class="form-check">
+                    
+                    @if (@$department->id == @$user->department_id)
+                        <input class="form-check-input" type="checkbox" name="users_id[]" value="{{$user->id}}" id="defaultCheck1" checked> 
+                        <label class="form-check-label">
+                            {{@$user->name}} роль: {{@$user->role->name}} 
+                        </label>
+                    @else  
+                        <input class="form-check-input" type="checkbox" name="users_id[]" value="{{$user->id}}" >
+                        <label class="form-check-label">
+                            {{@$user->name}} роль: {{@$user->role->name}}
+                        </label>
+                    @endif
+                </div>
+            @endforeach
+        </div>
     </div>
-@endforeach
-
-
+</div>
 <hr>
-
 <input type="submit" class="btn btn-primary" value="Сохранить">

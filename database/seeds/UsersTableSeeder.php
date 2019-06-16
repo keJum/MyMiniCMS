@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -81,7 +82,7 @@ class UsersTableSeeder extends Seeder
         DB::table('departments')->insert([
             'id' => 1,
             'name' => 'Администрация',
-            'description' => 'Отдел работы с внутриним порядком'
+            'description' => 'Группа работы с внутриним порядком'
         ]);
 
         DB::table('users')->insert([
@@ -133,7 +134,7 @@ class UsersTableSeeder extends Seeder
         DB::table('departments')->insert([
             'id' => 2,
             'name' => 'Поддержка',
-            'description' => 'Отдел работы с клинтами'
+            'description' => 'Группы работы с клинтами'
         ]);
 
         /**
@@ -173,57 +174,164 @@ class UsersTableSeeder extends Seeder
         DB::table('knowledge')->insert([
             'id'=>2,
             'theme' => 'Создание таблицы',
-            'text' =>'
-            <p>Урок &quot;<strong>Основные понятия БД &quot;</strong></p>
-            <p>&nbsp;Рассмотрим, например, базу данных:<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Телефонный справочник</strong></p>
-            <table align="center" border="1" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td style="vertical-align:top; width:58.25pt">
-                        <p><strong>№</strong></p>
-                        </td>
-                        <td style="vertical-align:top; width:128.75pt">
-                        <p><strong>Фамилия</strong></p>
-                        </td>
-                        <td style="vertical-align:top; width:84.15pt">
-                        <p><strong>Адрес</strong></p>
-                        </td>
-                        <td style="vertical-align:top; width:84.15pt">
-                        <p><strong>Телефон</strong></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align:top; width:58.25pt">
-                        <p>1</p>
-                        </td>
-                        <td style="vertical-align:top; width:128.75pt">
-                        <p>Иванов В.В.</p>
-                        </td>
-                        <td style="vertical-align:top; width:84.15pt">
-                        <p>Серова, 5 12</p>
-                        </td>
-                        <td style="vertical-align:top; width:84.15pt">
-                        <p>4325345</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align:top; width:58.25pt">
-                        <p>2</p>
-                        </td>
-                        <td style="vertical-align:top; width:128.75pt">
-                        <p>Петров И.И.</p>
-                        </td>
-                        <td style="vertical-align:top; width:84.15pt">
-                        <p>Седова, 3-21</p>
-                        </td>
-                        <td style="vertical-align:top; width:84.15pt">
-                        <p>3454365</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            'text' =>
+            '
+                <p>Урок &quot;<strong>Основные понятия БД &quot;</strong></p>            <p>&nbsp;Рассмотрим, например, базу данных:<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Телефонный справочник</strong></p><table align="center" border="1" cellspacing="0"> <tbody><tr>                        <td style="vertical-align:top; width:58.25pt">                        <p><strong>№</strong></p>                        </td>                        <td style="vertical-align:top; width:128.75pt">                        <p><strong>Фамилия</strong></p>                        </td>                        <td style="vertical-align:top; width:84.15pt">                        <p><strong>Адрес</strong></p>                        </td>                        <td style="vertical-align:top; width:84.15pt">                        <p><strong>Телефон</strong></p>                        </td>                    </tr>                    <tr>                        <td style="vertical-align:top; width:58.25pt">                        <p>1</p>                        </td>                        <td style="vertical-align:top; width:128.75pt">                        <p>Иванов В.В.</p>                        </td>                        <td style="vertical-align:top; width:84.15pt">                        <p>Серова, 5 12</p>                        </td>                        <td style="vertical-align:top; width:84.15pt">                        <p>4325345</p>                        </td>                    </tr>                    <tr>                        <td style="vertical-align:top; width:58.25pt">                        <p>2</p>                        </td>                        <td style="vertical-align:top; width:128.75pt">                        <p>Петров И.И.</p>                        </td>                        <td style="vertical-align:top; width:84.15pt">                        <p>Седова, 3-21</p>                        </td>                        <td style="vertical-align:top; width:84.15pt">                        <p>3454365</p>                        </td>                    </tr>                </tbody></table>
             '
         ]);
+
+        /**
+         * Созадание данных для задач 
+         */
+        DB::table('tasks')->insert([
+            'name' => 'Создать роль',
+            'description' => 
+            '
+                Привет всем читателям. Сейчас я хочу рассказать Вам, как создать пользователя в Windows 7. При установке операционной системы мы указываем имя компьютера, это имя и становиться названием главного пользователя в системе, имеющего все права, то есть права администратора.Если за компьютером работают еще и другие люди, и Вы не хотите чтобы он имели полных прав администратора, то одной учетной записи Вам будет мало. Нужно будет для нового пользователя создать новую учетную запись.Создание нового пользователя в Windows 7 на самом деле простое пяти минутное дело. Сейчас рассмотрим процесс.Заходим в «Пуск – Панель управления».Выбираем вид просмотра всех параметров на «Мелкие значки». И в самом низу выбираем пункт «Учетные записи пользователей».
+            ',
+            'provider_id' => 1,
+            'respon_id' => 8,
+            'developer_id' => 1,
+            'tester_id' => 11,
+            'importance' => 1,
+            'complexity' => 1,
+            'progress' => 1,
+            'status'=>0,
+         ]);
+         DB::table('tasks')->insert([
+            'name' => 'Создать пользователя',
+            'description' => 
+            '
+                Привет всем читателям. Сейчас я хочу рассказать Вам, как создать пользователя в Windows 7. При установке операционной системы мы указываем имя компьютера, это имя и становиться названием главного пользователя в системе, имеющего все права, то есть права администратора.Если за компьютером работают еще и другие люди, и Вы не хотите чтобы он имели полных прав администратора, то одной учетной записи Вам будет мало. Нужно будет для нового пользователя создать новую учетную запись.Создание нового пользователя в Windows 7 на самом деле простое пяти минутное дело. Сейчас рассмотрим процесс.Заходим в «Пуск – Панель управления».Выбираем вид просмотра всех параметров на «Мелкие значки». И в самом низу выбираем пункт «Учетные записи пользователей».
+            ',
+            'provider_id' => 1,
+            'respon_id' => 8,
+            'developer_id' => 1,
+            'tester_id' => 11,
+            'importance' => 1,
+            'complexity' => 1,
+            'progress' => 1,
+            'status'=>1,
+         ]);
+         DB::table('tasks')->insert([
+            'name' => 'Создать папку',
+            'description' => 
+            '
+                Привет всем читателям. Сейчас я хочу рассказать Вам, как создать пользователя в Windows 7. При установке операционной системы мы указываем имя компьютера, это имя и становиться названием главного пользователя в системе, имеющего все права, то есть права администратора.Если за компьютером работают еще и другие люди, и Вы не хотите чтобы он имели полных прав администратора, то одной учетной записи Вам будет мало. Нужно будет для нового пользователя создать новую учетную запись.Создание нового пользователя в Windows 7 на самом деле простое пяти минутное дело. Сейчас рассмотрим процесс.Заходим в «Пуск – Панель управления».Выбираем вид просмотра всех параметров на «Мелкие значки». И в самом низу выбираем пункт «Учетные записи пользователей».
+            ',
+            'provider_id' => 1,
+            'respon_id' => 8,
+            'developer_id' => 1,
+            'tester_id' => 11,
+            'importance' => 1,
+            'complexity' => 1,
+            'progress' => 1,
+            'status'=>2,
+         ]);
+         DB::table('tasks')->insert([
+            'name' => 'Создать файл',
+            'description' => 
+            '
+                Привет всем читателям. Сейчас я хочу рассказать Вам, как создать пользователя в Windows 7. При установке операционной системы мы указываем имя компьютера, это имя и становиться названием главного пользователя в системе, имеющего все права, то есть права администратора.Если за компьютером работают еще и другие люди, и Вы не хотите чтобы он имели полных прав администратора, то одной учетной записи Вам будет мало. Нужно будет для нового пользователя создать новую учетную запись.Создание нового пользователя в Windows 7 на самом деле простое пяти минутное дело. Сейчас рассмотрим процесс.Заходим в «Пуск – Панель управления».Выбираем вид просмотра всех параметров на «Мелкие значки». И в самом низу выбираем пункт «Учетные записи пользователей».
+            ',
+            'provider_id' => 1,
+            'respon_id' => 8,
+            'developer_id' => 1,
+            'tester_id' => 11,
+            'importance' => 6,
+            'complexity' => 1,
+            'progress' => 3,
+            'status'=>3,
+         ]);
+         DB::table('tasks')->insert([
+            'name' => 'Создать директорию',
+            'description' => 
+            '
+                Привет всем читателям. Сейчас я хочу рассказать Вам, как создать пользователя в Windows 7. При установке операционной системы мы указываем имя компьютера, это имя и становиться названием главного пользователя в системе, имеющего все права, то есть права администратора.Если за компьютером работают еще и другие люди, и Вы не хотите чтобы он имели полных прав администратора, то одной учетной записи Вам будет мало. Нужно будет для нового пользователя создать новую учетную запись.Создание нового пользователя в Windows 7 на самом деле простое пяти минутное дело. Сейчас рассмотрим процесс.Заходим в «Пуск – Панель управления».Выбираем вид просмотра всех параметров на «Мелкие значки». И в самом низу выбираем пункт «Учетные записи пользователей».
+            ',
+            'provider_id' => 1,
+            'respon_id' => 8,
+            'developer_id' => 1,
+            'tester_id' => 11,
+            'importance' => 3,
+            'complexity' => 1,
+            'progress' => 2,
+            'status'=>4,
+         ]);
+         DB::table('tasks')->insert([
+            'name' => 'Создать робота',
+            'description' => 
+            '
+                Привет всем читателям. Сейчас я хочу рассказать Вам, как создать пользователя в Windows 7. При установке операционной системы мы указываем имя компьютера, это имя и становиться названием главного пользователя в системе, имеющего все права, то есть права администратора.Если за компьютером работают еще и другие люди, и Вы не хотите чтобы он имели полных прав администратора, то одной учетной записи Вам будет мало. Нужно будет для нового пользователя создать новую учетную запись.Создание нового пользователя в Windows 7 на самом деле простое пяти минутное дело. Сейчас рассмотрим процесс.Заходим в «Пуск – Панель управления».Выбираем вид просмотра всех параметров на «Мелкие значки». И в самом низу выбираем пункт «Учетные записи пользователей».
+            ',
+            'provider_id' => 1,
+            'respon_id' => 8,
+            'developer_id' => 1,
+            'tester_id' => 11,
+            'importance' => 3,
+            'complexity' => 1,
+            'progress' => 2,
+            'status'=>5,
+         ]);
+         DB::table('tasks')->insert([
+            'name' => 'Создать таблицу',
+            'description' => 
+            '
+                Привет всем читателям. Сейчас я хочу рассказать Вам, как создать пользователя в Windows 7. При установке операционной системы мы указываем имя компьютера, это имя и становиться названием главного пользователя в системе, имеющего все права, то есть права администратора.Если за компьютером работают еще и другие люди, и Вы не хотите чтобы он имели полных прав администратора, то одной учетной записи Вам будет мало. Нужно будет для нового пользователя создать новую учетную запись.Создание нового пользователя в Windows 7 на самом деле простое пяти минутное дело. Сейчас рассмотрим процесс.Заходим в «Пуск – Панель управления».Выбираем вид просмотра всех параметров на «Мелкие значки». И в самом низу выбираем пункт «Учетные записи пользователей».
+            ',
+            'provider_id' => 1,
+            'respon_id' => 8,
+            'developer_id' => 1,
+            'tester_id' => 11,
+            'importance' => 3,
+            'complexity' => 1,
+            'progress' => 2,
+            'status'=>5,
+         ]);
+
+         /**
+          *  Даннаы для сообщения пример
+          */
+
+        DB::table('messages')->insert([
+            'sender_id'=>2,
+            'recipient_id'=>1,
+            'text' => 'Привет, как дела ?'
+        ]);
+        DB::table('messages')->insert([
+            'sender_id'=>1,
+            'recipient_id'=>2,
+            'text' => 'Привет, отлично'
+        ]);        
+        DB::table('messages')->insert([
+            'sender_id'=>1,
+            'recipient_id'=>2,
+            'text' => 'как у тебя дела ?'
+        ]);        
+        DB::table('messages')->insert([
+            'sender_id'=>2,
+            'recipient_id'=>1,
+            'text' => 'тоже нормально'
+        ]);
+
+        /**
+         * Уведомления 
+         */
+        DB::table('notifications')->insert([
+            'id' => 1,
+            'type'=>'App\Notifications\MessegaGet',
+            'notifiable_type' => 'App\User',
+            'notifiable_id'=> 1,
+            'data' => '{"sender":"\u0418\u043b\u044c\u044f","message":{"sender_id":2,"recipient_id":1,"text":"                fdsfasfdafasdf<\/p>","updated_at":"2019-06-05 23:36:57","created_at":"2019-06-05 23:36:57","id":5,"user_sender":{"id":2,"name":"\u0418\u043b\u044c\u044f","image_link":"defualt\/noneImage.png","role_id":"2","skill":"\u0421\u0438\u0434\u0435\u0442\u044c \u0434\u043e\u043c\u0430 \u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0432 \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440","email":"lexa@b.ru","department_id":"1","specialty_id":"\u043d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u043e","email_verified_at":null,"created_at":null,"updated_at":null}},"text":"\u041d\u043e\u0432\u043e\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435","type":"message","data":"2019-06-05"}',
+        ]);
+        DB::table('notifications')->insert([
+            'id'=> 2,
+            'type'=>'App\Notifications\InvoiceTask',
+            'notifiable_type' => 'App\User',
+            'notifiable_id'=> 1,
+            'data' => '{"task":4,"type":"task","text":"\u0417\u0430\u0434\u0430\u0447\u0430 \u0437\u0430\u043a\u0440\u044b\u0442\u0430","data":"2019-06-05"}',
+        ]);
+
     }
 }
 

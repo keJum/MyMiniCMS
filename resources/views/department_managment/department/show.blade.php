@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="container">
-    <h1>Информация о отделе</h1>
+    <h1>Информация о группе</h1>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">id отдела</th>
+          <th scope="row">id группы</th>
           <td>{{$department->id}}</td>
         </tr>
         <tr>

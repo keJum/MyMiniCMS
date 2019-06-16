@@ -26,7 +26,7 @@
         @foreach ($department->user as $user)
             {{-- see form to role created --}}
             @if (preg_match('/4/',@$user->role->access))
-                <option value="{{$user->id}}">{{$user->name}} - отдел ( {{$user->department->name}} )</option>
+                <option value="{{$user->id}}">{{$user->name}} - группа ( {{$user->department->name}} )</option>
             @endif
         @endforeach
     @endforeach

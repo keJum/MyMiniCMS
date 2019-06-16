@@ -15,18 +15,23 @@
     <hr>
 @endif
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <label for="">Имя</label>
+            <input type="text" name="name" id="" placeholder="Имя" value="{{@$user->name}} " class="form-control" required>
+            <label for="">Email</label>
+            <input type="text" name="email" id="" placeholder="Email" value="{{@$user->email}}" class="form-control" required>
+        </div>
+        <div class="col-sm-6">
+            <label for="">Пароль</label>
+            <input type="password" name="password" id="" class="form-control">
+            <label for="">Потверждение</label>
+            <input type="password" name="password_confirmation" id="" class="form-control">                
+        </div>
+    </div>
+</div>
 
-<label for="">Имя</label>
-<input type="text" name="name" id="" placeholder="Имя" value="{{@$user->name}} " class="form-control" required>
-
-<label for="">Email</label>
-<input type="text" name="email" id="" placeholder="Email" value="{{@$user->email}}" class="form-control" required>
-
-<label for="">Пароль</label>
-<input type="password" name="password" id="" class="form-control">
-
-<label for="">Потверждение</label>
-<input type="password" name="password_confirmation" id="" class="form-control">
 
 {{-- <label for="">role</label>
 <input type="text" name="role" id="" placeholder="role" value="{{@$user->developer->role}}" class="form-control" required> --}}

@@ -38,7 +38,7 @@
                                         {{@$user->role->name}}
                                     </p>
                                     <h6>
-                                        Отдел : </h6>
+                                        группа : </h6>
                                     <p>
                                         {{@$user->department->name}}
                                     </p>

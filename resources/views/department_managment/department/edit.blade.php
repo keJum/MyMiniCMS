@@ -2,7 +2,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h1>Изменени отдела</h1>
+        <h1>Изменение группы</h1>
     </div>
     <div class="card-body">
         <p class="card-text">

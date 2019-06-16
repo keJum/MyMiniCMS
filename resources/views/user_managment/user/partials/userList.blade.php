@@ -23,7 +23,7 @@ Licensed under MIT
                                 <div class="col-md-5">
                                     <h4 class="list-group-item-heading">{{$user->name}}</h4>
                                     <p class="list-group-item-text">
-                                        Отдел "{{@$user->department->name}}"  Почта"{{@$user->email}}"
+                                        группа "{{@$user->department->name}}"  Почта"{{@$user->email}}"
                                     </p>
                                 </div>
                                 <div class="col-md-4 text-center">

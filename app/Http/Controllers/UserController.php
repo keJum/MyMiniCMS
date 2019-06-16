@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index()
     {
         return view('user_managment.user.index',[
-            'users' => User::paginate(10)
+            'users' => User::all()
         ]);
     }
 
@@ -207,18 +207,12 @@ class UserController extends Controller
      * 
      */
     public function notificationIndex(){
-
         $user = User::find(Auth::id());
         return view('user_managment.notification.index',[
             'user' => $user,
         ]);
-
     }
     public function notificationRead( User $user ){
-        // $notification = Notification::find($notification);
-
-        // dd($notification);
-        // $notification->update(['read_at' => Carbon::now()]);;
         foreach ($user->unreadNotifications as $notification) {
             $notification->markAsRead();
         }

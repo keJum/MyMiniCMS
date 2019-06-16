@@ -9,6 +9,89 @@
 @endif
 <div class="container-fluid">
     <div class="row">
+        <div class="col-sm-4">
+            {{-- ----------------------------Контроль задач------------------------------------ --}}
+            @if (preg_match('/4/',@$user->role->access))
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text">
+                                <label for="exampleFormControlSelect1">Разработчик</label>
+                                <select name="developer_id" class="form-control" id="exampleFormControlSelect1">
+                                    <option value="{{@$task->developer_id}}">{{@$task->developer->name}}</option>
+                                    <hr>
+                                    @foreach ($departments as $department)
+                                        @foreach ($department->user as $userDepart)
+                                            {{-- Разработка задач --}}
+                                            @if (strpos(@$userDepart->role->access,'2'))
+                                                <option value="{{$userDepart->id}}">{{$userDepart->name}} - группа ( {{$userDepart->department->name}} )</option>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                </select>
+                                <label for="exampleFormControlSelect1">Тестер</label>
+                                <select name="tester_id" class="form-control" id="exampleFormControlSelect1">
+                                    <option value="{{@$task->tester_id}}">{{@$task->tester->name}}</option>
+                                    <hr>
+                                    @foreach ($departments as $department)
+                                        @foreach ($department->user as $userProvider)
+                                            {{-- sТестирование задач --}}
+                                            @if (strpos(@$userProvider->role->access,'3'))
+                                                <option value="{{$userProvider->id}}">{{$userProvider->name}} - группа ( {{$userProvider->department->name}} )</option>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                </select>
+                                <label for="exampleFormControlSelect1">Сложность</label>
+                                <select name="complexity" class="form-control" id="exampleSelect1">
+                                    <option {{@$task->complexity == '1' ?' selected="selected"': ''}}>1</option>
+                                    <option {{@$task->complexity == '2' ?' selected="selected"': ''}}>2</option>
+                                    <option {{@$task->complexity == '3' ?' selected="selected"': ''}}>3</option>
+                                    <option {{@$task->complexity == '4' ?' selected="selected"': ''}}>4</option>
+                                    <option {{@$task->complexity == '5' ?' selected="selected"': ''}}>5</option>
+                                </select>
+                            
+                                <br>    
+                                {{-- readyTask указывает что задачу готово  --}}
+                                <a href="{{route('successTask',['task'=>$task,'str'=>'readyTask'])}}" class="btn btn-success" onclick=""> Заврешить  задачу </a>
+                        </p>
+                        <input type="submit" class="btn btn-primary" value="Сохранить">    
+                    </div>
+                </div>
+            @endif
+            <br>
+            {{-- -----------Проверки задачи--------------------}}
+            @if (preg_match('/3/',@$user->role->access))
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text">
+                            <label for="exampleRadios1">Работает задача ? </label>       
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="exampleRadios3" value="1" checked>
+                                <label class="form-check-label" for="exampleRadios3">
+                                    Не проверинно 
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Не работает 
+                                </label>
+                            </div>        
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="3" >
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Работает
+                                </label>
+                            </div>
+                        </p>
+                        <input type="submit" class="btn btn-primary" value="Сохранить">    
+                    </div>
+                </div>
+            @endif
+        </div>
+        <br>
         <div class="col-sm-4" style="margin-bottom: 10px;">
             {{-- -----------Изменение имени и описания у задач--------------------}}
             @if (preg_match('/1/',@$user->role->access))
@@ -52,7 +135,7 @@
                                     @foreach ($department->user as $userDepart)
                                         {{-- роли можно посмотреть в route/web.php --}}
                                         @if (strpos(@$userDepart->role->access,'4'))
-                                            <option value="{{$userDepart->id}}">{{$userDepart->name}} - отдел ( {{$userDepart->department->name}} ) </option>
+                                            <option value="{{$userDepart->id}}">{{$userDepart->name}} - группа ( {{$userDepart->department->name}} ) </option>
                                         @endif
                                     @endforeach
                                 @endforeach
@@ -87,91 +170,6 @@
                                 <option {{@$task->progress == '4' ? 'selected="selected"': ''}}>4</option>
                                 <option {{@$task->progress == '5' ? 'selected="selected"': ''}}>5</option>
                             </select>
-                        </p>
-                        <input type="submit" class="btn btn-primary" value="Сохранить">    
-                    </div>
-                </div>
-            @endif
-        </div>
-        <br>
-        <div class="col-sm-4" style="margin-bottom: 10px;">
-            {{-- -----------Проверки задачи--------------------}}
-            @if (preg_match('/3/',@$user->role->access))
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text">
-                            <label for="exampleRadios1">Работает задача ? </label>       
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="exampleRadios3" value="1" checked>
-                                <label class="form-check-label" for="exampleRadios3">
-                                    Не проверинно 
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="exampleRadios2" value="2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Не работает 
-                                </label>
-                            </div>        
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="3" >
-                                <label class="form-check-label" for="exampleRadios1">
-                                    Работает
-                                </label>
-                            </div>
-                        </p>
-                        <input type="submit" class="btn btn-primary" value="Сохранить">    
-                    </div>
-                </div>
-            @endif
-        </div>
-        <br>
-        <div class="col-sm-4">
-            {{-- ----------------------------Контроль задач------------------------------------ --}}
-            @if (preg_match('/4/',@$user->role->access))
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text">
-                                <label for="exampleFormControlSelect1">Разработчик</label>
-                                <select name="developer_id" class="form-control" id="exampleFormControlSelect1">
-                                    <option value="{{@$task->developer_id}}">{{@$task->developer->name}}</option>
-                                    <hr>
-                                    @foreach ($departments as $department)
-                                        @foreach ($department->user as $userDepart)
-                                            {{-- Разработка задач --}}
-                                            @if (strpos(@$userDepart->role->access,'2'))
-                                                <option value="{{$userDepart->id}}">{{$userDepart->name}} - отдел ( {{$userDepart->department->name}} )</option>
-                                            @endif
-                                        @endforeach
-                                    @endforeach
-                                </select>
-                                <label for="exampleFormControlSelect1">Тестер</label>
-                                <select name="tester_id" class="form-control" id="exampleFormControlSelect1">
-                                    <option value="{{@$task->tester_id}}">{{@$task->tester->name}}</option>
-                                    <hr>
-                                    @foreach ($departments as $department)
-                                        @foreach ($department->user as $userProvider)
-                                            {{-- sТестирование задач --}}
-                                            @if (strpos(@$userProvider->role->access,'3'))
-                                                <option value="{{$userProvider->id}}">{{$userProvider->name}} - отдел ( {{$userProvider->department->name}} )</option>
-                                            @endif
-                                        @endforeach
-                                    @endforeach
-                                </select>
-                                <label for="exampleFormControlSelect1">Сложность</label>
-                                <select name="complexity" class="form-control" id="exampleSelect1">
-                                    <option {{@$task->complexity == '1' ?' selected="selected"': ''}}>1</option>
-                                    <option {{@$task->complexity == '2' ?' selected="selected"': ''}}>2</option>
-                                    <option {{@$task->complexity == '3' ?' selected="selected"': ''}}>3</option>
-                                    <option {{@$task->complexity == '4' ?' selected="selected"': ''}}>4</option>
-                                    <option {{@$task->complexity == '5' ?' selected="selected"': ''}}>5</option>
-                                </select>
-                            
-                                <br>    
-                                {{-- readyTask указывает что задачу готово  --}}
-                                <a href="{{route('successTask',['task'=>$task,'str'=>'readyTask'])}}" class="btn btn-success" onclick=""> Заврешить  задачу </a>
                         </p>
                         <input type="submit" class="btn btn-primary" value="Сохранить">    
                     </div>

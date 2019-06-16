@@ -17,6 +17,31 @@
                                 <p> {!!@$task->description!!} </p>
                             </div>
                         </div>
+                        {{-- Форма добавления комментария --}}
+                        <div class="media">
+                            <a class="media-left" href="#">
+                                <img src="{{asset('storage/'.$userAuth->image_link)}}" width="50" height="50">
+                            </a>
+                            <div class="media-body" style="margin-left: 40px;">
+                                
+                                <h4 class="media-heading user_name" style="margin-left: 20px;">
+                                    {{$userAuth->name}}
+                                </h4>
+                                
+
+                                <form class="form-horizontal" action="{{route('comment.store')}}" method="POST">
+                                    {{ csrf_field() }}
+                                    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Текст коментария">  </textarea>
+                                    <input type="hidden" name="idUser" value="{{$userAuth->id}}">
+                                    <input type="hidden" name="idTask" value="{{$task->id}}">
+                                    <br>
+                                    <input type="submit" class="btn btn-primary" value="Обуликовать">    
+                                </form>
+
+
+                                <hr>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-3">
                         <a href="{{route('task_managment.task.edit',$task)}}" class="btn btn-secondary ">Редактировать задачу</a>
@@ -96,32 +121,6 @@
                                         </div>
                                     </div>
                             @endforeach
-        
-                            {{-- Форма добавления комментария --}}
-                            <div class="media">
-                                <a class="media-left" href="#">
-                                    <img src="{{asset('storage/'.$userAuth->image_link)}}" width="50" height="50">
-                                </a>
-                                <div class="media-body" style="margin-left: 40px;">
-                                    
-                                    <h4 class="media-heading user_name" style="margin-left: 20px;">
-                                        {{$userAuth->name}}
-                                    </h4>
-                                    
-    
-                                    <form class="form-horizontal" action="{{route('comment.store')}}" method="POST">
-                                        {{ csrf_field() }}
-                                        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Текст коментария">  </textarea>
-                                        <input type="hidden" name="idUser" value="{{$userAuth->id}}">
-                                        <input type="hidden" name="idTask" value="{{$task->id}}">
-                                        <br>
-                                        <input type="submit" class="btn btn-primary" value="Обуликовать">    
-                                    </form>
-    
-    
-                                    <hr>
-                                </div>
-                            </div>
                         </div>   
                     </div>
                 </div>

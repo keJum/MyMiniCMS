@@ -42,7 +42,7 @@ class MessegaGet extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database','mail'];
     }
 
     /**
@@ -54,9 +54,9 @@ class MessegaGet extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Новое сообщение от'.$this->sender)
+                    ->action('Открыть список сообщений', url('/user_managment/message/index'))
+                    ->line('Спасибо что пользуетесь нашим приложением');
     }
 
     /**

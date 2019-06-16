@@ -46,15 +46,6 @@ class DepartmentController extends Controller
             'description'=> $request['description'],
             'imageAvatar' => $request['imageAvatar'],
         ]);
-
-        /**
-         * Связь одни ко одному, так как нужен только одни руководитель 
-         */
-        // $department->responsible = $request['responsible'];
-        
-        /**
-         * Свзязь один ко многим, несколько разработчиков
-         */
         foreach ($request['users_id'] as $user_id){
             $user = User::find($user_id);
             $user->department_id = $department->id;
@@ -130,19 +121,13 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        // foreach( $department->responsibles as $responsible){
-        //     $responsible->department = 'не указанно';
-        //     dd($responsible);
-        // }
         if(isset($department->user)){
             foreach ($department->user as $user){
                 $user->department_id = 'Не назначен';
                 $user->save();
             }
         }
-
         $department->delete();
-        
         return redirect()->route('department_managment.department.index');
     }
 }

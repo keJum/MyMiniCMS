@@ -161,34 +161,25 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        /**
-         * Если разработчик завершил задачу на процесс ( этап ) 5 
-         */
         if ( $request['progress'] == 5  ){
             $task->status  = 1; 
         }
-        
-
-        if(isset($request['name']                )){  $task->name                = $request['name'];                  }
-        if(isset($request['description']         )){  $task->description         = $request['description'];           }
-        if(isset($request['provider_id']         )){  $task->provider_id         = $request['provider_id'];           }
-        if(isset($request['respon_id']           )){  $task->respon_id           = $request['respon_id'];             }
-        if(isset($request['developer_id']        )){  $task->developer_id        = $request['developer_id'];          }
-        if(isset($request['tester_id']           )){  $task->tester_id           = $request['tester_id'];             }
-        if(isset($request['importance']          )){  $task->importance          = $request['importance'];            }
-        if(isset($request['complexity']          )){  $task->complexity          = $request['complexity'];            }
-        if(isset($request['progress']            )){  $task->progress            = $request['progress'];              }
-        if(isset($request['status']              )){  $task->status              = $request['status'];                }
-        if(isset($request['startDevelopment_at'] )){  $task->startDevelopment_at = $request['startDevelopment_at'];   }
-        if(isset($request['startTesting_at']     )){  $task->startTesting_at     = $request['startTesting_at'];       }
-        if(isset($request['finishTesting_at']    )){  $task->finishTesting_at    = $request['finishTesting_at'];      }
-        if(isset($request['finish_at']           )){  $task->finish_at           = $request['finish_at'];             }
-
-        // dd($task);
+        if(isset($request['name'])){$task->name= $request['name'];}
+        if(isset($request['description'])){$task->description= $request['description'];}
+        if(isset($request['provider_id'])){$task->provider_id= $request['provider_id'];}
+        if(isset($request['respon_id'])){$task->respon_id= $request['respon_id'];}
+        if(isset($request['developer_id'])){$task->developer_id= $request['developer_id'];}
+        if(isset($request['tester_id'])){$task->tester_id= $request['tester_id'];}
+        if(isset($request['importance'])){$task->importance= $request['importance'];}
+        if(isset($request['complexity'])){$task->complexity= $request['complexity'];}
+        if(isset($request['progress'])){$task->progress= $request['progress'];}
+        if(isset($request['status'])){$task->status= $request['status'];}
+        if(isset($request['startDevelopment_at'])){$task->startDevelopment_at = $request['startDevelopment_at'];}
+        if(isset($request['startTesting_at'])){$task->startTesting_at= $request['startTesting_at'];}
+        if(isset($request['finishTesting_at'])){$task->finishTesting_at= $request['finishTesting_at'];}
+        if(isset($request['finish_at'])){$task->finish_at= $request['finish_at'];}
         $task->save();
-
         $users[] ='';
-        
         if(isset($task->responsible)){ $users[] = $task->responsible; }
         if(isset($task->provider)){ $users[] = $task->provider; }
         if(isset($task->developer)){ $users[] = $task->developer; }
@@ -196,7 +187,6 @@ class TaskController extends Controller
         if ($users[0] !== ''){
             Notification::send( $users ,new InvoiceTask($task,'task','Задача обновленна'));
         }
-
         return redirect()->route('task_managment.task.index');
     }
 
@@ -219,33 +209,14 @@ class TaskController extends Controller
 
     public function success( Task $task, $str )
     {
-
-        switch ($str) {
-            case 'endTask':
-                $task->status = 5;
-                
-                if(isset($task->responsible)){ $users[] = $task->responsible; }
-                if(isset($task->provider)){ $users[] = $task->provider; }
-                if(isset($task->developer)){ $users[] = $task->developer; }
-                if(isset($task->tester)){ $users[] = $task->tester; }
-                Notification::send( $users ,new InvoiceTask($task,'task','Задача закрыта'));
-                break;
-            case 'readyTask':
-                $task->status = 4;
-
-                if(isset($task->responsible)){ $users[] = $task->responsible; }
-                if(isset($task->provider)){ $users[] = $task->provider; }
-                if(isset($task->developer)){ $users[] = $task->developer; }
-                if(isset($task->tester)){ $users[] = $task->tester; }
-                Notification::send( $users ,new InvoiceTask($task,'task','Задача готова'));
-                break;
-            default:
-                break;
-        }
+        $task->status = 5;
+        if(isset($task->responsible)){ $users[] = $task->responsible; }
+        if(isset($task->provider)){ $users[] = $task->provider; }
+        if(isset($task->developer)){ $users[] = $task->developer; }
+        if(isset($task->tester)){ $users[] = $task->tester; }
+        Notification::send( $users ,new InvoiceTask($task,'task','Задача закрыта'));
         $task->save();
         return redirect()->route('task_managment.task.index');
-
-        
     }
 
     public function ajaxUserTask ()
