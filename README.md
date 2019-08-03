@@ -65,8 +65,17 @@ docker-compose build up
 - Возможность просматривать все задачи
 
 
- ## Событие: 
+ ## События: 
 - создание задачи и отправка события подписанным
 - событие на измененеие задачи 
 - событие на закрытие задачи 
 - событие на возвращение задачи 
+
+## В проекте использовались:
+- [Laravel](https://github.com/laravel/framework)
+- [vue.js](https://github.com/vuejs/vue)
+- [docker](https://github.com/docker)
+- [axios](https://github.com/axios/axios)
+- [vue-sidebar-menu](https://github.com/yaminncco/vue-sidebar-menu)
+- [bootstrap 4](https://getbootstrap.com/)
+- [laravel-ckeditor](https://github.com/UniSharp/laravel-ckeditor)
