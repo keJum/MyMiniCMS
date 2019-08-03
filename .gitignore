@@ -19,3 +19,4 @@ develop_base.db
 /storage/app/public/avatar/
 .env
 .env
+composer.lock

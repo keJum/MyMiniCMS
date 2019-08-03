@@ -5,4 +5,4 @@ RUN apt-get update \
 
 WORKDIR /var/www/laravel-docker
 
-RUN php artisan storage:link 
+# RUN php artisan storage:link 
