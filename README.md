@@ -39,7 +39,8 @@ composer build
 
 Даллее запускаем среду выполнения
 ```bash
-docker-compose build up
+sudo docker-compose build 
+sudo docker-compose up
 ```
 
 
